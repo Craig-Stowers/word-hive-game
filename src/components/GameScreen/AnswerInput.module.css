@@ -1,0 +1,21 @@
+.root {
+   padding: 10px;
+   border: 2px dashed white;
+   width: 260px;
+}
+
+.root input {
+   /* Remove all styling */
+
+   border: none;
+   outline: none;
+   background: none;
+   padding: 0;
+   margin: 0;
+   font-size: 28px;
+   color: white;
+
+   color: inherit;
+   text-align: center; /* Center text */
+   width: 100%; /* Expand to width of parent */
+}

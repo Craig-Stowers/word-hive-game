@@ -1,0 +1,13 @@
+<svg width="100%" height="100%" viewBox="0 0 646 559" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;">
+
+  <g id="hex-all">
+    <path d="M484.142,0l-322.763,0l-161.379,279.521l161.379,279.517l322.763,-0l161.379,-279.517l-161.379,-279.521Z" class="hex-back"/>
+    <path class="hex-border" d="M484.142,0l161.379,279.521l-161.379,279.517l-322.763,-0l-161.379,-279.517l161.379,-279.521l322.763,0Zm-18.043,31.25l-286.678,0l-143.337,248.271l143.337,248.267l286.678,-0c0,-0 143.337,-248.267 143.337,-248.267l-143.337,-248.271Z"/>
+
+    <g id="shine" className="hex-shine">
+      <path d="M322.762,72.874l-119.309,-0l-29.825,51.662" style="fill:none;fill-rule:nonzero;stroke:#fff;stroke-width:15px;"/>
+      <path d="M143.8,176.197l-14.762,25.566" style="fill:none;fill-rule:nonzero;stroke:#fff;stroke-width:15px;"/>
+    </g>
+  </g>
+
+</svg>

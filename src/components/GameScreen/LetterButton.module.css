@@ -1,0 +1,39 @@
+:local {
+   /* Define color variable */
+   --default-color: #cccccc;
+}
+
+:global(.hex-shine) {
+   opacity: 0.6;
+}
+
+.root svg:hover {
+   filter: brightness(110%);
+}
+
+.default :global(.hex-back) {
+   fill: var(--grey-button-color);
+}
+
+.default :global(.hex-border) {
+   fill: #000000;
+   fill-opacity: 0.2;
+}
+
+.middle :global(.hex-back) {
+   fill: var(--yellow-color);
+}
+
+.middle :global(.hex-border) {
+   fill: #000000;
+   fill-opacity: 0.2;
+}
+
+.bonus :global(.hex-back) {
+   fill: var(--grey-button-color);
+}
+
+.bonus :global(.hex-border) {
+   fill: var(--bonus-border);
+   fill-opacity: 1;
+}

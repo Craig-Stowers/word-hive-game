@@ -1,0 +1,11 @@
+.root {
+}
+
+.row {
+   display: flex;
+}
+
+.honeyWrapper {
+   width: 25%;
+   padding: 24px;
+}
