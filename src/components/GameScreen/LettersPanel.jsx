@@ -7,7 +7,7 @@ const hexButtonHeight = hexButtonWidth * heightRatio;
 const hexButtonGap = 6;
 const leftRightOffset = 0.74;
 
-const LettersPanel = ({ letters, onLetterClick, bonus = 5 }) => {
+const LettersPanel = ({ letters, center, onLetterClick, bonusLetter }) => {
    const row1Top = `calc(50% - ${hexButtonHeight + hexButtonGap}px)`;
    const row2Top = `calc(50% - ${hexButtonHeight * 0.5 + hexButtonGap * 0.5}px)`;
    const row3Top = `50%`;
@@ -22,20 +22,22 @@ const LettersPanel = ({ letters, onLetterClick, bonus = 5 }) => {
       transform: "translate(-50%, -50%)",
    };
    const letterObjects = [
-      { char: letters[0], style: { ...basicStyle, top: row3Top, left: col2Left }, class: classes.middle },
-      { char: letters[1], style: { ...basicStyle, top: row1Top, left: col2Left }, class: classes.default },
-      { char: letters[2], style: { ...basicStyle, top: row2Top, left: col3Left }, class: classes.default },
-      { char: letters[3], style: { ...basicStyle, top: row4Top, left: col3Left }, class: classes.default },
-      { char: letters[4], style: { ...basicStyle, top: row5Top, left: col2Left }, class: classes.default },
-      { char: letters[5], style: { ...basicStyle, top: row4Top, left: col1Left }, class: classes.default },
-      { char: letters[6], style: { ...basicStyle, top: row2Top, left: col1Left }, class: classes.default },
+      { char: center, style: { ...basicStyle, top: row3Top, left: col2Left }, class: classes.middle },
+      { char: letters[0], style: { ...basicStyle, top: row1Top, left: col2Left }, class: classes.default },
+      { char: letters[1], style: { ...basicStyle, top: row2Top, left: col3Left }, class: classes.default },
+      { char: letters[2], style: { ...basicStyle, top: row4Top, left: col3Left }, class: classes.default },
+      { char: letters[3], style: { ...basicStyle, top: row5Top, left: col2Left }, class: classes.default },
+      { char: letters[4], style: { ...basicStyle, top: row4Top, left: col1Left }, class: classes.default },
+      { char: letters[5], style: { ...basicStyle, top: row2Top, left: col1Left }, class: classes.default },
    ];
 
-   letterObjects[bonus].class = classes.bonus;
+   const extendedLetterObjects = letterObjects.map((el) =>
+      el.char === bonusLetter ? { ...el, class: classes.bonus } : el
+   );
 
    return (
       <div style={{ width: "340px", height: "340px", backgroundColor: "black", position: "relative" }}>
-         {letterObjects.map((el, index) => {
+         {extendedLetterObjects.map((el, index) => {
             return (
                <div style={el.style}>
                   <LetterButton width={hexButtonWidth} onClick={() => onLetterClick(el.char)} className={el.class}>

@@ -1,14 +1,14 @@
 import classes from "./FootButtons.module.css";
-import closeButton from "../../assets/shuffle-btn.png";
-import infoButton from "../../assets/enter-btn.png";
-import homeButton from "../../assets/delete-btn.png";
+import shuffleButton from "../../assets/shuffle-btn.png";
+import enterButton from "../../assets/enter-btn.png";
+import deleteButton from "../../assets/delete-btn.png";
 
-const FootButtons = () => {
+const FootButtons = (props) => {
    return (
       <div className={classes.root}>
-         <img src={homeButton} />
-         <img src={infoButton} />
-         <img src={closeButton} />
+         <img src={deleteButton} onClick={props.onDelete} />
+         <img src={enterButton} onClick={props.onEnter} />
+         <img src={shuffleButton} onClick={props.onShuffle} />
       </div>
    );
 };
