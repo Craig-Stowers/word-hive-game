@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import AnswerInput from "./AnswerInput";
 import LettersPanel from "./LettersPanel";
 import Header from "./Header";
@@ -73,7 +73,6 @@ const GameScreen = ({ challengeData, onEvent, dataIndex = 0 }) => {
    };
 
    const handleLetterClick = (char) => {
-      console.log("char", char);
       setAnswer((oldValue) => {
          return oldValue + char.toUpperCase();
       });
@@ -143,6 +142,7 @@ const GameScreen = ({ challengeData, onEvent, dataIndex = 0 }) => {
                      letters={shuffledLetters}
                      onLetterClick={handleLetterClick}
                      bonusLetter={bonusLetter.toUpperCase()}
+                     answer={answer}
                   />
                </div>
 

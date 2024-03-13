@@ -37,3 +37,27 @@
    fill: var(--bonus-border);
    fill-opacity: 1;
 }
+
+.resting {
+   transform-origin: center;
+   transform: scale(1);
+}
+
+@keyframes growAndShrink {
+   0% {
+      transform: scale(1); /* Start with normal scale */
+   }
+   60% {
+      filter: brightness(120%);
+      transform: scale(1.12); /* Grow to 1.5 times the normal scale */
+   }
+   100% {
+      transform: scale(1); /* Return to normal scale */
+   }
+}
+
+.grow-shrink {
+   z-index: 10;
+   animation: growAndShrink 0.2s ease-in-out; /* Animation duration: 0.5 seconds */
+   transform-origin: center; /* Set the transform origin to the center */
+}

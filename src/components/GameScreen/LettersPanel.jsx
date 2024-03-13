@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+import useEffectWithPrevious from "../../hooks/useEffectWithPrevious";
 import LetterButton from "./LetterButton";
 import classes from "./LetterButton.module.css";
 
@@ -7,7 +9,8 @@ const hexButtonHeight = hexButtonWidth * heightRatio;
 const hexButtonGap = 6;
 const leftRightOffset = 0.74;
 
-const LettersPanel = ({ letters, center, onLetterClick, bonusLetter }) => {
+const LettersPanel = ({ letters, center, onLetterClick, bonusLetter, answer }) => {
+   const letterRefs = useRef({});
    const row1Top = `calc(50% - ${hexButtonHeight + hexButtonGap}px)`;
    const row2Top = `calc(50% - ${hexButtonHeight * 0.5 + hexButtonGap * 0.5}px)`;
    const row3Top = `50%`;
@@ -31,8 +34,22 @@ const LettersPanel = ({ letters, center, onLetterClick, bonusLetter }) => {
       { char: letters[5], style: { ...basicStyle, top: row2Top, left: col1Left }, class: classes.default },
    ];
 
-   const extendedLetterObjects = letterObjects.map((el) =>
-      el.char === bonusLetter ? { ...el, class: classes.bonus } : el
+   const extendedLetterObjects = letterObjects.map((el) => {
+      const baseClass = el.char === bonusLetter ? classes.bonus : el.class;
+
+      return { ...el, class: baseClass };
+   });
+
+   useEffectWithPrevious(
+      (oldDep) => {
+         if (answer.length > oldDep[0].length) {
+            const newLetter = answer[answer.length - 1];
+            if (letterRefs.current[newLetter]) {
+               letterRefs.current[newLetter].shake();
+            }
+         }
+      },
+      [answer, center]
    );
 
    return (
@@ -40,7 +57,12 @@ const LettersPanel = ({ letters, center, onLetterClick, bonusLetter }) => {
          {extendedLetterObjects.map((el, index) => {
             return (
                <div style={el.style}>
-                  <LetterButton width={hexButtonWidth} onClick={() => onLetterClick(el.char)} className={el.class}>
+                  <LetterButton
+                     width={hexButtonWidth}
+                     onClick={() => onLetterClick(el.char)}
+                     className={el.class}
+                     ref={(ref) => (letterRefs.current[el.char] = ref)}
+                  >
                      {el.char}
                   </LetterButton>
                </div>
