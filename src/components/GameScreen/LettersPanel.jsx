@@ -23,6 +23,7 @@ const LettersPanel = ({ letters, center, onLetterClick, bonusLetter, answer }) =
    const basicStyle = {
       position: "absolute",
       transform: "translate(-50%, -50%)",
+      pointerEvents: "none",
    };
    const letterObjects = [
       { char: center, style: { ...basicStyle, top: row3Top, left: col2Left }, class: classes.middle },

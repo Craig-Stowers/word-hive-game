@@ -7,7 +7,15 @@
    opacity: 0.6;
 }
 
-.root svg:hover {
+.root {
+   pointer-events: none;
+}
+
+.root :global(.hex-back) {
+   pointer-events: auto;
+}
+
+.root :global(.hex-back):hover {
    filter: brightness(110%);
 }
 
@@ -47,9 +55,9 @@
    0% {
       transform: scale(1); /* Start with normal scale */
    }
-   60% {
-      filter: brightness(120%);
-      transform: scale(1.12); /* Grow to 1.5 times the normal scale */
+   20% {
+      filter: brightness(110%);
+      transform: scale(1.14); /* Grow to 1.5 times the normal scale */
    }
    100% {
       transform: scale(1); /* Return to normal scale */
