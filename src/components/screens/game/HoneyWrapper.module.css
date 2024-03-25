@@ -1,0 +1,21 @@
+.root {
+   display: flex;
+   flex-direction: column;
+   padding: 16%;
+}
+
+.wordContainer {
+   width: 100%;
+   background-color: red;
+   position: relative;
+}
+
+.word {
+   position: absolute;
+   left: 50%;
+   transform: translateX(-50%);
+   margin-top: 10px;
+   font-size: 120%;
+   font-weight: 600;
+   margin: auto;
+}

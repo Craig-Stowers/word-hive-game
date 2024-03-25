@@ -1,0 +1,23 @@
+.root {
+   width: 100%;
+   height: 100%;
+   background-color: var(--dark-yellow-color);
+   position: "relative";
+   pointer-events: none;
+}
+
+.root :global(.hex-panel) {
+   display: inline-block;
+   margin: 0;
+   vertical-align: top;
+}
+
+.root :global(.hex-panel-back) {
+   fill: var(--yellow-color);
+   pointer-events: auto;
+   transition: filter 300ms ease;
+}
+
+.root :global(.hex-panel-back):hover {
+   filter: brightness(110%);
+}

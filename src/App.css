@@ -1,17 +1,25 @@
 :root {
    --grey-button-color: #e2e2e2;
    --yellow-color: #f2aa2e;
+   --dark-yellow-color: #da9929;
    --bonus-border: #36bca9;
 }
 
 #root {
-   width: 100%;
-   display: flex;
+   display: block;
+   width: 100vw;
+   height: 100vh;
 }
 
-.gamescreen-wrapper {
-   width: 100%;
-   max-width: 900px;
-   margin-left: auto;
-   margin-right: auto;
+.background {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
+   z-index: 0;
+}
+
+.button-svg-icon {
+   fill: var(--yellow-color);
 }

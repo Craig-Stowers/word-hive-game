@@ -1,16 +1,37 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-import GameScreen from "./components/GameScreen/GameScreen";
+import useLocalData from "./hooks/useLocalData";
+
+import useTextFileLoader from "./hooks/useTextFileLoader";
+import ScreenManager from "./components/ScreenManager";
+
+import { screenMaps } from "./configs/screenMaps";
+
+let startingDate = "2024-02-20";
+const defaultData = {
+   version: 0.6,
+   success: {},
+   failure: {},
+   incomplete: {},
+};
 
 function App() {
    const [count, setCount] = useState(0);
+   const [localData, setLocalData] = useLocalData("word-hive-data", defaultData);
+   const challengeListData = useTextFileLoader("/challenges/index.json");
+   const currChallengeData = useTextFileLoader(challengeListData && `/challenges/${challengeListData[0]}`);
+
+   const testStyle = {
+      width: "500px",
+      height: "500px",
+      backgroundColor: "pink",
+   };
 
    return (
-      <div className={"gamescreen-wrapper"}>
-         <GameScreen />
-      </div>
+      <>
+         <div className={"background"} id="portal-background"></div>
+         <ScreenManager screenMaps={screenMaps} initialScreen={"home"} key="manager" />
+      </>
    );
 }
 

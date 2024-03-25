@@ -1,0 +1,22 @@
+.close,
+.next {
+   background-color: var(--yellow-color);
+   border-color: var(--yellow-color);
+}
+
+.close {
+   width: 50px;
+   height: 50px;
+}
+
+.close :global(.button-svg-icon) {
+   fill: black;
+}
+
+.next {
+   height: 51px;
+   color: black;
+   font-size: 30px;
+   padding-left: 18px;
+   padding-right: 18px;
+}

@@ -1,0 +1,110 @@
+.root {
+   width: 900px;
+   height: 600px;
+   background-color: black;
+   font-family: "Roboto Condensed", sans-serif;
+}
+
+.inner {
+   padding: 44px;
+   height: 100%;
+
+   box-sizing: border-box;
+}
+
+.content {
+   display: flex;
+
+   height: 100%;
+}
+
+.column1,
+.column2 {
+   width: 50%;
+   display: flex;
+   flex-direction: column;
+
+   height: 100%;
+   box-sizing: border-box;
+}
+
+.column1 {
+   margin-right: 12px;
+}
+
+.panel {
+   background-color: #1a1a1a;
+   padding: 11px 26px;
+}
+.panel h2 {
+   color: var(--yellow-color);
+   font-size: 21px;
+   line-height: 21px;
+   font-weight: 400;
+   margin: 0;
+   font-family: "Roboto Slab", serif;
+   margin-top: 5px;
+}
+
+.column1 .panel2 h2 {
+   margin-bottom: 12px;
+   /* realign due to custom padding on parent. */
+   margin-left: 14px;
+}
+
+.column1 .panel2 {
+   padding-left: 12px;
+   padding-right: 12px;
+}
+
+.column1 .panel1 {
+   margin-bottom: 12px;
+   display: flex;
+   align-items: center;
+}
+.scoreText {
+   font-family: "Roboto Slab", serif;
+   font-size: 27px;
+   line-height: 26px;
+   letter-spacing: 0.07em;
+   display: inline;
+   margin-right: 7px;
+}
+
+.scoreText span {
+   color: var(--yellow-color);
+}
+.message {
+   display: inline-flex;
+   align-items: center;
+   margin-left: 10px;
+   background-color: var(--yellow-color);
+   padding: 10px 18px;
+   vertical-align: middle;
+   font-size: 28px;
+   line-height: 24px;
+   letter-spacing: 0.03em;
+   color: black;
+}
+
+.column1 .panel2,
+.column2 .panel3 {
+   flex-grow: 1;
+}
+
+.column1 .panel1,
+.column2 .panel1,
+.column2 .panel2 {
+   margin-bottom: 12px;
+}
+
+.source {
+   font-size: 22px;
+   line-height: 26px;
+   display: inline-block;
+   padding: 2px 0px;
+}
+
+.source span {
+   color: var(--yellow-color);
+}

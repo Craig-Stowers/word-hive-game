@@ -1,10 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap");
+
 :root {
    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
    line-height: 1.5;
    font-weight: 400;
 
    color-scheme: light dark;
-   color: rgba(255, 255, 255, 0.87);
+   color: white;
    background-color: #242424;
 
    font-synthesis: none;
@@ -13,9 +15,27 @@
    -moz-osx-font-smoothing: grayscale;
 }
 
+.roboto-condensed {
+   font-family: "Roboto Condensed", sans-serif;
+   font-optical-sizing: auto;
+   font-weight: 400;
+   font-style: normal;
+}
+
+.roboto-slab {
+   font-family: "Roboto Slab", serif;
+   font-optical-sizing: auto;
+   font-weight: 400;
+   font-style: normal;
+}
+
 body {
    margin: 0;
    display: flex;
    min-width: 320px;
    min-height: 100vh;
+}
+
+button {
+   font-size: inherit;
 }

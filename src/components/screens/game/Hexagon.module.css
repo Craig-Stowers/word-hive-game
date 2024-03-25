@@ -1,0 +1,26 @@
+.hexagon {
+   width: 90px;
+   height: 52px; /* Calculate the height as approximately 0.577 (sqrt(3)/2) times the width */
+   background-color: #64b5f6;
+   position: relative;
+   margin: 26px auto; /* Half of the calculated height to vertically center the hexagon */
+}
+
+.hexagon:before,
+.hexagon:after {
+   content: "";
+   position: absolute;
+   width: 0;
+   border-left: 45px solid transparent; /* Half of the width of the hexagon */
+   border-right: 45px solid transparent; /* Half of the width of the hexagon */
+}
+
+.hexagon:before {
+   bottom: 100%;
+   border-bottom: 26px solid #64b5f6; /* Half of the calculated height and the color of the hexagon */
+}
+
+.hexagon:after {
+   top: 100%;
+   border-top: 26px solid #64b5f6; /* Half of the calculated height and the color of the hexagon */
+}
