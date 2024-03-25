@@ -67,7 +67,7 @@ const Home = ({ screen, ...props }) => {
                         render={() => {
                            return <StatsIcon />;
                         }}
-                        onClick={() => screen.change("score")}
+                        onClick={() => screen.change("stats")}
                      />
                   </div>
                </div>

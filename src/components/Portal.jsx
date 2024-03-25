@@ -2,7 +2,7 @@ import ReactDOM from "react-dom";
 
 const Portal = ({ id, children }) => {
    const portalRoot = document.getElementById(id);
-   if (!portalRoot) return console.error(`portal id: "${id}" not found`);
+   if (!portalRoot) return null; //console.error(`portal id: "${id}" not found`);
    return ReactDOM.createPortal(children, portalRoot);
 };
 

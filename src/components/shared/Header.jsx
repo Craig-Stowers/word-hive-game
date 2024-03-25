@@ -8,11 +8,19 @@ import CustomButton from "../../shared/CustomButton";
 
 const Header = ({ screen, ...props }) => {
    const [showCheat, setShowCheat] = useState(true);
+
+   const inputNext = () => {
+      if (screen.current === "game") {
+         screen.ref.current.inputNext();
+      }
+   };
+
    const answerNext = () => {
       if (screen.current === "game") {
          screen.ref.current.answerNext();
       }
    };
+
    const answerAll = () => {
       if (screen.current === "game") {
          screen.ref.current.answerAll();
@@ -31,8 +39,9 @@ const Header = ({ screen, ...props }) => {
             <img src={logo} onClick={() => setShowCheat(!showCheat)} />
             {showCheat && (
                <div>
+                  <button onClick={inputNext}>[input next]</button>
                   <button onClick={answerNext}>[answer next]</button>
-                  <button onClick={answerAll}>answer all]</button>
+                  <button onClick={answerAll}>[answer all]</button>
                </div>
             )}
          </div>

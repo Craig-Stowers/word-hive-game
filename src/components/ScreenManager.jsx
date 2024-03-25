@@ -10,7 +10,7 @@ const wrapFunctions = (obj, additionalProps) => {
       const originalFunction = obj[key];
       if (typeof originalFunction === "function") {
          wrappedObject[key] = (...args) => {
-            console.log(`Calling ${key} with additional props:`, additionalProps);
+            // console.log(`Calling ${key} with additional props:`, additionalProps);
             return originalFunction(...args, additionalProps);
          };
       } else {
@@ -24,6 +24,7 @@ const wrapFunctions = (obj, additionalProps) => {
 
 const ScreenManager = ({ screenMaps, initialScreen = null }) => {
    const [current, setCurrent] = useState(initialScreen || getDefaultScreenKey(screenMaps));
+
    const [history, setHistory] = useState([]);
    const screenRef = useRef(null);
    const [refIsSet, setRefIsSet] = useState(false);
@@ -54,7 +55,7 @@ const ScreenManager = ({ screenMaps, initialScreen = null }) => {
                [stateKey]: value,
             },
          };
-         console.log("change state", newValue);
+         //    console.log("change state", newValue);
          return newValue;
       });
    };
@@ -62,7 +63,7 @@ const ScreenManager = ({ screenMaps, initialScreen = null }) => {
    const ScreenComponent = currentScreenConfig.component ? currentScreenConfig.component : null;
    const wrappers = currentScreenConfig.wrappers || [];
 
-   console.log("screenRef", screenRef.current);
+   //  console.log("screenRef", screenRef.current);
 
    const passProps = {
       change: handleScreenChange,
@@ -80,7 +81,7 @@ const ScreenManager = ({ screenMaps, initialScreen = null }) => {
       //TODO possibly trigger an assign of new methods inside the ref attach below
    };
 
-   console.log("passProps", passProps);
+   // console.log("passProps", passProps);
 
    const extendedCustomActions = wrapFunctions(currentScreenConfig.actions || {}, passProps);
 

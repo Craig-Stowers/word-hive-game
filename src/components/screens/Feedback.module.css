@@ -8,13 +8,11 @@
 .inner {
    padding: 44px;
    height: 100%;
-
    box-sizing: border-box;
 }
 
 .content {
    display: flex;
-
    height: 100%;
 }
 
@@ -44,6 +42,7 @@
    margin: 0;
    font-family: "Roboto Slab", serif;
    margin-top: 5px;
+   margin-bottom: 8px;
 }
 
 .column1 .panel2 h2 {
@@ -96,6 +95,10 @@
 .column2 .panel1,
 .column2 .panel2 {
    margin-bottom: 12px;
+}
+
+.column2 .panel2 h2 {
+   margin-bottom: 14px;
 }
 
 .source {

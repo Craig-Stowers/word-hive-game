@@ -1,0 +1,22 @@
+/* hex svg ratio = 646/549 */
+
+.root {
+   --hex-width: 38px;
+   width: var(--hex-width);
+   height: calc(var(--hex-width) * 549 / 646);
+   position: relative;
+
+   :global(.hex-panel) {
+      fill: white;
+   }
+
+   .label {
+      position: absolute;
+      color: black;
+      top: 0;
+      font-size: 18px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+   }
+}

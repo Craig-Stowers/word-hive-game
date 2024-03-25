@@ -1,14 +1,12 @@
 import HomeScreen from "../components/screens/Home";
 import Game from "../components/screens/game/Game";
 import Info from "../components/screens/Info";
-import Score from "../components/screens/Score";
-
+import Stats from "../components/screens/Stats";
+import Feedback from "../components/screens/Feedback";
 //wrappers
 import BestFit from "../components/BestFit";
 import WithHeader from "../components/layouts/WithHeader";
 import OverlayButtons from "../components/layouts/OverlayButtons";
-
-import Feedback from "../components/screens/Feedback";
 
 //passed to ScreenMangager to manage screen switching, screen wrappers
 //useful to manage navigation on projects that don't have traditional routing (i.e games).
@@ -32,16 +30,7 @@ export const screenMaps = {
          { component: OverlayButtons, props: { variation: "cross&next" } },
       ],
    },
-   score: {
-      component: Score,
-      actions: {
-         close: (screen) => screen.back(),
-      },
-      wrappers: [
-         { component: BestFit, props: { width: 900, height: 600, maxScale: 1.5 } },
-         { component: WithHeader, props: { layoutType: "main" } },
-      ],
-   },
+
    game: {
       component: Game,
       default: false,
@@ -55,6 +44,16 @@ export const screenMaps = {
    },
    feedback: {
       component: Feedback,
+      actions: {
+         close: (screen) => screen.change("home"),
+      },
+      wrappers: [
+         { component: BestFit, props: { width: 900, height: 600, maxScale: 1.5 } },
+         { component: OverlayButtons, props: { variation: "cross" } },
+      ],
+   },
+   stats: {
+      component: Stats,
       actions: {
          close: (screen) => screen.change("home"),
       },

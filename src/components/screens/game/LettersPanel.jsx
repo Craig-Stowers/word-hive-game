@@ -35,9 +35,11 @@ const LettersPanel = ({ letters, center, onLetterClick, bonusLetter, answer }) =
       { char: letters[5], style: { ...basicStyle, top: row2Top, left: col1Left }, class: classes.default },
    ];
 
+   let bonusIndex = letters.indexOf(bonusLetter) + 1;
+
+   console.log("bonus index", bonusIndex);
    const extendedLetterObjects = letterObjects.map((el) => {
       const baseClass = el.char === bonusLetter ? classes.bonus : el.class;
-
       return { ...el, class: baseClass };
    });
 
@@ -69,6 +71,10 @@ const LettersPanel = ({ letters, center, onLetterClick, bonusLetter, answer }) =
                </div>
             );
          })}
+         <div style={{ position: "absolute", backgroundColor: "rgba(255,255,0,0.5)", width: "100%", height: "100%" }}>
+            <div id={"middle-letter-portal"} style={letterObjects[0].style}></div>
+            <div id={"bonus-letter-portal"} style={letterObjects[bonusIndex].style}></div>
+         </div>
       </div>
    );
 };

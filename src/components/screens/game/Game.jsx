@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useImperativeHandle, forwardRef } from "react";
+import React, { useEffect, useState, useImperativeHandle, forwardRef, useRef } from "react";
 import AnswerInput from "./AnswerInput";
 import LettersPanel from "./LettersPanel";
 
@@ -7,6 +7,11 @@ import CompletedWords from "./CompletedWords";
 import classes from "./Game.module.css";
 import gameData from "../../../gameData";
 import useScreenState from "../../../hooks/useScreenState";
+import useCheats from "./useCheats";
+import { removeLastCharacter } from "../../../helpers/stringHelpers";
+import { shuffleArray, filterString } from "../../../helpers/arrayHelpers";
+import useOnKeyPress from "../../../hooks/useOnKeyPress";
+import OverlayAlert from "./OverlayAlerts";
 
 const currLetters = ["A", "B", "C", "D", "E", "F", "G"];
 
@@ -20,19 +25,13 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 0 }, ref) => {
    const allLettersArr = [centerLetter, ...letters.split("")];
    const bonusLetter = data.letters[0];
    const availableAnswers = data.words;
+   const overlayRef = useRef(null);
 
    useEffect(() => {
+      console.log("avail", availableAnswers);
       const shuffled = shuffleArray(data.letters.split(""));
       setShuffledLetters(shuffled);
    }, [dataIndex]);
-
-   function filterCharacters(event, allowedCharacters) {
-      const char = String.fromCharCode(event.which || event.keyCode);
-
-      if (!allowedCharacters.includes(char)) {
-         return;
-      }
-   }
 
    useEffect(() => {
       if (correctWords.length >= 12) {
@@ -43,88 +42,31 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 0 }, ref) => {
       }
    }, [correctWords]);
 
+   const getters = { answer, correctWords, availableAnswers };
+   const setters = { setAnswer, setCorrectWords };
+
+   const cheats = useCheats({ getters, setters });
+
    useImperativeHandle(
       ref,
       () => ({
-         answerNext() {
-            setCorrectWords((oldValue) => {
-               if (oldValue.length >= 12) return oldValue;
-               const filtered = availableAnswers.filter((answer) => !oldValue.includes(answer));
-               return [...oldValue, filtered[Math.floor(Math.random() * filtered.length)]];
-            });
-         },
-         answerAll() {
-            setCorrectWords((oldValue) => {
-               if (oldValue.length >= 12) return oldValue;
-               const filtered = availableAnswers.filter((answer) => !oldValue.includes(answer));
-               const batchAnswers = [];
-               let index = 0;
-               while (batchAnswers.length < 12 - oldValue.length) {
-                  batchAnswers.push(filtered[index]);
-                  index++;
-               }
-               return [...oldValue, ...batchAnswers];
-            });
-         },
+         inputNext: cheats.inputNext,
+         answerNext: cheats.answerNext,
+         answerAll: cheats.answerAll,
       }),
-      []
+      [cheats]
    );
 
-   useEffect(() => {
-      function handleKeyPress(event) {
-         // Check if the Enter/Return key was pressed
-         if (event.key === "Enter" || event.keyCode === 13) {
-            // Trigger your action here
-            handleEnter();
-         }
-      }
-
-      // Attach key listener to document
-      document.addEventListener("keypress", handleKeyPress);
-
-      return () => {
-         document.removeEventListener("keypress", handleKeyPress);
-      };
-   }, [answer]); // Empty dependency array ensures this effect runs only once (on mount)
-
-   function filterString(inputString, allowedCharacters) {
-      return inputString
-         .split("")
-         .filter((char) => allowedCharacters.includes(char))
-         .join("");
-   }
-
-   const handleInputChange = (event) => {
-      const value = filterString(event.target.value.toUpperCase(), allLettersArr);
-      console.log("add letter", value);
-      setAnswer(value);
-   };
-
-   const handleSubmit = () => {
-      // Handle submission of answer, possibly invoking onEvent callback
-      // with custom event name and answer value
-      onEvent("answerSubmitted", answer);
-      // Additional logic related to answer submission
-   };
-
-   const handleLetterClick = (char) => {
+   const handleAllowedLetter = (char) => {
       setAnswer((oldValue) => {
+         if (oldValue.length >= 20) return oldValue;
          return oldValue + char.toUpperCase();
       });
    };
 
-   function shuffleArray(array) {
-      // Make a copy of the array
-      const shuffledArray = [...array];
-
-      // Shuffle the remaining elements
-      for (let i = shuffledArray.length - 1; i >= 0; i--) {
-         const j = Math.floor(Math.random() * (i + 1));
-         [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
-      }
-
-      return shuffledArray;
-   }
+   useOnKeyPress(() => handleEnter(), [], ["Enter"], [13]);
+   useOnKeyPress(() => handleDelete(), [], ["Backspace", "Delete"]);
+   useOnKeyPress(handleAllowedLetter, [], [...allLettersArr, ...allLettersArr.join("").toLowerCase().split("")]);
 
    const handleShuffle = () => {
       const shuffled = shuffleArray(data.letters.split(""));
@@ -133,7 +75,6 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 0 }, ref) => {
 
    const handleEnter = () => {
       const trimAnswer = answer.trim().toLowerCase();
-      console.log("test", trimAnswer);
       if (availableAnswers.includes(trimAnswer) && !correctWords.includes(trimAnswer)) {
          setCorrectWords((oldValue) => {
             return [...oldValue, trimAnswer];
@@ -141,22 +82,13 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 0 }, ref) => {
          setAnswer("");
          console.log("WELL DONE");
       } else {
-         console.log("NOT A WORD");
+         overlayRef.current.generateAlert({ type: "tip", text: "wtf you doin!" });
+         //console.log("NOT A WORD");
       }
    };
 
-   function removeLastCharacter(str) {
-      // Check if the string is not empty
-      if (str.length > 0) {
-         // Use slice to return the substring excluding the last character
-         return str.slice(0, -1);
-      } else {
-         // If the string is empty, return the string as is
-         return str;
-      }
-   }
-
    const handleDelete = () => {
+      console.log("handle delete");
       setAnswer((oldAnswer) => {
          return removeLastCharacter(oldAnswer);
       });
@@ -167,14 +99,14 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 0 }, ref) => {
          <div className={classes.content}>
             <div className={classes.left}>
                <div className={classes.inputWrapper}>
-                  <AnswerInput value={answer} onChange={handleInputChange} onSubmit={handleSubmit} />
+                  <AnswerInput value={answer} />
                </div>
 
                <div className={classes.lettersWrapper}>
                   <LettersPanel
                      center={centerLetter}
                      letters={shuffledLetters}
-                     onLetterClick={handleLetterClick}
+                     onLetterClick={handleAllowedLetter}
                      bonusLetter={bonusLetter.toUpperCase()}
                      answer={answer}
                   />
@@ -189,6 +121,7 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 0 }, ref) => {
                <CompletedWords words={correctWords} />
             </div>
          </div>
+         <OverlayAlert ref={(ref) => (overlayRef.current = ref)} />
       </div>
    );
 });
