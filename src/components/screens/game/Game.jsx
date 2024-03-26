@@ -22,6 +22,7 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 1 }, ref) => {
    const [answer, setAnswer] = useScreenState(screen, "answer", "");
    const [correctWords, setCorrectWords] = useScreenState(screen, "correctWords", []);
    const data = gameData.wordhive[dataIndex];
+   const [sourceWord, setSourceWord] = useScreenState(screen, "sourceWord", data.pangram);
 
    const centerLetter = data.center;
    const letters = data.letters;
@@ -32,6 +33,7 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 1 }, ref) => {
    const availableAnswers = data.words.map((word) => word.toLowerCase()); //possibly remove as capitals could be good indicator of plural (unless game data filtered first)
    const overlayRef = useRef(null);
    const [score, setScore] = useScreenState(screen, "score", 0);
+   const [disabled, setDisabled] = useState(false);
 
    useEffect(() => {
       console.log("game data", data);
@@ -43,16 +45,18 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 1 }, ref) => {
 
    useEffect(() => {
       if (correctWords.length >= 12) {
+         setDisabled(true);
+
+         overlayRef.current.generateAlert({ type: "points", text: `Puzzle complete` });
          let timer = setTimeout(() => {
             screen.change("feedback");
-         }, 1000);
+         }, 1500);
          return () => clearTimeout(timer);
       }
    }, [correctWords]);
 
    const getters = { answer, correctWords, availableAnswers };
    const setters = { setAnswer, setCorrectWords };
-
    const cheats = useCheats({ getters, setters });
 
    useImperativeHandle(
@@ -73,6 +77,7 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 1 }, ref) => {
    };
 
    const handleAllowedLetter = (char) => {
+      if (disabled) return;
       setAnswer((oldValue) => {
          if (oldValue.length >= 20) return oldValue;
          if (char.toLowerCase() === bonusLetter.toLowerCase()) {
@@ -93,6 +98,7 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 1 }, ref) => {
    };
 
    const handleEnter = () => {
+      if (disabled) return;
       const trimAnswer = answer.trim().toLowerCase();
 
       let newPoints = 0;

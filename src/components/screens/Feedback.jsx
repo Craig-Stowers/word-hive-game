@@ -86,7 +86,7 @@ export default function Feedback({ screen }) {
                <div className={classes.column2}>
                   <div className={`${classes.panel} ${classes.panel1}`}>
                      <div className={classes.source}>
-                        Source word: <span>snitches</span>
+                        Source word: <span>{screen.globalState.game.sourceWord}</span>
                      </div>
                   </div>
                   <div className={`${classes.panel} ${classes.panel2}`}>
