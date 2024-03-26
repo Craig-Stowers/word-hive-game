@@ -73,7 +73,7 @@ export default function Feedback({ screen }) {
                <div className={classes.column1}>
                   <div className={`${classes.panel} ${classes.panel1}`}>
                      <div className={classes.scoreText}>
-                        SCORE <span>124</span>
+                        SCORE <span>{screen.globalState.game.score}</span>
                      </div>
                      <div className={classes.message}>Very good!</div>
                   </div>
@@ -115,11 +115,11 @@ export default function Feedback({ screen }) {
                            },
                            {
                               label: "Avg. score",
-                              value: 184,
+                              value: screen.globalState.game.score,
                            },
                            {
                               label: "High score",
-                              value: 302,
+                              value: screen.globalState.game.score,
                            },
                         ]}
                      />
