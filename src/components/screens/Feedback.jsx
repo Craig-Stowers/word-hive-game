@@ -29,7 +29,7 @@ export default function Feedback({ screen }) {
    useEffect(() => {
       const loadAnswers = () => {
          const answers = screen.globalState.game.correctWords;
-         // console.log("answers", answers);
+         console.log("FETCH ANSWERS", answers);
          if (!answers) return;
 
          setAnswers(answers);
@@ -62,7 +62,9 @@ export default function Feedback({ screen }) {
       const timer = setTimeout(() => {
          loadAnswers();
       }, 100);
-   }, [screen.globalState.game.correctAnswers]);
+
+      return () => clearTimeout(timer);
+   }, [screen]);
 
    return (
       <div className={classes.root}>
