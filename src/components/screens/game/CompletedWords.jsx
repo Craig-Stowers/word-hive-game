@@ -1,20 +1,6 @@
 import classes from "./CompletedWords.module.css";
 import HoneyWrapper from "./HoneyWrapper";
-
-function extendArray(arr, desiredLength) {
-   const newArr = [...arr];
-   while (newArr.length < desiredLength) {
-      newArr.push(undefined); // Push empty values (undefined) into the array
-   }
-   return newArr;
-}
-function splitArrayIntoChunks(array, chunkSize) {
-   const chunks = [];
-   for (let i = 0; i < array.length; i += chunkSize) {
-      chunks.push(array.slice(i, i + chunkSize)); // Push a slice of the original array into the chunks array
-   }
-   return chunks;
-}
+import { extendArray, splitArrayIntoChunks } from "../../../helpers/arrayHelpers";
 
 const CompletedWords = ({ words }) => {
    const honeyObjects = extendArray(words, 12);
@@ -22,12 +8,12 @@ const CompletedWords = ({ words }) => {
 
    return (
       <div className={classes.root}>
-         {honeyObjectsChunks.map((chunk) => {
+         {honeyObjectsChunks.map((chunk, i) => {
             return (
-               <div className={classes.row}>
-                  {chunk.map((word) => {
+               <div className={classes.row} key={"honey-row" + i}>
+                  {chunk.map((word, i) => {
                      return (
-                        <div className={classes.honeyWrapper}>
+                        <div className={classes.honeyWrapper} key={"honey-column" + i}>
                            <HoneyWrapper word={word} />
                         </div>
                      );

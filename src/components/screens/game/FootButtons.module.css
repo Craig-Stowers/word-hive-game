@@ -9,4 +9,9 @@
 .root img {
    height: 42px;
    margin: 3px;
+   cursor: pointer;
+}
+
+.root img:hover {
+   filter: brightness(110%);
 }

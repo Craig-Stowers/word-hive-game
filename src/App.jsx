@@ -30,7 +30,7 @@ function App() {
    return (
       <>
          <div className={"background"} id="portal-background"></div>
-         <ScreenManager screenMaps={screenMaps} initialScreen={"game"} key="manager" />
+         <ScreenManager screenMaps={screenMaps} initialScreen={"home"} key="manager" />
       </>
    );
 }

@@ -22,6 +22,10 @@ const wrapFunctions = (obj, additionalProps) => {
    return wrappedObject;
 };
 
+function isForwardRefComponent(component) {
+   return component && component.$$typeof === Symbol.for("react.forward_ref");
+}
+
 const ScreenManager = ({ screenMaps, initialScreen = null }) => {
    const [current, setCurrent] = useState(initialScreen || getDefaultScreenKey(screenMaps));
 
@@ -108,7 +112,13 @@ const ScreenManager = ({ screenMaps, initialScreen = null }) => {
 
    if (!ScreenComponent) return null;
 
-   const renderedScreen = wrapComponent(<ScreenComponent ref={setRef} screen={{ ...screenManagerProps }} />, wrappers);
+   const canAcceptRef = isForwardRefComponent(ScreenComponent);
+
+   const screenComponentProps = canAcceptRef
+      ? { ref: setRef, screen: { ...screenManagerProps } }
+      : { screen: { ...screenManagerProps } };
+
+   const renderedScreen = wrapComponent(<ScreenComponent {...screenComponentProps} />, wrappers);
 
    return renderedScreen;
 };

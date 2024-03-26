@@ -7,7 +7,7 @@ import logo from "../../assets/title-small.png";
 import CustomButton from "../../shared/CustomButton";
 
 const Header = ({ screen, ...props }) => {
-   const [showCheat, setShowCheat] = useState(true);
+   const [showCheat, setShowCheat] = useState(false);
 
    const inputNext = () => {
       if (screen.current === "game") {

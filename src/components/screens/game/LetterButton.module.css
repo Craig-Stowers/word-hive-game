@@ -9,6 +9,10 @@
 
 .root {
    pointer-events: none;
+   font-family: "Roboto Slab", serif;
+   font-weight: 600;
+   font-size: 34px;
+   color: black;
 }
 
 .root :global(.hex-back) {
@@ -16,7 +20,7 @@
 }
 
 .root :global(.hex-back):hover {
-   filter: brightness(110%);
+   filter: brightness(93%);
 }
 
 .default :global(.hex-back) {

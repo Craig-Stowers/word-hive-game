@@ -19,7 +19,6 @@ const LetterButton = forwardRef(({ width = 200, onClick, children, className = "
 
    useEffect(() => {
       return () => {
-         console.log("clear");
          clearTimeout(animationTimer.current);
       };
    }, []);
@@ -45,7 +44,6 @@ const LetterButton = forwardRef(({ width = 200, onClick, children, className = "
 
          setAnimation("grow-shrink");
          animationTimer.current = setTimeout(() => {
-            console.log("set to rest");
             setAnimation("resting");
          }, 200);
       },
@@ -62,12 +60,10 @@ const LetterButton = forwardRef(({ width = 200, onClick, children, className = "
          </svg>
          <div
             style={{
-               color: "black",
                position: "absolute",
                left: "50%",
                top: "50%",
                transform: "translate(-50%, -50%)",
-               fontSize: "27px",
                pointerEvents: "none",
             }}
          >

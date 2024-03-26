@@ -37,7 +37,6 @@ const LettersPanel = ({ letters, center, onLetterClick, bonusLetter, answer }) =
 
    let bonusIndex = letters.indexOf(bonusLetter) + 1;
 
-   console.log("bonus index", bonusIndex);
    const extendedLetterObjects = letterObjects.map((el) => {
       const baseClass = el.char === bonusLetter ? classes.bonus : el.class;
       return { ...el, class: baseClass };
@@ -56,10 +55,10 @@ const LettersPanel = ({ letters, center, onLetterClick, bonusLetter, answer }) =
    );
 
    return (
-      <div style={{ width: "340px", height: "340px", backgroundColor: "black", position: "relative" }}>
+      <div style={{ width: "340px", height: "340px", position: "relative" }}>
          {extendedLetterObjects.map((el, index) => {
             return (
-               <div style={el.style}>
+               <div style={el.style} key={"letter-" + index}>
                   <LetterButton
                      width={hexButtonWidth}
                      onClick={() => onLetterClick(el.char)}
@@ -71,9 +70,16 @@ const LettersPanel = ({ letters, center, onLetterClick, bonusLetter, answer }) =
                </div>
             );
          })}
-         <div style={{ position: "absolute", backgroundColor: "rgba(255,255,0,0.5)", width: "100%", height: "100%" }}>
-            <div id={"middle-letter-portal"} style={letterObjects[0].style}></div>
-            <div id={"bonus-letter-portal"} style={letterObjects[bonusIndex].style}></div>
+         <div
+            style={{
+               position: "absolute",
+               width: "100%",
+               height: "100%",
+               pointerEvents: "none",
+            }}
+         >
+            <div id={"middle-letter"} style={letterObjects[0].style}></div>
+            <div id={"bonus-letter"} style={letterObjects[bonusIndex].style}></div>
          </div>
       </div>
    );

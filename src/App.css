@@ -23,3 +23,7 @@
 .button-svg-icon {
    fill: var(--yellow-color);
 }
+
+.bonus-score .hex-panel-back {
+   fill: white;
+}

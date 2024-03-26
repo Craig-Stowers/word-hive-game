@@ -2,7 +2,7 @@
    padding: 5px 5px;
    border: 2px dashed white;
    width: 280px;
-   height: 36px;
+   height: 38px;
    display: flex;
 }
 
@@ -18,7 +18,8 @@
    color: white;
    margin-top: auto;
    margin-bottom: auto;
-
+   font-family: "Roboto Slab", serif;
+   font-weight: 600;
    color: inherit;
    text-align: center; /* Center text */
    width: 100%; /* Expand to width of parent */

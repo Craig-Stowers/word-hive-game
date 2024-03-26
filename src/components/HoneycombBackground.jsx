@@ -55,8 +55,6 @@ const HoneycombBackground = () => {
          }, delay);
       };
 
-      console.log("add timers");
-
       for (let i = 0; i < rows; i++) {
          for (let j = 0; j < columns; j++) {
             startTimer(i, j);
@@ -65,9 +63,10 @@ const HoneycombBackground = () => {
       return () => cleanup();
    }, []);
 
-   const renderHex = (left, top, show) => {
+   const renderHex = (left, top, show, key) => {
       return (
          <div
+            key={key}
             style={{
                width: horSpacing - gap + "px",
                height: vertSpacing - gap + "px",
@@ -93,7 +92,8 @@ const HoneycombBackground = () => {
             const left = gap * 0.5 + (isOffset ? j - 0.5 : j) * (horSpacing + horSpacing * 0.5) + "px";
             const top = (i - 1.25) * 0.5 * vertSpacing + "px";
             const showComb = animations[i][j] === "in";
-            elements.push(renderHex(left, top, showComb));
+
+            elements.push(renderHex(left, top, showComb, `bg-${i}${j}`));
          }
       }
       return elements;

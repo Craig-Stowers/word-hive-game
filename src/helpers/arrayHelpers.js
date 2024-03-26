@@ -18,3 +18,18 @@ export const filterString = (inputString, allowedCharacters, caseSensitive = fal
       .filter((char) => allowedCharacters.toLowerCase().includes(char.toLowerCase()))
       .join("");
 };
+
+export const extendArray = (arr, desiredLength) => {
+   const newArr = [...arr];
+   while (newArr.length < desiredLength) {
+      newArr.push(undefined); // Push empty values (undefined) into the array
+   }
+   return newArr;
+};
+export const splitArrayIntoChunks = (array, chunkSize) => {
+   const chunks = [];
+   for (let i = 0; i < array.length; i += chunkSize) {
+      chunks.push(array.slice(i, i + chunkSize)); // Push a slice of the original array into the chunks array
+   }
+   return chunks;
+};

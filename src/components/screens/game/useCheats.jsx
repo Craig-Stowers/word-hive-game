@@ -1,7 +1,6 @@
 const useCheats = ({ getters, setters }) => {
    const methods = {
       inputNext() {
-         console.log("correct words", getters.correctWords);
          setters.setAnswer(() => {
             const filtered = getters.availableAnswers.filter((answer) => !getters.correctWords.includes(answer));
             return filtered[Math.floor(Math.random() * filtered.length)];

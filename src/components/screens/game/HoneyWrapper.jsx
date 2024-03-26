@@ -1,11 +1,16 @@
 import Honey from "../../../assets/honey.svg?react";
+import Grid from "../../../assets/comb-grid.svg?react";
+
 import classes from "./HoneyWrapper.module.css";
 
 const HoneyWrapper = ({ word }) => {
    return (
       <div className={classes.root}>
-         <div style={{ opacity: word ? 1 : 0.5 }}>
+         <div className={classes.testclass} style={{ opacity: word ? 1 : 1 }}>
             <Honey />
+            <div className={classes.gridWrap}>
+               <Grid />
+            </div>
          </div>
 
          <div className={classes.wordContainer}>

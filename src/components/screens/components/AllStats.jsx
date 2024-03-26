@@ -2,8 +2,6 @@ import React from "react";
 import defaultClasses from "./AllStats.module.css";
 
 export default function AllStats({ stats = [], moduleOverride = {} }) {
-   console.log("module override", moduleOverride);
-
    const classes = {
       ...defaultClasses,
       ...moduleOverride,

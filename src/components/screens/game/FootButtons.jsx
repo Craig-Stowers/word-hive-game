@@ -7,6 +7,7 @@ const FootButtons = (props) => {
    return (
       <div className={classes.root}>
          <img src={deleteButton} onClick={props.onDelete} />
+
          <img src={enterButton} onClick={props.onEnter} />
          <img src={shuffleButton} onClick={props.onShuffle} />
       </div>

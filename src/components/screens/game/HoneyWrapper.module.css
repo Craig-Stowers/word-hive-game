@@ -19,3 +19,15 @@
    font-weight: 600;
    margin: auto;
 }
+
+.testclass {
+   position: relative;
+}
+
+.gridWrap {
+   position: absolute;
+   top: 67%;
+   left: 49.7%;
+   width: 57%;
+   transform: translate(-50%, -50%);
+}

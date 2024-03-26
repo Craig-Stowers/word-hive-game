@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback, useRef, useImperativeHandle, forwardRef } from "react";
 import Portal from "../../Portal";
 import { v4 as uuidv4 } from "uuid";
+import TipAlert from "../../alerts/TipAlert";
 
 const OverlayAlerts = forwardRef((props, ref) => {
    const [alertObjects, setAlertObjects] = useState([]);
@@ -8,7 +9,7 @@ const OverlayAlerts = forwardRef((props, ref) => {
 
    useEffect(() => {
       const tick = setInterval(() => {
-         setTimestamp(Date.now());
+         //setTimestamp(Date.now());
       }, 1000 / 120);
       return () => {
          cleanAlerts();
@@ -33,55 +34,131 @@ const OverlayAlerts = forwardRef((props, ref) => {
       []
    );
 
-   const removeAlert = (uuid) => {
+   const removeAlert = (killuuid) => {
       setAlertObjects((oldValue) => {
-         const filtered = oldValue.filter(({ key }) => {
-            console.log("compare", uuid, key);
-            return uuid !== key;
+         const filtered = oldValue.filter(({ uuid }) => {
+            return killuuid !== uuid;
          });
+
          return filtered;
       });
    };
 
    const generateAlert = useCallback((alert) => {
       const uniqueKey = uuidv4();
+
+      const kill = () => {
+         removeAlert(uniqueKey);
+      };
+
       const extendedAlert = {
          ...alert,
          spawnTime: Date.now(),
-         key: uniqueKey,
-         timer: setTimeout(() => {
-            removeAlert(uniqueKey);
-         }, 3000),
+         uuid: uniqueKey,
+         kill,
+         remove: false,
       };
 
-      console.log("generate alert", alert);
-
       setAlertObjects((oldValue) => {
-         return [...oldValue, extendedAlert];
+         const copy = oldValue.map((alert) => {
+            return { ...alert, remove: true };
+         });
+
+         return [...copy, extendedAlert];
       });
    }, []);
 
+   const tips = alertObjects.filter((alert) => alert.type === "tip" || alert.type === "points");
+   const bonus = alertObjects.filter((alert) => alert.type === "bonus");
+   const middleBonus = alertObjects.filter((alert) => alert.type === "mid-bonus");
+
+   const bonusConfig = {
+      startY: 0,
+      endY: -80,
+      outY: -80,
+      holdTime: 1500,
+   };
+
+   const tipConfig = {
+      startY: 28,
+      endY: 112,
+      outY: 90,
+      holdTime: 4000,
+   };
+
+   const pointsConfig = {
+      startY: 28,
+      endY: 180,
+      outY: 240,
+      holdTime: 1800,
+   };
+
    return (
       <>
-         <Portal id={"bonus-letter-portal"}>
-            <h2>BONUS HERE</h2>
-         </Portal>
          <Portal id={"middle-letter-portal"}>
-            {alertObjects.map((alert, index) => {
+            {middleBonus.map((alert, index) => {
                const age = timestamp - alert.spawnTime;
                const yMove = age / 20;
                return (
                   <div
                      style={{
                         position: "absolute",
+                        left: "50%",
                         top: -yMove + "px",
                         width: "100px",
                         backgroundColor: "red",
                         transform: "translate(-50%, -50%)",
                      }}
-                     key={alert.key}
+                     key={alert.uuid}
                   >
                      {alert.text}
+                  </div>
+               );
+            })}
+         </Portal>
+         <Portal id={"bonus-letter-portal"}>
+            {bonus.map((alert, index) => {
+               return (
+                  <div
+                     style={{
+                        fontFamily: "'Roboto Condensed', serif",
+                        position: "absolute",
+                        fontWeight: "bold",
+                        left: "50%",
+                        top: "50%",
+                        width: "500px", //effectively a max width for child (an "absolute" "hack")
+                        transform: "translate(-50%, -50%)",
+                        display: "flex",
+                     }}
+                     key={alert.uuid}
+                  >
+                     <div style={{ margin: "auto" }}>
+                        <TipAlert alert={alert} {...bonusConfig} />
+                     </div>
+                  </div>
+               );
+            })}
+         </Portal>
+         <Portal id={"answer-box-portal"}>
+            {tips.map((alert, index) => {
+               const config = alert.type === "points" ? pointsConfig : tipConfig;
+               return (
+                  <div
+                     style={{
+                        fontFamily: "'Roboto Condensed', serif",
+                        position: "absolute",
+                        fontWeight: "bold",
+                        left: "50%",
+                        top: "50%",
+                        width: "500px", //effectively a max width for child (an "absolute" "hack")
+                        transform: "translate(-50%, -50%)",
+                        display: "flex",
+                     }}
+                     key={alert.uuid}
+                  >
+                     <div style={{ margin: "auto" }}>
+                        <TipAlert alert={alert} {...config} />
+                     </div>
                   </div>
                );
             })}
