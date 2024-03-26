@@ -6,7 +6,8 @@ import BestFit from "../BestFit";
 import allStatsClasses from "./components/AllStatsLarge.module.css";
 import logo from "./../../assets/title-with-bee.png";
 
-export default function Stats() {
+export default function Stats({ screen }) {
+   const hasPlayed = screen.globalState.game.score !== undefined;
    return (
       <div className={classes.root}>
          <div className={classes.inner}>
@@ -20,27 +21,27 @@ export default function Stats() {
                      stats={[
                         {
                            label: "Played",
-                           value: 6,
+                           value: hasPlayed ? 1 : 0,
                         },
                         {
                            label: "Solved",
-                           value: 3,
+                           value: hasPlayed ? 1 : 0,
                         },
                         {
                            label: "Streak",
-                           value: 1,
+                           value: hasPlayed ? 1 : 0,
                         },
                         {
                            label: "Pangrams",
-                           value: 2,
+                           value: 0,
                         },
                         {
                            label: "Avg. score",
-                           value: 184,
+                           value: screen.globalState.game.score || 0,
                         },
                         {
                            label: "High score",
-                           value: 302,
+                           value: screen.globalState.game.score || 0,
                         },
                      ]}
                   />
