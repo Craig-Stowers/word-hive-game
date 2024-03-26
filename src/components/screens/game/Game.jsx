@@ -17,11 +17,12 @@ import OverlayPortal from "./OverlayPortal";
 
 const randomSequence = shuffleArray([0, 1, 2, 3, 4, 5]);
 
-const Game = forwardRef(({ challengeData, screen, dataIndex = 0 }, ref) => {
+const Game = forwardRef(({ challengeData, screen, dataIndex = 1 }, ref) => {
    const [shuffledLetters, setShuffledLetters] = useState([]);
    const [answer, setAnswer] = useScreenState(screen, "answer", "");
    const [correctWords, setCorrectWords] = useState([]);
    const data = gameData.wordhive[dataIndex];
+
    const centerLetter = data.center;
    const letters = data.letters;
    const allLettersArr = [centerLetter, ...letters.split("")];
@@ -33,6 +34,7 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 0 }, ref) => {
    const [score, setScore] = useScreenState(screen, "score", 0);
 
    useEffect(() => {
+      console.log("game data", data);
       const shuffled = shuffleArray(data.letters.split(""));
       setShuffledLetters(shuffled);
    }, [dataIndex]);
