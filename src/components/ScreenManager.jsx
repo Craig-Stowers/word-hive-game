@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const getDefaultScreenKey = (screenMaps) => {
    return Object.keys(screenMaps).find((key) => screenMaps[key].default);
@@ -26,6 +26,17 @@ function isForwardRefComponent(component) {
    return component && component.$$typeof === Symbol.for("react.forward_ref");
 }
 
+const copyValue = (value) => {
+   if (Array.isArray(value)) {
+      console.log("copied array", value);
+      return [...value]; // Copy array
+   } else if (typeof value === "string") {
+      return String(value); // Copy string
+   }
+   // Add more conditions if you need to handle other types (objects, etc.)
+   return value;
+};
+
 const ScreenManager = ({ screenMaps, initialScreen = null }) => {
    const [current, setCurrent] = useState(initialScreen || getDefaultScreenKey(screenMaps));
 
@@ -41,6 +52,10 @@ const ScreenManager = ({ screenMaps, initialScreen = null }) => {
       return states;
    });
 
+   useEffect(() => {
+      console.log("all screen stored states", screenStates);
+   }, [screenStates]);
+
    const handleScreenChange = (key) => {
       setHistory((history) => [...history, current]);
       setCurrent(key);
@@ -51,15 +66,16 @@ const ScreenManager = ({ screenMaps, initialScreen = null }) => {
    };
 
    const handleStoreScreenState = (screenKey, stateKey, value) => {
+      console.log("save session data", screenKey, stateKey, value);
       setScreenStates((oldValue) => {
          const newValue = {
             ...oldValue,
             [screenKey]: {
                ...screenStates[screenKey],
-               [stateKey]: value,
+               [stateKey]: copyValue(value),
             },
          };
-         //    console.log("change state", newValue);
+         console.log("change state", newValue);
          return newValue;
       });
    };
@@ -76,10 +92,8 @@ const ScreenManager = ({ screenMaps, initialScreen = null }) => {
       current,
       state: screenStates[current],
       setState: handleStoreScreenState,
-      test: () => {
-         console.log("test", screenRef);
-      },
       ref: screenRef,
+      globalState: screenStates,
 
       //having trouble with direct provision of screenRef.current, as sometimes the ref is attached after these props have been handed on.
       //TODO possibly trigger an assign of new methods inside the ref attach below

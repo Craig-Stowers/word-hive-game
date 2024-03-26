@@ -53,8 +53,6 @@ const ScoreBars = ({ highlight, stats }) => {
    const maxValue = Math.max(...stats.map((item) => item.value));
 
    const renderBar = (label, value, index) => {
-      console.log("render", label, value, index);
-
       const percOfMax = animate ? (value / maxValue) * 100 : 0;
       const animationTime = percOfMax / 100;
 
@@ -70,10 +68,8 @@ const ScoreBars = ({ highlight, stats }) => {
          startRevealTimer(index);
       }
 
-      const renderedPerc = Math.max(percOfMax, 0.8);
+      const renderedPerc = Math.max(percOfMax, 0.8); //ensures a minimum width
       const isHighlighted = highlight === index;
-
-      console.log("rendered perc", renderedPerc);
 
       return (
          <div className={classes.barItem} key={"bar-item-" + index}>

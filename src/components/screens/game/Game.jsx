@@ -20,7 +20,7 @@ const randomSequence = shuffleArray([0, 1, 2, 3, 4, 5]);
 const Game = forwardRef(({ challengeData, screen, dataIndex = 1 }, ref) => {
    const [shuffledLetters, setShuffledLetters] = useState([]);
    const [answer, setAnswer] = useScreenState(screen, "answer", "");
-   const [correctWords, setCorrectWords] = useState([]);
+   const [correctWords, setCorrectWords] = useScreenState(screen, "correctWords", []);
    const data = gameData.wordhive[dataIndex];
 
    const centerLetter = data.center;
@@ -35,6 +35,8 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 1 }, ref) => {
 
    useEffect(() => {
       console.log("game data", data);
+      console.log("saved answer", answer);
+      console.log("saved correctWords", correctWords);
       const shuffled = shuffleArray(data.letters.split(""));
       setShuffledLetters(shuffled);
    }, [dataIndex]);
