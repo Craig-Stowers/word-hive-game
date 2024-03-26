@@ -27,35 +27,41 @@ export default function Feedback({ screen }) {
    ]);
    //  const buttonStyle={{width:"60px", height:"60px"}}
    useEffect(() => {
-      const answers = screen.globalState.game.correctWords;
-      console.log("answers", answers);
-      if (!answers) return;
+      const loadAnswers = () => {
+         const answers = screen.globalState.game.correctWords;
+         // console.log("answers", answers);
+         if (!answers) return;
 
-      setAnswers(answers);
+         setAnswers(answers);
 
-      const fours = answers.filter((v) => v.length === 4).length;
-      const fives = answers.filter((v) => v.length === 5).length;
-      const sixes = answers.filter((v) => v.length === 6).length;
-      const sevens = answers.filter((v) => v.length >= 7).length;
+         const fours = answers.filter((v) => v.length === 4).length;
+         const fives = answers.filter((v) => v.length === 5).length;
+         const sixes = answers.filter((v) => v.length === 6).length;
+         const sevens = answers.filter((v) => v.length >= 7).length;
 
-      setBarData([
-         {
-            label: "4",
-            value: fours,
-         },
-         {
-            label: "5",
-            value: fives,
-         },
-         {
-            label: "6",
-            value: sixes,
-         },
-         {
-            label: "+7",
-            value: sevens,
-         },
-      ]);
+         setBarData([
+            {
+               label: "4",
+               value: fours,
+            },
+            {
+               label: "5",
+               value: fives,
+            },
+            {
+               label: "6",
+               value: sixes,
+            },
+            {
+               label: "+7",
+               value: sevens,
+            },
+         ]);
+      };
+
+      const timer = setTimeout(() => {
+         loadAnswers();
+      }, 100);
    }, [screen.globalState.game.correctAnswers]);
 
    return (

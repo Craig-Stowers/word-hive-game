@@ -66,16 +66,17 @@ const ScreenManager = ({ screenMaps, initialScreen = null }) => {
    };
 
    const handleStoreScreenState = (screenKey, stateKey, value) => {
-      console.log("save session data", screenKey, stateKey, value);
+      console.log("handleStoreScreenState", screenKey, stateKey, value);
       setScreenStates((oldValue) => {
+         console.log("setScreenStates - OLD", oldValue);
          const newValue = {
             ...oldValue,
             [screenKey]: {
-               ...screenStates[screenKey],
+               ...oldValue[screenKey],
                [stateKey]: copyValue(value),
             },
          };
-         console.log("change state", newValue);
+         console.log("setScreenStates - NEW", newValue);
          return newValue;
       });
    };
