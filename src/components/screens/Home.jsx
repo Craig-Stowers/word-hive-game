@@ -16,6 +16,7 @@ const imageLoadPromises = globalImagePreloader.preloadImages([logo]);
 const Home = ({ screen, ...props }) => {
    const imagesLoaded = useImagePreloader(imageLoadPromises);
    if (!imagesLoaded) return null;
+   console.log("images", imagesLoaded);
 
    const smallButtonStyle = {
       width: "80px",

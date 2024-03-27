@@ -1,4 +1,5 @@
 import React, { useState, forwardRef, useImperativeHandle } from "react";
+import { globalImagePreloader, useImagePreloader } from "../../helpers/ImageLoader";
 import classes from "./Info.module.css";
 import image1 from "../../assets/instructions/help-1.png";
 import image2 from "../../assets/instructions/help-2.png";
@@ -6,6 +7,8 @@ import image3 from "../../assets/instructions/help-3.png";
 import image4 from "../../assets/instructions/help-4.png";
 import image5 from "../../assets/instructions/help-5.png";
 import image6 from "../../assets/instructions/help-6.png";
+
+const imageLoadPromises = globalImagePreloader.preloadImages([image1, image2, image3, image4, image5, image6]);
 
 const instructions = [
    {
@@ -36,6 +39,7 @@ const instructions = [
 
 const Info = forwardRef(({ screen }, ref) => {
    const [currPage, setCurrPage] = useState(0);
+   const imagesLoaded = useImagePreloader(imageLoadPromises);
 
    const handleNext = () => {
       if (currPage === instructions.length - 1) {
