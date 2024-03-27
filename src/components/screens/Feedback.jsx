@@ -29,7 +29,7 @@ export default function Feedback({ screen }) {
    useEffect(() => {
       const loadAnswers = () => {
          const answers = screen.globalState.game.correctWords;
-         console.log("FETCH ANSWERS", answers);
+
          if (!answers) return;
 
          setAnswers(answers);

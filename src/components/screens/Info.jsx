@@ -9,6 +9,7 @@ import image5 from "../../assets/instructions/help-5.png";
 import image6 from "../../assets/instructions/help-6.png";
 
 const imageLoadPromises = globalImagePreloader.preloadImages([image1, image2, image3, image4, image5, image6]);
+console.log("info image promises", imageLoadPromises);
 
 const instructions = [
    {
@@ -40,6 +41,7 @@ const instructions = [
 const Info = forwardRef(({ screen }, ref) => {
    const [currPage, setCurrPage] = useState(0);
    const imagesLoaded = useImagePreloader(imageLoadPromises);
+   console.log("infro render images", imagesLoaded);
 
    const handleNext = () => {
       if (currPage === instructions.length - 1) {
