@@ -8,6 +8,7 @@ import logo from "./../../assets/title-with-bee.png";
 
 export default function Stats({ screen }) {
    const hasPlayed = screen.globalState.game.score !== undefined;
+
    return (
       <div className={classes.root}>
          <div className={classes.inner}>

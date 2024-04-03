@@ -1,7 +1,7 @@
 .root {
    background-color: var(--yellow-color);
    display: flex;
-   padding: 20px 24px;
+   padding: 14px 24px;
 }
 
 .left {

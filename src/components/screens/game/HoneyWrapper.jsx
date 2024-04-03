@@ -3,7 +3,7 @@ import Honey from "../../../assets/honey.svg?react";
 import Grid from "../../../assets/comb-grid.svg?react";
 import classes from "./HoneyWrapper.module.css";
 
-const HoneyWrapper = ({ answer, letterOrder, bonusLetter }) => {
+const HoneyWrapper = ({ answer }) => {
    // const revealClasses = [classes.show1, classes.show2, classes.show3, classes.show4, classes.show5, classes.show6, classes.show7, classes.show8, classes.show9, classes.show10, classes.show11, classes.show12]
 
    answer && console.log("answer", answer);
@@ -16,7 +16,7 @@ const HoneyWrapper = ({ answer, letterOrder, bonusLetter }) => {
       for (let i = 0; i < letterArr.length; i++) {
          //  console.log("compare", wordLetters, letterArr[i]);
          if (wordLetters.includes(letterArr[i].toLowerCase())) {
-            const isBonus = letterArr[i].toLowerCase() === bonusLetter.toLowerCase();
+            const isBonus = letterArr[i].toLowerCase() === answer.bonusLetter.toLowerCase();
             revealClasses.push(classes[`${isBonus ? "bonus" : "show"}${i + 1}`]);
          }
       }

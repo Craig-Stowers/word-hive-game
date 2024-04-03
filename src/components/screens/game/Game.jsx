@@ -36,9 +36,6 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 1 }, ref) => {
    const [disabled, setDisabled] = useState(false);
 
    useEffect(() => {
-      console.log("game data", data);
-      console.log("saved answer", answer);
-      console.log("saved correctWords", correctWords);
       const shuffled = shuffleArray(data.letters.split(""));
       setShuffledLetters(shuffled);
    }, [dataIndex]);
@@ -125,6 +122,7 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 1 }, ref) => {
                {
                   word: trimAnswer,
                   letterOrder: (centerLetter + shuffledLetters.join("")).toLowerCase(),
+                  bonusLetter: bonusLetter,
                },
             ];
          });
