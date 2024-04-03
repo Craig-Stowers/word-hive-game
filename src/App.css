@@ -1,20 +1,3 @@
-:root {
-   --grey-button-color: #e2e2e2;
-   --yellow-color: #f2aa2e;
-   --dark-yellow-color: #da9929;
-   --bonus-border: #36bca9;
-}
-
-#root {
-   display: block;
-   width: 100vw;
-   height: 100vh;
-   user-select: none;
-   -webkit-user-select: none; /* Safari */
-   -moz-user-select: none; /* Firefox */
-   -ms-user-select: none; /* Internet Explorer/Edge */
-}
-
 .background {
    position: fixed;
    top: 0;

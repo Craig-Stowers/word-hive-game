@@ -31,3 +31,63 @@
    width: 57%;
    transform: translate(-50%, -50%);
 }
+
+.gridWrap :global(.comb1),
+.gridWrap :global(.comb2),
+.gridWrap :global(.comb3),
+.gridWrap :global(.comb4),
+.gridWrap :global(.comb5),
+.gridWrap :global(.comb6),
+.gridWrap :global(.comb7) {
+   visibility: hidden;
+}
+.gridWrap.show1 :global(.comb1) {
+   visibility: visible;
+}
+.gridWrap.show2 :global(.comb2) {
+   visibility: visible;
+}
+.gridWrap.show3 :global(.comb3) {
+   visibility: visible;
+}
+.gridWrap.show4 :global(.comb4) {
+   visibility: visible;
+}
+.gridWrap.show5 :global(.comb5) {
+   visibility: visible;
+}
+.gridWrap.show6 :global(.comb6) {
+   visibility: visible;
+}
+.gridWrap.show7 :global(.comb7) {
+   visibility: visible;
+}
+
+.gridWrap.bonus1 :global(.comb1) {
+   visibility: visible;
+   fill: var(--bonus-color);
+}
+.gridWrap.bonus2 :global(.comb2) {
+   visibility: visible;
+   fill: var(--bonus-color);
+}
+.gridWrap.bonus3 :global(.comb3) {
+   visibility: visible;
+   fill: var(--bonus-color);
+}
+.gridWrap.bonus4 :global(.comb4) {
+   visibility: visible;
+   fill: var(--bonus-color);
+}
+.gridWrap.bonus5 :global(.comb5) {
+   visibility: visible;
+   fill: var(--bonus-color);
+}
+.gridWrap.bonus6 :global(.comb6) {
+   visibility: visible;
+   fill: var(--bonus-color);
+}
+.gridWrap.bonus7 :global(.comb7) {
+   visibility: visible;
+   fill: var(--bonus-color);
+}

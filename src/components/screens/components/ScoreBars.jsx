@@ -24,9 +24,6 @@ const ScoreBars = ({ highlight, stats }) => {
       }, 500);
       return () => clearTimeout(startTimer);
    });
-
-   // const maxDistributionValue = Math.max(...Object.values(stats.distribution));
-
    const startRevealTimer = (index) => {
       if (!barRefs.current[index]) return;
       if (barDigitClass[index]) return;

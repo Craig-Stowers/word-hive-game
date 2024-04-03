@@ -120,7 +120,13 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 1 }, ref) => {
 
       if (availableAnswers.includes(trimAnswer) && !correctWords.includes(trimAnswer)) {
          setCorrectWords((oldValue) => {
-            return [...oldValue, trimAnswer];
+            return [
+               ...oldValue,
+               {
+                  word: trimAnswer,
+                  letterOrder: (centerLetter + shuffledLetters.join("")).toLowerCase(),
+               },
+            ];
          });
 
          let newPoints = 0;
@@ -160,6 +166,8 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 1 }, ref) => {
       });
    };
 
+   console.log("correct words", correctWords);
+
    return (
       <div className={classes.root} style={{ position: "relative" }}>
          <div className={classes.content}>
@@ -182,7 +190,11 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 1 }, ref) => {
             </div>
             <div className={classes.right}>
                <ScoreTicker className={classes.score} score={score} />
-               <CompletedWords words={correctWords} />
+               <CompletedWords
+                  words={correctWords}
+                  letterOrder={centerLetter + shuffledLetters.join("")}
+                  bonusLetter={bonusLetter}
+               />
             </div>
          </div>
          <OverlayPortal mirrorElementId={"bonus-letter"} deps={[shuffledLetters]} />

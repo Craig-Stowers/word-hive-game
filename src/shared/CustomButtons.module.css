@@ -34,6 +34,8 @@
    position: relative;
    z-index: 1;
    box-sizing: border-box;
+   width: 100%;
+   height: 100%;
 }
 
 .inner img {
@@ -43,7 +45,7 @@
 
 .inner span {
    display: block;
-   line-height: 0;
+
    margin-left: 15px;
    margin-right: 15px;
    font-family: "Roboto Slab", serif;
