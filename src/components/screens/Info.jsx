@@ -8,30 +8,10 @@ import image4 from "../../assets/instructions/help-4.png";
 import image5 from "../../assets/instructions/help-5.png";
 import image6 from "../../assets/instructions/help-6.png";
 
-import bird from "../../assets/test-images/bird.jpg";
-import fly from "../../assets/test-images/fly.jpg";
-
-const imageLoadPromises = globalImagePreloader.preloadImages([
-   bird,
-   fly,
-   image1,
-   image2,
-   image3,
-   image4,
-   image5,
-   image6,
-]);
+const imageLoadPromises = globalImagePreloader.preloadImages([image1, image2, image3, image4, image5, image6]);
 console.log("info image promises", imageLoadPromises);
 
 const instructions = [
-   {
-      text: "test image loader 1",
-      asset: bird,
-   },
-   {
-      text: "test image loader 2",
-      asset: fly,
-   },
    {
       text: "Create 12 words using the letters in the hive. The longer the word, the higher the score. Proper nouns are not accepted. A new Word Hive is released every day. Good luck!",
       asset: image1,
