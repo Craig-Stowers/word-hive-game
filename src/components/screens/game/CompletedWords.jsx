@@ -8,7 +8,6 @@ const CompletedWords = ({ words, letterOrder, bonusLetter }) => {
 
    return (
       <div className={classes.root}>
-         <div>letter order: {letterOrder}</div>
          {honeyObjectsChunks.map((chunk, i) => {
             return (
                <div className={classes.row} key={"honey-row" + i}>

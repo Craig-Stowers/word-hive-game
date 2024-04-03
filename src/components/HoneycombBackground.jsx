@@ -103,7 +103,6 @@ const HoneycombBackground = () => {
       width: containerWidth + "px",
       height: containerHeight + "px",
       position: "relative",
-      border: "1px solid red",
       overflow: "hidden",
    };
 
