@@ -14,10 +14,13 @@ import { shuffleArray, filterString } from "../../../helpers/arrayHelpers";
 import useOnKeyPress from "../../../hooks/useOnKeyPress";
 import OverlayAlert from "./OverlayAlerts";
 import OverlayPortal from "./OverlayPortal";
+import withSizeObserver from "../../withSizeObserver";
+import GameContent from "./GameContent";
+import BestFit from "../../BestFit";
 
 const randomSequence = shuffleArray([0, 1, 2, 3, 4, 5]);
 
-const Game = forwardRef(({ challengeData, screen, dataIndex = 1 }, ref) => {
+const Game = forwardRef(({ challengeData, screen, dataIndex = 1, size }, ref) => {
    const [shuffledLetters, setShuffledLetters] = useState([]);
    const [answer, setAnswer] = useScreenState(screen, "answer", "");
    const [correctWords, setCorrectWords] = useScreenState(screen, "correctWords", []);
@@ -164,36 +167,26 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 1 }, ref) => {
       });
    };
 
-   console.log("correct words", correctWords);
+   const contentProps = {
+      centerLetter,
+      shuffledLetters,
+      bonusLetter,
+      answer,
+      handleAllowedLetter,
+      handleShuffle,
+      handleEnter,
+      handleDelete,
+      score,
+      correctWords,
+      classes,
+   };
 
    return (
-      <div className={classes.root} style={{ position: "relative" }}>
+      <div className={classes.root}>
          <div className={classes.content}>
-            <div className={classes.left}>
-               <div className={classes.inputWrapper}>
-                  <AnswerInput value={answer} />
-               </div>
-
-               <div className={classes.lettersWrapper}>
-                  <LettersPanel
-                     center={centerLetter}
-                     letters={shuffledLetters}
-                     onLetterClick={handleAllowedLetter}
-                     bonusLetter={bonusLetter.toUpperCase()}
-                     answer={answer}
-                  />
-               </div>
-
-               <FootButtons onShuffle={handleShuffle} onEnter={handleEnter} onDelete={handleDelete} />
-            </div>
-            <div className={classes.right}>
-               <ScoreTicker className={classes.score} score={score} />
-               <CompletedWords
-                  words={correctWords}
-                  letterOrder={centerLetter + shuffledLetters.join("")}
-                  bonusLetter={bonusLetter}
-               />
-            </div>
+            {/* <BestFit {...{ width: 900, height: 600, maxScale: 1.5 }}> */}
+            <GameContent {...contentProps} />
+            {/* </BestFit> */}
          </div>
          <OverlayPortal mirrorElementId={"bonus-letter"} deps={[shuffledLetters]} />
          <OverlayPortal mirrorElementId={"middle-letter"} />

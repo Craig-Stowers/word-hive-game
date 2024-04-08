@@ -55,7 +55,7 @@ const LettersPanel = ({ letters, center, onLetterClick, bonusLetter, answer }) =
    );
 
    return (
-      <div style={{ width: "340px", height: "340px", position: "relative" }}>
+      <div style={{ width: "300px", height: "300px", position: "relative" }}>
          {extendedLetterObjects.map((el, index) => {
             return (
                <div style={el.style} key={"letter-" + index}>

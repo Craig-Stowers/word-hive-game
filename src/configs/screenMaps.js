@@ -38,7 +38,20 @@ export const screenMaps = {
          close: (screen) => screen.change("home"),
       },
       wrappers: [
-         { component: BestFit, props: { width: 900, height: 600, maxScale: 1.5 } },
+         // {
+         //    component: BestFit,
+         //    props: {
+         //       ratioBreakPoints: {
+         //          1: {
+         //             width: 900,
+         //             height: 600,
+         //          },
+         //       },
+         //       width: 600,
+         //       height: 900,
+         //       maxScale: 1.5,
+         //    },
+         // },
          { component: WithHeader, props: { layoutType: "main" } },
       ],
    },

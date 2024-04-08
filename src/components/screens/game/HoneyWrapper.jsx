@@ -1,5 +1,7 @@
 import { useMemo } from "react";
-import Honey from "../../../assets/honey.svg?react";
+// import Honey from "../../../assets/honey-empty.svg?react";
+import filledJar from "../../../assets/jar-filled.png";
+import emptyJar from "../../../assets/jar-empty.png";
 import Grid from "../../../assets/comb-grid.svg?react";
 import classes from "./HoneyWrapper.module.css";
 
@@ -26,7 +28,8 @@ const HoneyWrapper = ({ answer }) => {
    return (
       <div className={classes.root}>
          <div className={classes.testclass} style={{ opacity: answer ? 1 : 1 }}>
-            <Honey />
+            <img src={answer ? filledJar : emptyJar} />
+            {/* <Honey /> */}
             <div className={`${classes.gridWrap} ${revealClasses.join(" ")}`}>
                <Grid />
             </div>

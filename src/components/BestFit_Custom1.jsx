@@ -1,61 +1,38 @@
-import React, { useRef, useEffect, cloneElement, useState } from "react";
+import React, { useRef, useEffect, cloneElement } from "react";
 
-const BestFit = ({ width, height, children, maxScale, style, ratioBreakPoints }) => {
+const BestFitCustom_1 = ({ width, height, children, maxScale, style }) => {
    const outerRef = useRef(null);
    const innerRef = useRef(null);
    const childRef = useRef(null);
 
-   const [dimensions, setDimensions] = useState({ width: width, height: height });
-
    // Ensure that there is only one child
    const child = React.Children.only(children);
 
+   
+
    // Clone the child and attach the ref
    const childWithRef = cloneElement(child, {
-      style: { ...child.props.style },
-      // style: { ...child.props.style, height: height + "px", width: width + "px" },
+      style: { ...child.props.style, height: height + "px", width: width + "px" },
    });
 
    useEffect(() => {
-      const ratioKeys =
-         ratioBreakPoints &&
-         Object.keys(ratioBreakPoints)
-            .map((value) => Number(value))
-            .sort((a, b) => a - b);
-
       const handleResize = () => {
          if (outerRef.current) {
             const element = outerRef.current;
             const containerWidth = element.offsetWidth;
             const containerHeight = element.offsetHeight;
             const containerRatio = containerWidth / containerHeight;
-
-            let adaptWidth = width;
-            let adaptHeight = height;
-            if (ratioBreakPoints && containerRatio > ratioKeys[0]) {
-               adaptWidth = ratioBreakPoints[ratioKeys[0]].width;
-               adaptHeight = ratioBreakPoints[ratioKeys[0]].height;
-            }
-
-            setDimensions({ width: adaptWidth, height: adaptHeight });
-
-            const childRatio = adaptWidth / adaptHeight;
+            const childRatio = width / height;
             const fitWidth = childRatio > containerRatio;
-            const scaleFactor = Math.min(
-               maxScale,
-               fitWidth ? containerWidth / adaptWidth : containerHeight / adaptHeight
-            );
+            const scaleFactor = Math.min(maxScale, fitWidth ? containerWidth / width : containerHeight / height);
             innerRef.current.style.transform = `scale(${scaleFactor}) translate(-50%, -50%)`;
          }
       };
 
       window.addEventListener("resize", handleResize);
       handleResize();
-      setTimeout(() => {
-         handleResize();
-      }, 100);
       return () => window.removeEventListener("resize", handleResize);
-   }, [width, height]);
+   }, []);
 
    const outerStyle = {
       ...style,
@@ -71,8 +48,8 @@ const BestFit = ({ width, height, children, maxScale, style, ratioBreakPoints })
       transformOrigin: "top left",
       left: "50%",
       top: "50%",
-      height: dimensions.height + "px",
-      width: dimensions.width + "px",
+      height: height + "px",
+      width: width + "px",
    };
 
    return (
@@ -84,4 +61,4 @@ const BestFit = ({ width, height, children, maxScale, style, ratioBreakPoints })
    );
 };
 
-export default BestFit;
+export default BestFitCustom_1;

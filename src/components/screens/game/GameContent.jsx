@@ -1,0 +1,194 @@
+import React from "react";
+import AnswerInput from "./AnswerInput";
+import LettersPanel from "./LettersPanel";
+import ScoreTicker from "./ScoreTicker";
+import CompletedWords from "./CompletedWords";
+import FootButtons from "./FootButtons";
+import withSizeObserver from "../../withSizeObserver";
+import BestFit from "../../BestFit";
+import FitWidth from "../../FitWidth";
+import AspectRatioBox from "../../layouts/AspectRatioBox";
+import toggleIcon from "../../../assets/progress-toggle.png";
+import progressPanel from "../../../assets/progress-panel.png";
+
+const GameContent = ({ size, ...props }) => {
+   const {
+      centerLetter,
+      shuffledLetters,
+      bonusLetter,
+      answer,
+      handleAllowedLetter,
+      handleShuffle,
+      handleEnter,
+      handleDelete,
+      score,
+      correctWords,
+      classes,
+   } = props;
+
+   const [showDropDown, setShowDropDown] = React.useState(false);
+
+   const containerRatio = size.width / size.height;
+   console.log("ratio", containerRatio, size.width, size.height);
+   const verticalLayout =
+      (containerRatio < 0.95 && size.width < 1500) ||
+      (containerRatio < 1 && size.width < 1300) ||
+      (containerRatio < 0.95 && size.width < 1000) ||
+      (containerRatio < 0 && size.width < 700);
+
+   const bestFitWidth = verticalLayout ? 440 : 900;
+   const bestFitHeight = verticalLayout ? 1000 : 560;
+
+   const renderHorizontalContent = () => {
+      return (
+         <BestFit {...{ width: bestFitWidth, height: bestFitHeight, maxScale: 1.6 }}>
+            <div
+               style={{ display: "flex", flexDirection: verticalLayout ? "column" : "row" }}
+               className={`${verticalLayout ? classes.vertical : ""}`}
+            >
+               <div className={classes.left}>
+                  <div className={classes.inputWrapper}>
+                     <AnswerInput value={answer} />
+                  </div>
+
+                  <div style={{ height: "80%", width: "100%", padding: "40px 40px", boxSizing: "border-box" }}>
+                     <div className={classes.lettersWrapper} style={{ height: "100%", width: "100%" }}>
+                        <BestFit {...{ width: 300, height: 300, maxScale: 1.6 }}>
+                           <LettersPanel
+                              center={centerLetter}
+                              letters={shuffledLetters}
+                              onLetterClick={handleAllowedLetter}
+                              bonusLetter={bonusLetter.toUpperCase()}
+                              answer={answer}
+                           />
+                        </BestFit>
+                     </div>
+                  </div>
+                  <div style={{ height: "20%", width: "70%", margin: "auto" }}>
+                     <FootButtons onShuffle={handleShuffle} onEnter={handleEnter} onDelete={handleDelete} />
+                  </div>
+               </div>
+               <div className={classes.right}>
+                  <div className={classes.rightInner}>
+                     <ScoreTicker className={classes.score} score={score} />
+                     <CompletedWords
+                        columns={4}
+                        words={correctWords}
+                        letterOrder={centerLetter + shuffledLetters.join("")}
+                        bonusLetter={bonusLetter}
+                     />
+                  </div>
+               </div>
+            </div>
+         </BestFit>
+      );
+   };
+   const renderVerticalContent = () => {
+      return (
+         <div
+            style={{ display: "flex", flexDirection: verticalLayout ? "column" : "row" }}
+            className={`${verticalLayout ? classes.vertical : ""}`}
+         >
+            <AspectRatioBox ratio={540 / 150} style={{ backgroundColor: "black", minHeight: "25%" }}></AspectRatioBox>
+            <div className={classes.left}>
+               <ScoreTicker className={classes.score} score={score} />
+               <div className={classes.inputWrapper}>
+                  <AnswerInput value={answer} />
+               </div>
+
+               <div style={{ height: "70%", width: "100%", padding: "10px 20px", boxSizing: "border-box" }}>
+                  <div className={classes.lettersWrapper} style={{ height: "100%", width: "100%" }}>
+                     <BestFit
+                        {...{ width: 300, height: 300, maxScale: 1.6 }}
+                        style={{ maxWidth: "430px", marginLeft: "auto", marginRight: "auto" }}
+                     >
+                        <LettersPanel
+                           center={centerLetter}
+                           letters={shuffledLetters}
+                           onLetterClick={handleAllowedLetter}
+                           bonusLetter={bonusLetter.toUpperCase()}
+                           answer={answer}
+                        />
+                     </BestFit>
+                  </div>
+               </div>
+
+               <div
+                  style={{
+                     width: "100%",
+                     flexGrow: 1,
+                     height: "20%",
+                     minHeight: "70px",
+                     maxHeight: "120px",
+                     marginTop: "auto",
+                  }}
+               >
+                  <BestFit
+                     {...{ width: 270, height: 70, maxScale: 1.6 }}
+                     style={{ maxWidth: "500px", margin: "auto", display: "flex" }}
+                  >
+                     <FootButtons onShuffle={handleShuffle} onEnter={handleEnter} onDelete={handleDelete} />
+                  </BestFit>
+               </div>
+            </div>
+
+            <div
+               className={`${classes.barrier} ${showDropDown ? classes.showBarrier : ""}`}
+               onTouchEnd={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  setShowDropDown(false);
+               }}
+               onClick={() => {
+                  setShowDropDown(false);
+               }}
+            ></div>
+
+            <div
+               className={`${classes.slideDownContainer} ${showDropDown ? classes.showDropDown : ""}`}
+               onTouchEnd={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  setShowDropDown(true);
+               }}
+               onClick={() => {
+                  setShowDropDown(true);
+               }}
+            >
+               <div className={classes.inner}>
+                  <AspectRatioBox ratio={520 / 620} className={classes.slideRatioBox}>
+                     <BestFit {...{ width: 460, height: 550, maxScale: 3, style: { margin: "auto" } }}>
+                        <CompletedWords
+                           columns={3}
+                           words={correctWords}
+                           letterOrder={centerLetter + shuffledLetters.join("")}
+                           bonusLetter={bonusLetter}
+                           rowClass={classes.verticalRow}
+                        />
+                     </BestFit>
+                  </AspectRatioBox>
+               </div>
+
+               <div className={classes.sliderFooter}>
+                  <div className={classes.sliderFooterInner}>
+                     <img className={classes.toggleIcon} src={toggleIcon} />
+
+                     <div className={classes.progressContainer}>
+                        <img className={classes.progressPanel} src={progressPanel} />
+                        <div className={classes.progressText}>{correctWords.length}/12</div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      );
+   };
+
+   return (
+      <div style={{ width: "100%", height: "100%" }}>
+         {verticalLayout && renderVerticalContent()}
+         {!verticalLayout && renderHorizontalContent()}
+      </div>
+   );
+};
+export default withSizeObserver(GameContent);

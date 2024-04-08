@@ -6,16 +6,18 @@
 
 .wordContainer {
    width: 100%;
-   background-color: red;
+
+   margin-top: 8px;
+
    position: relative;
 }
 
 .word {
    position: absolute;
    left: 50%;
-   transform: translateX(-50%);
-   margin-top: 10px;
-   font-size: 120%;
+   transform: translate(-50%, -50%);
+   top: 100%;
+   font-size: 140%;
    font-weight: 600;
    margin: auto;
 }
@@ -24,11 +26,15 @@
    position: relative;
 }
 
+.testclass img {
+   width: 100%;
+}
+
 .gridWrap {
    position: absolute;
-   top: 67%;
-   left: 49.7%;
-   width: 57%;
+   top: 64%;
+   left: 50%;
+   width: 60%;
    transform: translate(-50%, -50%);
 }
 

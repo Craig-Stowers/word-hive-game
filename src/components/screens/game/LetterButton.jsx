@@ -54,7 +54,15 @@ const LetterButton = forwardRef(({ width = 200, onClick, children, className = "
          className={`${classes.root} ${className} ${classes[animation]}`}
          style={{ position: "relative", width, height }}
       >
-         <svg style={svgStyle} onClick={onClick}>
+         <svg
+            style={svgStyle}
+            onClick={onClick}
+            onTouchEnd={(event) => {
+               event.preventDefault();
+               event.stopPropagation();
+               onClick(event);
+            }}
+         >
             <Hex />
             {/* <image href={hexAll} style={{ width, height }} />; */}
          </svg>

@@ -1,26 +1,50 @@
 .root {
-   background-color: var(--yellow-color);
    display: flex;
-   padding: 14px 24px;
+   max-height: min(10%, 110px);
+   background-color: var(--yellow-color);
+}
+
+.dynamicBar {
+   display: flex;
+   max-height: 100%;
+
+   /* min-height: 54px; */
 }
 
 .left {
    display: flex;
+   height: 100%;
+
+   padding-left: 2%;
 }
 
 .left img {
    margin-top: auto;
    margin-bottom: auto;
-   width: 220px;
+   /* width: 220px; */
+   height: 50%;
+}
+
+.buttonRatioBox {
+   display: flex;
 }
 
 .right {
    display: flex;
    margin-top: auto;
+   margin-bottom: auto;
    margin-left: auto;
+   height: 70%;
+   max-height: 70px;
+   width: 100%;
+   margin-right: min(2.5%, 20px);
+
+   margin-bottom: auto;
+   margin-top: auto;
 }
 
 .right img {
-   width: 44px;
+   /* width: 44px; */
+
    margin-left: 8px;
 }
