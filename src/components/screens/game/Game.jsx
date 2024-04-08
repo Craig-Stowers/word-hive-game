@@ -113,7 +113,8 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 3, size }, ref) =>
          return;
       }
 
-      if (correctWords.includes(trimAnswer)) {
+      const lowerCaseCorrectWords = correctWords.map((word) => word.word.toLowerCase());
+      if (lowerCaseCorrectWords.includes(trimAnswer.toLowerCase())) {
          overlayRef.current.generateAlert({ type: "tip", text: "Word used already" });
          return;
       }
