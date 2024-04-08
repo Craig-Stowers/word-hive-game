@@ -20,7 +20,7 @@ import BestFit from "../../BestFit";
 
 const randomSequence = shuffleArray([0, 1, 2, 3, 4, 5]);
 
-const Game = forwardRef(({ challengeData, screen, dataIndex = 1, size }, ref) => {
+const Game = forwardRef(({ challengeData, screen, dataIndex = 3, size }, ref) => {
    const [shuffledLetters, setShuffledLetters] = useState([]);
    const [answer, setAnswer] = useScreenState(screen, "answer", "");
    const [correctWords, setCorrectWords] = useScreenState(screen, "correctWords", []);

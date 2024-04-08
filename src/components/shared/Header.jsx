@@ -35,8 +35,6 @@ const Header = ({ screen, ...props }) => {
       marginRight: "auto",
    };
 
-   console.log("showCheat", showCheat);
-
    return (
       <div className={classes.root}>
          <AspectRatioBox ratio={6.5} className={classes.dynamicBar}>
