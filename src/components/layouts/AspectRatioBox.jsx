@@ -21,19 +21,53 @@ const AspectRatioBox = ({ ratio, children, style, className, height = null, widt
       }
    };
 
+   const updateDimensions2 = (observedWidth, observedHeight) => {
+      if (ref.current) {
+         if (sizeToHeight) {
+            const newWidth = observedHeight * ratio;
+            setWidth(newWidth);
+            return;
+         }
+         const currWidth = observedWidth;
+         const newHeight = currWidth / ratio;
+         setBoxHeight(newHeight);
+      }
+   };
+
    useEffect(() => {
-      updateDimensions();
-      window.addEventListener("resize", updateDimensions);
+      if (ref.current) {
+         const observeTarget = ref.current;
+         const resizeObserver = new ResizeObserver((entries) => {
+            console.log("resizing from ratio");
+            if (!Array.isArray(entries) || !entries.length) {
+               return;
+            }
 
-      const timer = setTimeout(() => {
-         updateDimensions();
-      }, 400);
+            const { width, height } = entries[0].contentRect;
+            updateDimensions2(width, height);
+            // setDimensions({ width, height });
+         });
 
-      return () => {
-         clearTimeout(timer);
-         window.removeEventListener("resize", updateDimensions);
-      };
-   }, [ratio]); // Recalculate when the ratio changes
+         resizeObserver.observe(observeTarget);
+
+         // Cleanup on component unmount
+         return () => resizeObserver.unobserve(observeTarget);
+      }
+   }, [ref, ratio]);
+
+   // useEffect(() => {
+   //    updateDimensions();
+   //    window.addEventListener("resize", updateDimensions);
+
+   //    const timer = setTimeout(() => {
+   //       updateDimensions();
+   //    }, 400);
+
+   //    return () => {
+   //       clearTimeout(timer);
+   //       window.removeEventListener("resize", updateDimensions);
+   //    };
+   // }, [ratio]); // Recalculate when the ratio changes
 
    const styleHeight = sizeToHeight ? height : `${boxHeight}px`;
    const styleWidth = sizeToHeight ? `${boxWidth}px` : "100%";
