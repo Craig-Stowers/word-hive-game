@@ -37,7 +37,8 @@ button {
    width: 100vw;
    height: 100vh;
    min-width: 300px;
-   min-height: 533px;
+   max-height: 100vh;
+   /* min-height: 533px; */
    user-select: none;
    -webkit-user-select: none; /* Safari */
    -moz-user-select: none; /* Firefox */

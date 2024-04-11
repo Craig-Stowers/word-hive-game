@@ -44,8 +44,6 @@ const BestFit = ({ width, height, children, maxScale, style, ratioBreakPoints })
    useEffect(() => {
       if (!outerRef.current) return;
 
-      console.log("teset wh", testWidth, testHeight);
-
       let adaptWidth = width;
       let adaptHeight = height;
       setDimensions({ width: adaptWidth, height: adaptHeight });

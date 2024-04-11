@@ -7,6 +7,7 @@ import Feedback from "../components/screens/Feedback";
 import BestFit from "../components/BestFit";
 import WithHeader from "../components/layouts/WithHeader";
 import OverlayButtons from "../components/layouts/OverlayButtons";
+import FullWidthHeight from "../components/layouts/FullWidthHeight";
 
 //passed to ScreenMangager to manage screen switching, screen wrappers
 //useful to manage navigation on projects that don't have traditional routing (i.e games).
@@ -26,8 +27,10 @@ export const screenMaps = {
          close: (screen) => screen.back(),
       },
       wrappers: [
-         { component: BestFit, props: { width: 900, height: 600, maxScale: 1.5 } },
-         { component: OverlayButtons, props: { variation: "cross&next" } },
+         { component: FullWidthHeight },
+
+         // { component: BestFit, props: { width: 900, height: 600, maxScale: 1.5 } },
+         // { component: OverlayButtons, props: { variation: "cross&next" } },
       ],
    },
 

@@ -1,12 +1,17 @@
 import React, { useState, forwardRef, useImperativeHandle } from "react";
 import { globalImagePreloader, useImagePreloader } from "../../helpers/ImageLoader";
 import classes from "./Info.module.css";
-import image1 from "../../assets/instructions/help-1.png";
-import image2 from "../../assets/instructions/help-2.png";
-import image3 from "../../assets/instructions/help-3.png";
-import image4 from "../../assets/instructions/help-4.png";
-import image5 from "../../assets/instructions/help-5.png";
-import image6 from "../../assets/instructions/help-6.png";
+import image1 from "../../assets/instructions/h1.png";
+import image2 from "../../assets/instructions/h2.png";
+import image3 from "../../assets/instructions/h3.png";
+import image4 from "../../assets/instructions/h4.png";
+import image5 from "../../assets/instructions/h5.png";
+import image6 from "../../assets/instructions/h6.png";
+import withSizeObserver from "../withSizeObserver";
+import MaxChildHeight from "./components/MaxChildHeight";
+import CustomButton from "../../shared/CustomButton";
+import CloseIcon from "../../assets/icons/icon-close.svg?react";
+import buttonClasses from "../../components/layouts/Buttons.module.css";
 
 const imageLoadPromises = globalImagePreloader.preloadImages([image1, image2, image3, image4, image5, image6]);
 console.log("info image promises", imageLoadPromises);
@@ -38,10 +43,12 @@ const instructions = [
    },
 ];
 
-const Info = forwardRef(({ screen }, ref) => {
+const Info = forwardRef(({ screen, size }, ref) => {
    const [currPage, setCurrPage] = useState(0);
    const imagesLoaded = useImagePreloader(imageLoadPromises);
    // console.log("infro render images", imagesLoaded);
+
+   console.log("size", size);
 
    const handleNext = () => {
       if (currPage === instructions.length - 1) {
@@ -67,18 +74,49 @@ const Info = forwardRef(({ screen }, ref) => {
 
    return (
       <div className={`${classes.root} roboto-condensed`}>
-         <div className={classes.top}>
-            <div className={classes.pageNumber}>
-               {currPage + 1} / {instructions.length}
-            </div>
-            <div className={`roboto-slab ${classes.title}`}>How to play</div>
-            <div className={classes.description}>{instructions[currPage].text}</div>
-         </div>
+         <div className={classes.buttonRow}>
+            <CustomButton
+               className={`${buttonClasses.close}`}
+               render={() => {
+                  return <CloseIcon />;
+               }}
+               onClick={() => screen.actions.close()}
+            />
 
-         <div className={classes.bottom}>
-            <div style={{ position: "absolute", transform: "translate(-50%, -50%)", left: "50%", top: "50%" }}>
-               <div style={{ transform: "scale(0.3" }}>
-                  <img src={renderAsset} />
+            <CustomButton
+               className={`${buttonClasses.next}`}
+               style={{ marginLeft: "auto" }}
+               render={() => {
+                  return <span>NEXT</span>;
+               }}
+               onClick={handleNext}
+            />
+         </div>
+         <div className={`${classes.inner}`}>
+            <div className={classes.top}>
+               <div className={classes.pageNumber}>
+                  {currPage + 1} / {instructions.length}
+               </div>
+               <div className={`roboto-slab ${classes.title}`}>How to play</div>
+               {/* <MaxChildHeight activeIndex={2}> */}
+               <MaxChildHeight className={classes.descriptionContainer}>
+                  {instructions.map((instruction, index) => (
+                     <div
+                        key={index}
+                        className={classes.description}
+                        style={{ visibility: index === currPage ? "visible" : "hidden" }}
+                     >
+                        {instruction.text}
+                     </div>
+                  ))}
+               </MaxChildHeight>
+            </div>
+
+            <div className={classes.bottom}>
+               <div className={classes.bottomInner}>
+                  <div className={classes.imageContainer}>
+                     <img src={renderAsset} />
+                  </div>
                </div>
             </div>
          </div>
@@ -86,4 +124,4 @@ const Info = forwardRef(({ screen }, ref) => {
    );
 });
 
-export default Info;
+export default withSizeObserver(Info);

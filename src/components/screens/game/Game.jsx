@@ -140,12 +140,12 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 3, size }, ref) =>
          if (trimAnswer.length > 7) {
             newPoints = 12 + (trimAnswer.length - 7) * 3;
          }
-         console.log("base points", newPoints);
+
          const bonusCharacterCount = countOccurrences(trimAnswer, bonusLetter);
-         console.log("bonus chars found", bonusCharacterCount);
+
          newPoints += bonusCharacterCount * 5;
          const isPangram = containsAllLetters(trimAnswer, (centerLetter + letters).toLowerCase());
-         console.log("isPangram?", isPangram);
+
          if (isPangram) newPoints += 7;
 
          console.log(`total points for ${trimAnswer} = ${newPoints}`);
