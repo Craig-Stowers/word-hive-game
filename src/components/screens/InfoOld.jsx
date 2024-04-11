@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useImperativeHandle, useEffect } from "react";
+import React, { useState, forwardRef, useImperativeHandle } from "react";
 import { globalImagePreloader, useImagePreloader } from "../../helpers/ImageLoader";
 import classes from "./Info.module.css";
 import image1 from "../../assets/instructions/h1.png";
@@ -14,6 +14,7 @@ import CloseIcon from "../../assets/icons/icon-close.svg?react";
 import buttonClasses from "../../components/layouts/Buttons.module.css";
 
 const imageLoadPromises = globalImagePreloader.preloadImages([image1, image2, image3, image4, image5, image6]);
+console.log("info image promises", imageLoadPromises);
 
 const instructions = [
    {
@@ -44,20 +45,22 @@ const instructions = [
 
 const Info = forwardRef(({ screen, size }, ref) => {
    const [currPage, setCurrPage] = useState(0);
-   const [fade, setFade] = useState(true); // State to manage fade in/out
    const imagesLoaded = useImagePreloader(imageLoadPromises);
+   // console.log("infro render images", imagesLoaded);
+
+   console.log("size", size);
 
    const handleNext = () => {
       if (currPage === instructions.length - 1) {
          screen.back();
          return;
       }
-      setFade(false); // Start by fading out current instruction
-      setTimeout(() => {
-         // Wait for fade out, then change page and fade in
-         setCurrPage((oldValue) => (oldValue < instructions.length - 1 ? oldValue + 1 : oldValue));
-         setFade(true);
-      }, 300); // Timeout duration should match CSS transition-duration
+      setCurrPage((oldValue) => {
+         if (oldValue >= instructions.length - 1) {
+            return oldValue;
+         }
+         return oldValue + 1;
+      });
    };
 
    useImperativeHandle(
@@ -75,14 +78,18 @@ const Info = forwardRef(({ screen, size }, ref) => {
          <div className={classes.buttonRow}>
             <CustomButton
                className={`${buttonClasses.close}`}
-               render={() => <CloseIcon />}
+               render={() => {
+                  return <CloseIcon />;
+               }}
                onClick={() => screen.actions.close()}
             />
 
             <CustomButton
                className={`${buttonClasses.next}`}
                style={{ marginLeft: "auto" }}
-               render={() => <span>NEXT</span>}
+               render={() => {
+                  return <span>NEXT</span>;
+               }}
                onClick={handleNext}
             />
          </div>
@@ -92,11 +99,12 @@ const Info = forwardRef(({ screen, size }, ref) => {
                   {currPage + 1} / {instructions.length}
                </div>
                <div className={`roboto-slab ${classes.title}`}>How to play</div>
-               <MaxChildHeight className={classes.descriptionContainer} style={{ opacity: fade ? 1 : 0 }}>
+               {/* <MaxChildHeight activeIndex={2}> */}
+               <MaxChildHeight className={classes.descriptionContainer}>
                   {instructions.map((instruction, index) => (
                      <div
                         key={index}
-                        className={`${classes.description}`}
+                        className={classes.description}
                         style={{ visibility: index === currPage ? "visible" : "hidden" }}
                      >
                         {instruction.text}
@@ -107,8 +115,8 @@ const Info = forwardRef(({ screen, size }, ref) => {
 
             <div className={classes.bottom}>
                <div className={classes.bottomInner}>
-                  <div className={classes.imageContainer} style={{ opacity: fade ? 1 : 0 }}>
-                     <img src={renderAsset} alt="" />
+                  <div className={classes.imageContainer}>
+                     <img src={renderAsset} />
                   </div>
                </div>
             </div>

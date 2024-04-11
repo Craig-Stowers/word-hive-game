@@ -135,7 +135,11 @@ const ScreenManager = ({ screenMaps, initialScreen = null }) => {
 
    const renderedScreen = wrapComponent(<ScreenComponent {...screenComponentProps} />, wrappers);
 
-   return renderedScreen;
+   return (
+      <>
+         <div style={{ transform: "translateX(0%)", width: "100%", height: "100%" }}>{renderedScreen}</div>
+      </>
+   );
 };
 
 export default ScreenManager;

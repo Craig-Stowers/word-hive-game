@@ -38,7 +38,7 @@
    /* background-color: lightblue; */
    margin-top: -50px;
    width: 100%;
-   padding: 0px 40px;
+   padding: 0px 4 0px;
    box-sizing: border-box;
    text-align: center;
    flex-grow: 1;
@@ -72,6 +72,8 @@
    margin: auto;
    /* background-color: lightseagreen; */
    flex-grow: 3;
+   transition: opacity 220ms ease-in-out;
+   opacity: 0;
 }
 
 .description {
@@ -79,7 +81,7 @@
    top: 0;
    font-size: 1em;
    line-height: 1.1em;
-   /* background-color: aqua; */
+   padding: 0px 20px;
 }
 
 .bottom {
@@ -107,6 +109,8 @@
    margin-left: auto;
    margin-right: auto;
    margin-bottom: auto;
+   transition: opacity 220ms ease-in-out;
+   opacity: 0;
 
    /* background-color: lightcoral; */
 }
