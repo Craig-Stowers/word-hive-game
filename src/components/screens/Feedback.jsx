@@ -3,7 +3,7 @@ import classes from "./Feedback.module.css";
 
 import CompletedWords from "./game/CompletedWords";
 import ScoreBars from "./components/ScoreBars";
-import AllStats from "./components/AllStats";
+import AllStats from "./stats/AllStats";
 
 export default function Feedback({ screen }) {
    const [answers, setAnswers] = useState([]);

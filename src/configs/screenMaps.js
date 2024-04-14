@@ -1,7 +1,7 @@
 import HomeScreen from "../components/screens/Home";
 import Game from "../components/screens/game/Game";
 import Info from "../components/screens/Info";
-import Stats from "../components/screens/Stats";
+import Stats from "../components/screens/stats/Stats";
 import Feedback from "../components/screens/Feedback";
 //wrappers
 import BestFit from "../components/BestFit";
@@ -64,8 +64,8 @@ export const screenMaps = {
          close: (screen) => screen.change("home"),
       },
       wrappers: [
-         { component: BestFit, props: { width: 900, height: 600, maxScale: 1.5 } },
-         { component: OverlayButtons, props: { variation: "cross" } },
+         // { component: BestFit, props: { width: 900, height: 600, maxScale: 1.5 } },
+         // { component: OverlayButtons, props: { variation: "cross" } },
       ],
    },
    stats: {
@@ -74,8 +74,8 @@ export const screenMaps = {
          close: (screen) => screen.change("home"),
       },
       wrappers: [
-         { component: BestFit, props: { width: 900, height: 600, maxScale: 1.5 } },
-         { component: OverlayButtons, props: { variation: "cross" } },
+         // { component: BestFit, props: { width: 900, height: 600, maxScale: 1.5 } },
+         // { component: OverlayButtons, props: { variation: "cross" } },
       ],
    },
 };

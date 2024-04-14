@@ -1,0 +1,103 @@
+.root {
+   width: 100%;
+   height: 100%;
+   background-color: black;
+   font-family: "Roboto Condensed", sans-serif;
+   display: flex;
+   flex-direction: column;
+}
+
+.buttonRow {
+   width: 100%;
+   max-width: 1200px;
+   box-sizing: border-box;
+   margin-left: auto;
+   margin-right: auto;
+   display: flex;
+   padding-top: 20px;
+   padding-right: 20px;
+}
+
+.closeContainer {
+   margin-left: auto;
+}
+.inner {
+   padding: 20px;
+   flex-grow: 1;
+   box-sizing: border-box;
+   display: flex;
+}
+
+.content {
+   display: flex;
+   height: 100%;
+   width: 100%;
+   max-width: 1200px;
+   margin-left: auto;
+   margin-right: auto;
+   flex-direction: column;
+}
+
+.panel {
+   background-color: #1a1a1a;
+   padding: 11px 26px;
+   padding-bottom: 25px;
+
+   height: 80%;
+   flex-grow: 2;
+   /* margin-left: auto;
+   margin-right: auto; */
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   max-height: 500px;
+}
+.panel h2 {
+   color: var(--yellow-color);
+   font-size: 21px;
+   line-height: 21px;
+   font-weight: 400;
+   margin: 0;
+   font-family: "Roboto Slab", serif;
+   margin-top: 5px;
+   margin-bottom: 34px;
+}
+
+.allStats {
+   width: 100%;
+   margin: 0;
+   background-color: pink;
+}
+
+.allStats .value {
+   font-size: 40px;
+}
+
+.logoContainer {
+   width: 100%;
+   display: flex;
+}
+
+.logo {
+   width: 320px;
+   max-width: 80%;
+   margin-top: 5%;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.allStatsContainer {
+   height: 100%;
+}
+
+@media screen and (max-width: 680px) {
+   .panel {
+      max-height: 550px;
+   }
+}
+
+@media screen and (max-width: 420px) {
+   .panel {
+      padding: 10px;
+   }
+}
