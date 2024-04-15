@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import classes from "./Feedback.module.css";
 
-import CompletedWords from "./game/CompletedWords";
-import ScoreBars from "./components/ScoreBars";
-import AllStats from "./stats/AllStats";
+import CompletedWords from "../game/CompletedWords";
+import ScoreBars from "./ScoreBars";
+import AllStats from "../stats/AllStats";
+import allStatsClasses from "./AllStatsFeedback.module.css";
 
 export default function Feedback({ screen }) {
    const [answers, setAnswers] = useState([]);
@@ -32,12 +33,14 @@ export default function Feedback({ screen }) {
 
          if (!answers) return;
 
+         console.log("answers", answers);
+
          setAnswers(answers);
 
-         const fours = answers.filter((v) => v.length === 4).length;
-         const fives = answers.filter((v) => v.length === 5).length;
-         const sixes = answers.filter((v) => v.length === 6).length;
-         const sevens = answers.filter((v) => v.length >= 7).length;
+         const fours = answers.filter((v) => v.word.length === 4).length;
+         const fives = answers.filter((v) => v.word.length === 5).length;
+         const sixes = answers.filter((v) => v.word.length === 6).length;
+         const sevens = answers.filter((v) => v.word.length >= 7).length;
 
          setBarData([
             {
@@ -95,34 +98,36 @@ export default function Feedback({ screen }) {
                   </div>
                   <div className={`${classes.panel} ${classes.panel3}`}>
                      <h2>ALL GAMES</h2>
-                     <AllStats
-                        stats={[
-                           {
-                              label: "Played",
-                              value: 1,
-                           },
-                           {
-                              label: "Solved",
-                              value: 1,
-                           },
-                           {
-                              label: "Streak",
-                              value: 1,
-                           },
-                           {
-                              label: "Pangrams",
-                              value: 0,
-                           },
-                           {
-                              label: "Avg. score",
-                              value: screen.globalState.game.score,
-                           },
-                           {
-                              label: "High score",
-                              value: screen.globalState.game.score,
-                           },
-                        ]}
-                     />
+                     <div className={`${classes.allStatsContainer}`}>
+                        <AllStats
+                           stats={[
+                              {
+                                 label: "Played",
+                                 value: 1,
+                              },
+                              {
+                                 label: "Solved",
+                                 value: 1,
+                              },
+                              {
+                                 label: "Streak",
+                                 value: 1,
+                              },
+                              {
+                                 label: "Pangrams",
+                                 value: 0,
+                              },
+                              {
+                                 label: "Avg. score",
+                                 value: screen.globalState.game.score,
+                              },
+                              {
+                                 label: "High score",
+                                 value: screen.globalState.game.score,
+                              },
+                           ]}
+                        />
+                     </div>
                   </div>
                </div>
             </div>

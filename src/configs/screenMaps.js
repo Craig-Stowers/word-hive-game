@@ -2,7 +2,7 @@ import HomeScreen from "../components/screens/Home";
 import Game from "../components/screens/game/Game";
 import Info from "../components/screens/Info";
 import Stats from "../components/screens/stats/Stats";
-import Feedback from "../components/screens/Feedback";
+import Feedback from "../components/screens/feedback/Feedback";
 //wrappers
 import BestFit from "../components/BestFit";
 import WithHeader from "../components/layouts/WithHeader";

@@ -3,6 +3,7 @@
    height: 100%;
    display: flex;
    font-size: 40px;
+   background-color: red;
 
    .row {
    }
