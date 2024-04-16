@@ -57,7 +57,7 @@ export default function AdminPanel({ adminData, onAdminEvent }) {
                   onAdminEvent({ type: "view" });
                }}
             >
-               view todays data x
+               view todays data
             </button>
          </div>
 
@@ -103,7 +103,7 @@ export default function AdminPanel({ adminData, onAdminEvent }) {
                go to today
             </button>
          </div>
-         <div className={classes.buttonRow}>
+         {/* <div className={classes.buttonRow}>
             <button
                className={classes.warning}
                onMouseDown={() => {
@@ -112,7 +112,7 @@ export default function AdminPanel({ adminData, onAdminEvent }) {
             >
                clear todays data
             </button>
-         </div>
+         </div> */}
          <div className={classes.buttonRow}>
             <button
                className={classes.warning}
