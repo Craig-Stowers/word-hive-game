@@ -21,6 +21,8 @@ export default function AdminPanel({ adminData, onAdminEvent }) {
          interval && clearTimeout(interval);
       };
    }, [dayIncrement]);
+
+   console.log("Redner admin");
    return (
       <div
          className={classes.root}
@@ -51,10 +53,11 @@ export default function AdminPanel({ adminData, onAdminEvent }) {
          <div className={classes.buttonRow}>
             <button
                onMouseDown={() => {
+                  console.log("test");
                   onAdminEvent({ type: "view" });
                }}
             >
-               view todays data
+               view todays data x
             </button>
          </div>
 

@@ -30,7 +30,7 @@ function App() {
       challengeListData && `/challenges/${challengeListData[cycleDaysElapsed]}`
    );
 
-   console.log("currChallengeData", currChallengeData);
+   console.log("localdata", localData);
 
    const globalData = useMemo(() => {
       if (!currChallengeData) return null;
@@ -41,8 +41,9 @@ function App() {
          currChallengeData,
          startingDate,
          setShowTools,
+         daysElapsed,
       };
-   }, [currChallengeData]);
+   }, [currChallengeData, daysElapsed, localData]);
 
    const adminData = {
       version: 0.6,
@@ -59,23 +60,32 @@ function App() {
    };
 
    const handleAdminEvent = (event) => {
+      console.log("event", event);
       if (event.type === "gototoday") {
          setDaysElapsed(Math.floor(daysBetween(startingDate)));
       }
-      if (event.type === "cleartoday") {
-         setLocalData((oldData) => {
-            const newData = {
-               ...oldData,
-               incomplete: { ...oldData.incomplete },
-               success: { ...oldData.success },
-               failure: { ...oldData.failure },
-            };
-            if (newData.incomplete[daysElapsed]) delete newData.incomplete[daysElapsed];
-            if (newData.success[daysElapsed]) delete newData.success[daysElapsed];
-            if (newData.failure[daysElapsed]) delete newData.failure[daysElapsed];
-            return newData;
-         });
+
+      if (event.type === "view") {
+         const baseUrl = window.location.href; // Gets the base URL of the current page
+         const url = `/challenges/${challengeListData[cycleDaysElapsed]}`;
+         const fullUrl = new URL(url, baseUrl); // Creates a full URL combining the base and the relative path
+         window.open(fullUrl, "_blank"); // Opens the new URL in a new tab
       }
+
+      // if (event.type === "cleartoday") {
+      //    setLocalData((oldData) => {
+      //       const newData = {
+      //          ...oldData,
+      //          incomplete: { ...oldData.incomplete },
+      //          success: { ...oldData.success },
+      //          failure: { ...oldData.failure },
+      //       };
+      //       if (newData.incomplete[daysElapsed]) delete newData.incomplete[daysElapsed];
+      //       if (newData.success[daysElapsed]) delete newData.success[daysElapsed];
+      //       if (newData.failure[daysElapsed]) delete newData.failure[daysElapsed];
+      //       return newData;
+      //    });
+      // }
       if (event.type === "clearall") {
          setLocalData(defaultData);
       }

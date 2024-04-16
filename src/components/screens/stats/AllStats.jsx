@@ -3,7 +3,7 @@ import defaultClasses from "./AllStats.module.css";
 import { splitArrayIntoChunks } from "../../../helpers/arrayHelpers";
 import withSizeObserver from "../../withSizeObserver";
 
-const AllStats = ({ stats = [], moduleOverride = {}, size }) => {
+const AllStats = ({ stats = [], moduleOverride = {}, size, columns }) => {
    const classes = {
       ...defaultClasses,
       ...moduleOverride,
@@ -17,11 +17,9 @@ const AllStats = ({ stats = [], moduleOverride = {}, size }) => {
       );
    };
 
-   let columns = 3;
+   let cols = columns ? columns : size.width < 500 ? 2 : 3;
 
-   if (size.width < 500) columns = 2;
-
-   const statChunks = splitArrayIntoChunks(stats, columns);
+   const statChunks = splitArrayIntoChunks(stats, cols);
 
    return (
       <div className={`${classes.root}`}>

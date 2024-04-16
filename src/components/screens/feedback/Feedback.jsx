@@ -5,8 +5,13 @@ import CompletedWords from "../game/CompletedWords";
 import ScoreBars from "./ScoreBars";
 import AllStats from "../stats/AllStats";
 import allStatsClasses from "./AllStatsFeedback.module.css";
+import getScores from "../../getScores";
+import CustomButton from "../../../shared/CustomButton";
+import CloseIcon from "../../../assets/icons/icon-close.svg?react";
+import buttonClasses from "../../layouts/Buttons.module.css";
 
 export default function Feedback({ screen }) {
+   const daysElapsed = screen.globalData.daysElapsed;
    const [answers, setAnswers] = useState([]);
    const [barData, setBarData] = useState([
       {
@@ -26,14 +31,22 @@ export default function Feedback({ screen }) {
          value: 0,
       },
    ]);
+
+   const [played, solved, streak, pangrams, avgScore, highScore] = getScores(screen.globalData.localData);
+
+   console.log("test scores", [played, solved, streak, pangrams, avgScore, highScore]);
+
    //  const buttonStyle={{width:"60px", height:"60px"}}
    useEffect(() => {
       const loadAnswers = () => {
-         const answers = screen.globalState.game.correctWords;
+         console.log("FEEDBACK localData", screen.globalData.localData);
+         const answers = screen.globalData.localData.success[screen.globalData.daysElapsed].correct;
+
+         // console.log("answers", answers);
 
          if (!answers) return;
 
-         console.log("answers", answers);
+         // console.log("answers", answers);
 
          setAnswers(answers);
 
@@ -62,21 +75,34 @@ export default function Feedback({ screen }) {
          ]);
       };
 
-      const timer = setTimeout(() => {
-         loadAnswers();
-      }, 100);
+      // const timer = setTimeout(() => {
+      loadAnswers();
+      // }, 100);
 
-      return () => clearTimeout(timer);
-   }, [screen]);
+      // return () => clearTimeout(timer);
+   }, [screen.globalData.daysElapsed, screen.globalData.localData]);
+
+   const score = screen.globalData.localData.success[daysElapsed]?.score;
+
+   if (!score) return;
 
    return (
       <div className={classes.root}>
+         <div className={classes.buttonRow}>
+            <div className={classes.closeContainer}>
+               <CustomButton
+                  className={`${buttonClasses.close}`}
+                  render={() => <CloseIcon />}
+                  onClick={() => screen.actions.close()}
+               />
+            </div>
+         </div>
          <div className={classes.inner}>
             <div className={classes.content}>
                <div className={classes.column1}>
                   <div className={`${classes.panel} ${classes.panel1}`}>
                      <div className={classes.scoreText}>
-                        SCORE <span>{screen.globalState.game.score}</span>
+                        SCORE <span>{screen.globalData.localData.success[daysElapsed].score}</span>
                      </div>
                      <div className={classes.message}>Very good!</div>
                   </div>
@@ -89,7 +115,7 @@ export default function Feedback({ screen }) {
                <div className={classes.column2}>
                   <div className={`${classes.panel} ${classes.panel1}`}>
                      <div className={classes.source}>
-                        Source word: <span>{screen.globalState.game.sourceWord}</span>
+                        Source word: <span>{screen.globalData.currChallengeData.answers[0]}</span>
                      </div>
                   </div>
                   <div className={`${classes.panel} ${classes.panel2}`}>
@@ -100,30 +126,32 @@ export default function Feedback({ screen }) {
                      <h2>ALL GAMES</h2>
                      <div className={`${classes.allStatsContainer}`}>
                         <AllStats
+                           moduleOverride={allStatsClasses}
+                           columns={3}
                            stats={[
                               {
                                  label: "Played",
-                                 value: 1,
+                                 value: played,
                               },
                               {
                                  label: "Solved",
-                                 value: 1,
+                                 value: solved,
                               },
                               {
                                  label: "Streak",
-                                 value: 1,
+                                 value: streak,
                               },
                               {
                                  label: "Pangrams",
-                                 value: 0,
+                                 value: pangrams,
                               },
                               {
                                  label: "Avg. score",
-                                 value: screen.globalState.game.score,
+                                 value: avgScore,
                               },
                               {
                                  label: "High score",
-                                 value: screen.globalState.game.score,
+                                 value: highScore,
                               },
                            ]}
                         />

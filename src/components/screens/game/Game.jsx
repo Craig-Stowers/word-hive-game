@@ -17,9 +17,24 @@ import BestFit from "../../BestFit";
 const randomSequence = shuffleArray([0, 1, 2, 3, 4, 5]);
 
 const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
+   const daysElapsed = screen.globalData.daysElapsed;
+   const [refsAvailable, setRefsAvailable] = useState(false);
+
    const [shuffledLetters, setShuffledLetters] = useState([]);
-   const [answer, setAnswer] = useScreenState(screen, "answer", "");
-   const [correctWords, setCorrectWords] = useScreenState(screen, "correctWords", []);
+
+   const storedData =
+      screen.globalData.localData?.success[daysElapsed] || screen.globalData.localData?.incomplete[daysElapsed];
+
+   const [answer, setAnswer] = useState(storedData?.answer || "");
+   const [correctWords, setCorrectWords] = useState(
+      storedData?.correct || []
+      //   screen.globalData.localData?.incomplete[daysElapsed]?.correct || []
+   );
+
+   const [score, setScore] = useState(
+      storedData?.score || 0
+      // screen.globalData.localData?.incomplete[daysElapsed]?.score || 0
+   );
    // const data = gameData.wordhive[dataIndex];
 
    const [centerLetter, setCenterLetter] = useState(null);
@@ -27,6 +42,40 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
    const [allLettersArr, setAllLettersArr] = useState([]);
    const [bonusLetter, setBonusLetter] = useState(null);
    const [availableAnswers, setAvailableAnswers] = useState([]);
+
+   useEffect(() => {
+      // const currIncomplete = screen.globalData.localData?.incomplete[day];
+      const days = screen.globalData.daysElapsed;
+
+      //cleanse data
+      if (screen.globalData.localData.success[days]) {
+         if (screen.globalData.localData.incomplete[days]) {
+            const allIncomplete = { ...screen.globalData.localData.incomplete };
+            delete allIncomplete[days];
+            screen.globalData.setLocalData((oldData) => {
+               return {
+                  ...oldData,
+                  incomplete: allIncomplete,
+               };
+            });
+         }
+         return;
+      }
+
+      screen.globalData.setLocalData((oldData) => {
+         return {
+            ...oldData,
+            incomplete: {
+               ...oldData.incomplete,
+               [screen.globalData.daysElapsed]: {
+                  answer,
+                  correct: correctWords,
+                  score,
+               },
+            },
+         };
+      });
+   }, [answer, correctWords, screen.globalData.daysElapsed]);
 
    // const centerLetter = data.center;
    // const letters = data.letters;
@@ -36,7 +85,7 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
    const [randomBonusIndex, setRandomBonusIndex] = useState(0);
 
    const overlayRef = useRef(null);
-   const [score, setScore] = useScreenState(screen, "score", 0);
+
    const [disabled, setDisabled] = useState(false);
 
    const letterOrder = (centerLetter + shuffledLetters.join("")).toLowerCase();
@@ -72,16 +121,48 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
    }, [screen.globalData.currChallengeData, randomBonusIndex, randomSequence]);
 
    useEffect(() => {
+      if (!overlayRef.current) return;
       if (correctWords.length >= 12) {
          setDisabled(true);
 
-         overlayRef.current.generateAlert({ type: "points", text: `Puzzle complete` });
+         const days = screen.globalData.daysElapsed;
+
+         console.log("UPDATE FOR DAY", days);
+
+         if (!screen.globalData.localData.success[days]) {
+            screen.globalData.setLocalData((oldData) => {
+               const allIncomplete = { ...oldData.incomplete };
+               delete allIncomplete[days];
+
+               return {
+                  ...oldData,
+                  incomplete: allIncomplete,
+                  success: {
+                     ...oldData.success,
+                     [days]: {
+                        answer,
+                        correct: correctWords,
+                        score,
+                     },
+                  },
+               };
+            });
+         }
+
          let timer = setTimeout(() => {
+            overlayRef.current.generateAlert({ type: "points", text: `Puzzle complete` });
+         }, 400);
+
+         let timer2 = setTimeout(() => {
+            // console.log("CHANGING TO FEEDBACK", screen.globalData.localData.success);
             screen.change("feedback");
-         }, 1500);
-         return () => clearTimeout(timer);
+         }, 4000);
+         return () => {
+            clearTimeout(timer);
+            clearTimeout(timer2);
+         };
       }
-   }, [correctWords]);
+   }, [correctWords, refsAvailable, screen.globalData.daysElapsed, screen.globalData.localData]);
 
    const getters = { answer, correctWords, availableAnswers, letterOrder, bonusLetter };
    const setters = { setAnswer, setCorrectWords };
@@ -176,7 +257,7 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
 
          if (isPangram) newPoints += 7;
 
-         console.log(`total points for ${trimAnswer} = ${newPoints}`);
+         //  console.log(`total points for ${trimAnswer} = ${newPoints}`);
          setScore((v) => v + newPoints);
 
          if (trimAnswer.includes(bonusLetter.toLocaleLowerCase())) {
@@ -222,7 +303,12 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
          <OverlayPortal mirrorElementId={"bonus-letter"} deps={[shuffledLetters]} />
          <OverlayPortal mirrorElementId={"middle-letter"} />
          <OverlayPortal mirrorElementId={"answer-box"} />
-         <OverlayAlert ref={(ref) => (overlayRef.current = ref)} />
+         <OverlayAlert
+            ref={(ref) => {
+               setRefsAvailable(true);
+               overlayRef.current = ref;
+            }}
+         />
       </div>
    );
 });

@@ -9,9 +9,11 @@ import logo from "./../../../assets/title-with-bee.png";
 import CustomButton from "../../../shared/CustomButton";
 import CloseIcon from "../../../assets/icons/icon-close.svg?react";
 import buttonClasses from "../../layouts/Buttons.module.css";
-
+import getScores from "../../getScores";
 export default function Stats({ screen }) {
-   const hasPlayed = screen.globalState.game.score !== undefined;
+   // const hasPlayed = screen.globalState.game.score !== undefined;
+
+   const [played, solved, streak, pangrams, avgScore, highScore] = getScores(screen.globalData.localData);
 
    return (
       <div className={classes.root}>
@@ -36,27 +38,27 @@ export default function Stats({ screen }) {
                         stats={[
                            {
                               label: "Played",
-                              value: hasPlayed ? 1 : 0,
+                              value: played,
                            },
                            {
                               label: "Solved",
-                              value: hasPlayed ? 1 : 0,
+                              value: solved,
                            },
                            {
                               label: "Streak",
-                              value: hasPlayed ? 1 : 0,
+                              value: streak,
                            },
                            {
                               label: "Pangrams",
-                              value: 0,
+                              value: pangrams,
                            },
                            {
                               label: "Avg. score",
-                              value: screen.globalState.game.score || 0,
+                              value: avgScore,
                            },
                            {
                               label: "High score",
-                              value: screen.globalState.game.score || 0,
+                              value: highScore,
                            },
                         ]}
                      />

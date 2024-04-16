@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useThrottleEffect from "./useThrottleEffect";
 function useLocalData(key, initialState) {
    const [value, setValue] = useState(() => {
@@ -14,6 +14,9 @@ function useLocalData(key, initialState) {
       [value]
    );
 
+   useEffect(() => {
+      console.log("CHANGED LOCAL DATA", value);
+   }, [value]);
    return [value, setValue];
 }
 

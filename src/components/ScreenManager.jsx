@@ -28,7 +28,7 @@ function isForwardRefComponent(component) {
 
 const copyValue = (value) => {
    if (Array.isArray(value)) {
-      console.log("copied array", value);
+      // console.log("copied array", value);
       return [...value]; // Copy array
    } else if (typeof value === "string") {
       return String(value); // Copy string
@@ -53,7 +53,7 @@ const ScreenManager = ({ screenMaps, initialScreen = null, globalData }) => {
    });
 
    useEffect(() => {
-      console.log("all screen stored states", screenStates);
+      //  console.log("all screen stored states", screenStates);
    }, [screenStates]);
 
    const handleScreenChange = (key) => {
@@ -66,9 +66,9 @@ const ScreenManager = ({ screenMaps, initialScreen = null, globalData }) => {
    };
 
    const handleStoreScreenState = (screenKey, stateKey, value) => {
-      console.log("handleStoreScreenState", screenKey, stateKey, value);
+      // console.log("handleStoreScreenState", screenKey, stateKey, value);
       setScreenStates((oldValue) => {
-         console.log("setScreenStates - OLD", oldValue);
+         // console.log("setScreenStates - OLD", oldValue);
          const newValue = {
             ...oldValue,
             [screenKey]: {
@@ -76,7 +76,7 @@ const ScreenManager = ({ screenMaps, initialScreen = null, globalData }) => {
                [stateKey]: copyValue(value),
             },
          };
-         console.log("setScreenStates - NEW", newValue);
+         //  console.log("setScreenStates - NEW", newValue);
          return newValue;
       });
    };
@@ -101,7 +101,7 @@ const ScreenManager = ({ screenMaps, initialScreen = null, globalData }) => {
       //TODO possibly trigger an assign of new methods inside the ref attach below
    };
 
-   console.log("global data screens", globalData);
+   //  console.log("global data screens", globalData);
 
    // console.log("passProps", passProps);
 

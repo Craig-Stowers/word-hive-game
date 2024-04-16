@@ -8,7 +8,6 @@ import classes from "./HoneyWrapper.module.css";
 const HoneyWrapper = ({ answer }) => {
    // const revealClasses = [classes.show1, classes.show2, classes.show3, classes.show4, classes.show5, classes.show6, classes.show7, classes.show8, classes.show9, classes.show10, classes.show11, classes.show12]
 
-   answer && console.log("answer", answer);
    const revealClasses = useMemo(() => {
       if (!answer) return [];
 
