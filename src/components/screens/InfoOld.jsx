@@ -48,8 +48,6 @@ const Info = forwardRef(({ screen, size }, ref) => {
    const imagesLoaded = useImagePreloader(imageLoadPromises);
    // console.log("infro render images", imagesLoaded);
 
-   console.log("size", size);
-
    const handleNext = () => {
       if (currPage === instructions.length - 1) {
          screen.back();

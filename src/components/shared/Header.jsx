@@ -43,8 +43,8 @@ const Header = ({ screen, ...props }) => {
                {showCheat && (
                   <div>
                      <button onClick={inputNext}>[input next]</button>
-                     {/* <button onClick={answerNext}>[answer next]</button>
-                     <button onClick={answerAll}>[answer all]</button> */}
+                     {/* <button onClick={answerNext}>[answer next]</button> */}
+                     <button onClick={answerAll}>[answer all]</button>
                   </div>
                )}
             </div>

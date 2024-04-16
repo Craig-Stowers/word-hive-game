@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import "./App.css";
 import useLocalData from "./hooks/useLocalData";
 
@@ -6,8 +6,10 @@ import useTextFileLoader from "./hooks/useTextFileLoader";
 import ScreenManager from "./components/ScreenManager";
 
 import { screenMaps } from "./configs/screenMaps";
-
-let startingDate = "2024-02-20";
+import { daysBetween, addDaysToDate, formatDate } from "./helpers/dateMethods";
+import Modal from "./components/Modal";
+import AdminPanel from "./components/AdminPanel";
+let startingDate = "2024-04-16";
 const defaultData = {
    version: 0.6,
    success: {},
@@ -16,21 +18,85 @@ const defaultData = {
 };
 
 function App() {
-   const [count, setCount] = useState(0);
    const [localData, setLocalData] = useLocalData("word-hive-data", defaultData);
    const challengeListData = useTextFileLoader("/challenges/index.json");
-   const currChallengeData = useTextFileLoader(challengeListData && `/challenges/${challengeListData[0]}`);
+   const [daysElapsed, setDaysElapsed] = useState(Math.floor(daysBetween(startingDate)));
+   const todaysDate = addDaysToDate(startingDate, daysElapsed);
+   const [showTools, setShowTools] = useState(false);
 
-   const testStyle = {
-      width: "500px",
-      height: "500px",
-      backgroundColor: "pink",
+   const cycleDaysElapsed = challengeListData ? daysElapsed % challengeListData.length : 0;
+
+   const currChallengeData = useTextFileLoader(
+      challengeListData && `/challenges/${challengeListData[cycleDaysElapsed]}`
+   );
+
+   console.log("currChallengeData", currChallengeData);
+
+   const globalData = useMemo(() => {
+      if (!currChallengeData) return null;
+      return {
+         localData,
+         setLocalData,
+         challengeListData,
+         currChallengeData,
+         startingDate,
+         setShowTools,
+      };
+   }, [currChallengeData]);
+
+   const adminData = {
+      version: 0.6,
+      "start date": formatDate(startingDate),
+      "simulated date": todaysDate,
+      "day index": daysElapsed,
+      "cycled day index": cycleDaysElapsed,
+      "todays letters": currChallengeData?.letters,
+      "center letter": currChallengeData?.key,
+
+      // "todays status": getTodaysStatus().status,
+      // "todays save data": JSON.stringify(getTodaysStatus().value),
+      // ...stats.totals,
+   };
+
+   const handleAdminEvent = (event) => {
+      if (event.type === "gototoday") {
+         setDaysElapsed(Math.floor(daysBetween(startingDate)));
+      }
+      if (event.type === "cleartoday") {
+         setLocalData((oldData) => {
+            const newData = {
+               ...oldData,
+               incomplete: { ...oldData.incomplete },
+               success: { ...oldData.success },
+               failure: { ...oldData.failure },
+            };
+            if (newData.incomplete[daysElapsed]) delete newData.incomplete[daysElapsed];
+            if (newData.success[daysElapsed]) delete newData.success[daysElapsed];
+            if (newData.failure[daysElapsed]) delete newData.failure[daysElapsed];
+            return newData;
+         });
+      }
+      if (event.type === "clearall") {
+         setLocalData(defaultData);
+      }
+      if (event.type === "changedays") {
+         const amount = event.days;
+         setDaysElapsed((oldState) => {
+            const newValue = oldState + amount;
+            return newValue < 0 ? 0 : newValue;
+         });
+      }
    };
 
    return (
       <>
          <div className={"background"} id="portal-background"></div>
-         <ScreenManager screenMaps={screenMaps} initialScreen={"home"} key="manager" />
+         <ScreenManager screenMaps={screenMaps} initialScreen={"home"} key="manager" globalData={globalData} />
+         {showTools && (
+            <Modal onClose={() => setShowTools(false)}>
+               <AdminPanel adminData={adminData} onAdminEvent={handleAdminEvent} />
+            </Modal>
+         )}
       </>
    );
 }

@@ -37,7 +37,7 @@ const copyValue = (value) => {
    return value;
 };
 
-const ScreenManager = ({ screenMaps, initialScreen = null }) => {
+const ScreenManager = ({ screenMaps, initialScreen = null, globalData }) => {
    const [current, setCurrent] = useState(initialScreen || getDefaultScreenKey(screenMaps));
 
    const [history, setHistory] = useState([]);
@@ -95,10 +95,13 @@ const ScreenManager = ({ screenMaps, initialScreen = null }) => {
       setState: handleStoreScreenState,
       ref: screenRef,
       globalState: screenStates,
+      globalData,
 
       //having trouble with direct provision of screenRef.current, as sometimes the ref is attached after these props have been handed on.
       //TODO possibly trigger an assign of new methods inside the ref attach below
    };
+
+   console.log("global data screens", globalData);
 
    // console.log("passProps", passProps);
 

@@ -1,9 +1,5 @@
-import React, { useEffect, useState, useImperativeHandle, forwardRef, useRef } from "react";
-import AnswerInput from "./AnswerInput";
-import LettersPanel from "./LettersPanel";
-import ScoreTicker from "./ScoreTicker";
-import FootButtons from "./FootButtons";
-import CompletedWords from "./CompletedWords";
+import React, { useEffect, useState, useImperativeHandle, forwardRef, useRef, useMemo } from "react";
+
 import classes from "./Game.module.css";
 import gameData from "../../../gameData";
 import useScreenState from "../../../hooks/useScreenState";
@@ -20,28 +16,60 @@ import BestFit from "../../BestFit";
 
 const randomSequence = shuffleArray([0, 1, 2, 3, 4, 5]);
 
-const Game = forwardRef(({ challengeData, screen, dataIndex = 3, size }, ref) => {
+const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
    const [shuffledLetters, setShuffledLetters] = useState([]);
    const [answer, setAnswer] = useScreenState(screen, "answer", "");
    const [correctWords, setCorrectWords] = useScreenState(screen, "correctWords", []);
-   const data = gameData.wordhive[dataIndex];
-   const [sourceWord, setSourceWord] = useScreenState(screen, "sourceWord", data.pangram);
+   // const data = gameData.wordhive[dataIndex];
 
-   const centerLetter = data.center;
-   const letters = data.letters;
-   const allLettersArr = [centerLetter, ...letters.split("")];
+   const [centerLetter, setCenterLetter] = useState(null);
+   const [letters, setLetters] = useState(null);
+   const [allLettersArr, setAllLettersArr] = useState([]);
+   const [bonusLetter, setBonusLetter] = useState(null);
+   const [availableAnswers, setAvailableAnswers] = useState([]);
+
+   // const centerLetter = data.center;
+   // const letters = data.letters;
+
+   //  const allLettersArr = [centerLetter, ...letters.split("")];
 
    const [randomBonusIndex, setRandomBonusIndex] = useState(0);
-   const bonusLetter = data.letters[randomSequence[randomBonusIndex]];
-   const availableAnswers = data.words.map((word) => word.toLowerCase()); //possibly remove as capitals could be good indicator of plural (unless game data filtered first)
+
    const overlayRef = useRef(null);
    const [score, setScore] = useScreenState(screen, "score", 0);
    const [disabled, setDisabled] = useState(false);
 
+   const letterOrder = (centerLetter + shuffledLetters.join("")).toLowerCase();
+
+   // const [bonusLetter] = useMemo(() => {
+   //    data.letters[randomSequence[randomBonusIndex]];
+   //    return [data.letters[randomSequence[0]]];
+   // }, [screen.globalData.currChallengeData]
+
    useEffect(() => {
-      const shuffled = shuffleArray(data.letters.split(""));
+      if (!screen.globalData.currChallengeData) return;
+
+      const data = screen.globalData.currChallengeData;
+
+      const { key, answers, letters } = screen.globalData.currChallengeData;
+
+      const filteredLetters = letters
+         .split("")
+         .filter((char) => char !== key)
+         .map((char) => char.toUpperCase())
+         .join("");
+
+      setCenterLetter(key.toUpperCase());
+      setLetters(filteredLetters);
+      setAllLettersArr([key.toUpperCase(), ...filteredLetters.split("")]);
+      const bonusLetter = filteredLetters[randomSequence[randomBonusIndex]];
+      setBonusLetter(bonusLetter);
+
+      const availableAnswers = data.answers.map((word) => word.toLowerCase()); //possibly remove as capitals could be good indicator of plural (unless game data filtered first)
+      setAvailableAnswers(availableAnswers);
+      const shuffled = shuffleArray(filteredLetters.split(""));
       setShuffledLetters(shuffled);
-   }, [dataIndex]);
+   }, [screen.globalData.currChallengeData, randomBonusIndex, randomSequence]);
 
    useEffect(() => {
       if (correctWords.length >= 12) {
@@ -55,7 +83,7 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 3, size }, ref) =>
       }
    }, [correctWords]);
 
-   const getters = { answer, correctWords, availableAnswers };
+   const getters = { answer, correctWords, availableAnswers, letterOrder, bonusLetter };
    const setters = { setAnswer, setCorrectWords };
    const cheats = useCheats({ getters, setters });
 
@@ -93,7 +121,7 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 3, size }, ref) =>
    useOnKeyPress(handleAllowedLetter, [], [...allLettersArr, ...allLettersArr.join("").toLowerCase().split("")]);
 
    const handleShuffle = () => {
-      const shuffled = shuffleArray(data.letters.split(""));
+      const shuffled = shuffleArray(letters.split(""));
       setShuffledLetters(shuffled);
    };
 
@@ -167,6 +195,8 @@ const Game = forwardRef(({ challengeData, screen, dataIndex = 3, size }, ref) =>
          return removeLastCharacter(oldAnswer);
       });
    };
+
+   if (!bonusLetter) return null;
 
    const contentProps = {
       centerLetter,

@@ -26,6 +26,14 @@ const Home = ({ screen, size, ...props }) => {
       margin: "5px",
    };
 
+   const onButtonHit = (type) => {
+      if (type === "close") {
+         console.log("close");
+      } else if (type === "devmode") {
+         console.log("set dev");
+         screen.globalData.setShowTools(true);
+      }
+   };
    // console.log()
    return (
       <>
@@ -53,7 +61,7 @@ const Home = ({ screen, size, ...props }) => {
             </div>
 
             <div className={classes.title}>
-               <img src={logo} onClick={() => onButtonHit("devmode")} />
+               <img src={logo} style={{ pointerEvents: "auto" }} onClick={() => onButtonHit("devmode")} />
             </div>
             <div className={classes.footer}>
                <BestFit {...{ width: 460, height: 90, maxScale: 1.8 }}>

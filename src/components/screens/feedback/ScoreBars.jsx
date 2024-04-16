@@ -17,6 +17,7 @@ const ScoreBars = ({ highlight, stats }) => {
          });
       };
    }, []);
+   
 
    useEffect(() => {
       const startTimer = setTimeout(() => {

@@ -15,12 +15,18 @@ const useCheats = ({ getters, setters }) => {
       },
       answerAll() {
          setters.setCorrectWords((oldValue) => {
+            console.log("old", oldValue);
+            // return oldValue;
             if (oldValue.length >= 12) return oldValue;
             const filtered = getters.availableAnswers.filter((answer) => !oldValue.includes(answer));
             const batchAnswers = [];
             let index = 0;
             while (batchAnswers.length < 12 - oldValue.length) {
-               batchAnswers.push(filtered[index]);
+               batchAnswers.push({
+                  word: filtered[index],
+                  bonusLetter: getters.bonusLetter,
+                  letterOrder: getters.letterOrder,
+               });
                index++;
             }
             return [...oldValue, ...batchAnswers];
