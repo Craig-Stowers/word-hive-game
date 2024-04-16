@@ -37,10 +37,10 @@ export default function AdminPanel({ adminData, onAdminEvent }) {
          }}
       >
          <h4>ADMIN PANEL</h4>
-         <p>
+         {/* <p>
             Use this panel to simulate date changes. Scores will only be calculated up until the simulated date. Hold
             +/- day buttons for continuous seeking. "Start date" can be edited in the apps config.
-         </p>
+         </p> */}
          <ul className={classes.data}>
             {Object.entries(adminData).map(([key, value], index) => {
                return (
