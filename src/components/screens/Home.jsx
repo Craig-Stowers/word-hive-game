@@ -30,8 +30,8 @@ const Home = ({ screen, size, ...props }) => {
       if (type === "close") {
          console.log("close");
       } else if (type === "devmode") {
-         console.log("set dev");
-         screen.globalData.setShowTools(true);
+         console.log("screen", screen);
+         //  screen.globalData.setShowTools(true);
       }
    };
    // console.log()
