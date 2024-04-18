@@ -19,7 +19,9 @@ const defaultData = {
 
 function App() {
    const [localData, setLocalData] = useLocalData("word-hive-data", defaultData);
-   const challengeListData = useTextFileLoader("/challenges/index.json");
+   const challengeListData = useTextFileLoader("/challenges/challenges.json");
+
+   console.log("CHALLENGE LIST DATA", challengeListData);
    const [daysElapsed, setDaysElapsed] = useState(Math.floor(daysBetween(startingDate)));
    const todaysDate = addDaysToDate(startingDate, daysElapsed);
    const [showTools, setShowTools] = useState(false);
@@ -53,6 +55,7 @@ function App() {
       "cycled day index": cycleDaysElapsed,
       "todays letters": currChallengeData?.letters,
       "center letter": currChallengeData?.key,
+      pangram: currChallengeData?.panagrams,
 
       // "todays status": getTodaysStatus().status,
       // "todays save data": JSON.stringify(getTodaysStatus().value),

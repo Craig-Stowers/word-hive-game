@@ -31,7 +31,7 @@ const Home = ({ screen, size, ...props }) => {
          console.log("close");
       } else if (type === "devmode") {
          console.log("screen", screen);
-         //  screen.globalData.setShowTools(true);
+         screen.globalData.setShowTools(true);
       }
    };
    // console.log()

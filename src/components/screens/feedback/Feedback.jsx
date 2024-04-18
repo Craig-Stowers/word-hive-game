@@ -84,6 +84,8 @@ export default function Feedback({ screen }) {
 
    const score = screen.globalData.localData.success[daysElapsed]?.score;
 
+   const pangram = screen.globalData.currChallengeData?.panagrams;
+
    if (!score) return;
 
    return (
@@ -115,7 +117,7 @@ export default function Feedback({ screen }) {
                <div className={classes.column2}>
                   <div className={`${classes.panel} ${classes.panel1}`}>
                      <div className={classes.source}>
-                        Source word: <span>{screen.globalData.currChallengeData.answers[0]}</span>
+                        Source word: <span>{pangram}</span>
                      </div>
                   </div>
                   <div className={`${classes.panel} ${classes.panel2}`}>
