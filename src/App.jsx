@@ -48,7 +48,7 @@ function App() {
    }, [currChallengeData, daysElapsed, localData]);
 
    const adminData = {
-      version: 0.6,
+      version: 0.7,
       "start date": formatDate(startingDate),
       "simulated date": todaysDate,
       "day index": daysElapsed,
