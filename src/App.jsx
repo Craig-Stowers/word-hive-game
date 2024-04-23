@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import "./App.css";
 import useLocalData from "./hooks/useLocalData";
 
@@ -31,6 +31,20 @@ function App() {
    const currChallengeData = useTextFileLoader(
       challengeListData && `/challenges/${challengeListData[cycleDaysElapsed]}`
    );
+
+   useEffect(() => {
+      function adjustHeight() {
+         var vh = window.innerHeight * 0.01;
+         document.documentElement.style.setProperty("--vh", `${vh}px`);
+      }
+
+      // Listen for resize events
+      window.addEventListener("resize", adjustHeight);
+      adjustHeight();
+
+      // Set the height initially
+      return () => window.removeEventListener("resize", adjustHeight);
+   }, [currChallengeData]);
 
    console.log("localdata", localData);
 

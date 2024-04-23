@@ -65,13 +65,16 @@ button {
    top: 0;
    left: 0;
    width: 100vw;
-   height: 100vh;
+   height: calc(100 * var(--vh));
    z-index: 1;
    background-color: #ff000044;
 
-   padding: env(safe-area-inset-top, 50px) env(safe-area-inset-right, 50px) env(safe-area-inset-bottom, 50px)
-      env(safe-area-inset-left, 50px);
+   padding-top: env(safe-area-inset-top, 50px);
+   padding-right: env(safe-area-inset-right, 50px);
+   padding-bottom: env(safe-area-inset-bottom, 50px);
+   padding-left: env(safe-area-inset-left, 50px);
    box-sizing: border-box;
+   border: 2px solid green;
 }
 
 .viewport-test div {
