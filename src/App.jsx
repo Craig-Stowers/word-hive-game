@@ -34,12 +34,14 @@ function App() {
 
    useEffect(() => {
       function adjustHeight() {
+         console.log("adjusting height");
          var vh = window.innerHeight * 0.01;
          document.documentElement.style.setProperty("--vh", `${vh}px`);
       }
 
       // Listen for resize events
       window.addEventListener("resize", adjustHeight);
+      //  window.addEventListener("orientationchange", adjustHeight);
       adjustHeight();
 
       // Set the height initially
