@@ -41,11 +41,14 @@ function App() {
 
       // Listen for resize events
       window.addEventListener("resize", adjustHeight);
-      //  window.addEventListener("orientationchange", adjustHeight);
+      window.addEventListener("orientationchange", adjustHeight);
       adjustHeight();
 
       // Set the height initially
-      return () => window.removeEventListener("resize", adjustHeight);
+      return () => {
+         window.removeEventListener("orientationchange", adjustHeight);
+         window.removeEventListener("resize", adjustHeight);
+      };
    }, [currChallengeData]);
 
    console.log("localdata", localData);
