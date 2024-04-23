@@ -56,7 +56,7 @@ function App() {
       : "not started";
 
    const adminData = {
-      version: 0.7,
+      version: 0.71,
       "start date": formatDate(startingDate),
       "simulated date": todaysDate,
       day: daysElapsed + " / " + challengeListData?.length,
