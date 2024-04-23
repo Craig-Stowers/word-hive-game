@@ -37,7 +37,11 @@ button {
    width: 100vw;
    height: 100vh;
    min-width: 300px;
-   max-height: 100vh;
+   min-height: 300px;
+
+   max-height: 100vh; /* Fallback for browsers that don't support env() */
+   max-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+
    /* min-height: 533px; */
    user-select: none;
    -webkit-user-select: none; /* Safari */
