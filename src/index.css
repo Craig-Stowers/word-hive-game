@@ -24,11 +24,12 @@
 body {
    margin: 0;
    display: flex;
-   height: 100vh;
    min-width: 300px;
    min-height: 300px;
-   max-height: 100vh; /* Fallback for browsers that don't support env() */
-   max-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+   width: 100vw;
+   height: calc(100 * var(--vh));
+   /* max-height: 100vh; /* Fallback for browsers that don't support env() */
+   /* max-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom)); */
 }
 
 button {
