@@ -1,12 +1,41 @@
+function longestStreak(arr) {
+   if (arr.length === 0) {
+      return 0;
+   }
+
+   // Sort the array
+   arr.sort((a, b) => a - b);
+
+   let maxStreak = 1;
+   let currentStreak = 1;
+
+   // Iterate through the sorted array to find the longest consecutive sequence
+   for (let i = 1; i < arr.length; i++) {
+      if (arr[i] === arr[i - 1] + 1) {
+         // Continue the streak
+         currentStreak++;
+      } else if (arr[i] !== arr[i - 1]) {
+         // Only reset if we encounter a non-duplicate, non-consecutive number
+         maxStreak = Math.max(maxStreak, currentStreak);
+         currentStreak = 1;
+      }
+   }
+
+   // Compare the last streak
+   maxStreak = Math.max(maxStreak, currentStreak);
+
+   return maxStreak;
+}
+
 const getScores = (data) => {
    const solved = Object.keys(data.success).length;
    const played = solved + Object.keys(data.incomplete).length;
 
-   const streak = Object.keys(data.success).reduce((acc, curr) => {
-      if (acc === 0) return 1;
-      if (parseInt(curr) === acc + 1) return acc + 1;
-      return acc;
-   }, 0);
+   const completedChallenges = Object.keys(data.success).map((key) => {
+      return parseInt(key);
+   });
+
+   const streak = longestStreak(completedChallenges);
 
    const pangrams = Object.keys(data.success).reduce((acc, curr) => {
       //const word = data.success[curr].answer
@@ -17,6 +46,8 @@ const getScores = (data) => {
       }
       return acc;
    }, 0);
+
+   console.log("completedChallenges", completedChallenges);
 
    const avgScore =
       Object.keys(data.success).reduce((acc, curr) => {

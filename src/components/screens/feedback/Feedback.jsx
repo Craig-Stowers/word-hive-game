@@ -39,7 +39,6 @@ export default function Feedback({ screen }) {
    //  const buttonStyle={{width:"60px", height:"60px"}}
    useEffect(() => {
       const loadAnswers = () => {
-         console.log("FEEDBACK localData", screen.globalData.localData);
          const answers = screen.globalData.localData.success[screen.globalData.daysElapsed].correct;
 
          // console.log("answers", answers);

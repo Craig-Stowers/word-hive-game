@@ -15,7 +15,7 @@
 }
 
 .root p {
-   font-size: 11px;
+   font-size: 12px;
 }
 
 .root .data {
@@ -28,8 +28,8 @@
 }
 
 .root .data li {
-   font-size: 10px;
-   margin-bottom: 6px;
+   font-size: 14px;
+   margin-bottom: 3px;
    text-decoration: none;
 }
 

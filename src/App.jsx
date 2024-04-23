@@ -47,15 +47,24 @@ function App() {
       };
    }, [currChallengeData, daysElapsed, localData]);
 
+   const score = localData.success[daysElapsed]?.score;
+
+   const status = localData.success[daysElapsed]
+      ? "complete"
+      : localData.incomplete[daysElapsed]
+      ? "incomplete"
+      : "not started";
+
    const adminData = {
       version: 0.7,
       "start date": formatDate(startingDate),
       "simulated date": todaysDate,
-      "day index": daysElapsed,
-      "cycled day index": cycleDaysElapsed,
+      day: daysElapsed + " / " + challengeListData?.length,
+      "challenge index": cycleDaysElapsed,
       "todays letters": currChallengeData?.letters,
       "center letter": currChallengeData?.key,
       pangram: currChallengeData?.panagrams,
+      status: status + (score ? ` - ${score} points` : ""),
 
       // "todays status": getTodaysStatus().status,
       // "todays save data": JSON.stringify(getTodaysStatus().value),
