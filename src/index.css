@@ -59,3 +59,26 @@ button {
    font-weight: 400;
    font-style: normal;
 }
+
+.viewport-test {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
+   z-index: 1;
+   background-color: #ff000044;
+
+   padding: env(safe-area-inset-top, 50px) env(safe-area-inset-right, 50px) env(safe-area-inset-bottom, 50px)
+      env(safe-area-inset-left, 50px);
+   box-sizing: border-box;
+}
+
+.viewport-test div {
+   width: 100%;
+   height: 100%;
+   background-color: blue;
+   opacity: 0.5;
+   color: white;
+   font-size: 20px;
+}
