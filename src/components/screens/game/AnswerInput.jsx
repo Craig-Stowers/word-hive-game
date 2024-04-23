@@ -27,7 +27,7 @@ const AnswerInput = ({ value, onChange }) => {
       };
    }, []); // Empty dependency array means this effect runs only once after the initial render
 
-   let dynamicFontSize = 28;
+   let dynamicFontSize = 100;
    if (value.length > 12) {
       const diff = value.length - 12;
       dynamicFontSize -= diff * 1.14;
@@ -49,7 +49,7 @@ const AnswerInput = ({ value, onChange }) => {
             value={value.toUpperCase()}
             onChange={handleInputChange}
             disabled={value.length}
-            style={{ fontSize: dynamicFontSize + "px" }}
+            style={{ fontSize: dynamicFontSize + "%" }}
          />
          <div
             id={"answer-box"}

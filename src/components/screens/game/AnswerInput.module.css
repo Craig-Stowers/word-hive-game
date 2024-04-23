@@ -2,8 +2,12 @@
    padding: 5px 5px;
    border: 2px dashed white;
    width: 280px;
+   max-width: 90%;
    height: 38px;
    display: flex;
+   font-size: 28px;
+   margin-left: auto;
+   margin-right: auto;
 }
 
 .root input {
@@ -14,7 +18,7 @@
    background: none;
    padding: 0;
    margin: 0;
-   font-size: 28px;
+
    color: white;
    margin-top: auto;
    margin-bottom: auto;
@@ -23,4 +27,11 @@
    color: inherit;
    text-align: center; /* Center text */
    width: 100%; /* Expand to width of parent */
+}
+
+@media screen and (max-width: 400px) {
+   .root {
+      font-size: 18px;
+      padding: 0px;
+   }
 }
