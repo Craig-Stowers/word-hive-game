@@ -24,8 +24,13 @@
 body {
    margin: 0;
    display: flex;
-   min-width: 320px;
-   min-height: 100vh;
+
+   height: 100vh;
+   min-width: 300px;
+   min-height: 300px;
+
+   max-height: 100vh; /* Fallback for browsers that don't support env() */
+   max-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
 }
 
 button {
@@ -42,7 +47,6 @@ button {
    max-height: 100vh; /* Fallback for browsers that don't support env() */
    max-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
 
-   /* min-height: 533px; */
    user-select: none;
    -webkit-user-select: none; /* Safari */
    -moz-user-select: none; /* Firefox */
