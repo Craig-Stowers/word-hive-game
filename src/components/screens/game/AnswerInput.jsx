@@ -30,7 +30,7 @@ const AnswerInput = ({ value, onChange }) => {
    let dynamicFontSize = 100;
    if (value.length > 12) {
       const diff = value.length - 12;
-      dynamicFontSize -= diff * 1.14;
+      dynamicFontSize -= diff * 5;
    }
 
    useEffect(() => {
@@ -43,14 +43,17 @@ const AnswerInput = ({ value, onChange }) => {
 
    return (
       <div className={classes.root} style={{ position: "relative" }}>
-         <input
+         <div
+            className={classes["answer-input"]}
             ref={inputRef}
             type="text"
-            value={value.toUpperCase()}
-            onChange={handleInputChange}
-            disabled={value.length}
+            // value={value.toUpperCase()}
+            // onChange={handleInputChange}
+            // disabled={value.length}
             style={{ fontSize: dynamicFontSize + "%" }}
-         />
+         >
+            {value.toUpperCase()}
+         </div>
          <div
             id={"answer-box"}
             style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)" }}

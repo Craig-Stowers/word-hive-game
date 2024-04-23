@@ -10,7 +10,7 @@
    margin-right: auto;
 }
 
-.root input {
+.root .answer-input {
    /* Remove all styling */
 
    border: none;
