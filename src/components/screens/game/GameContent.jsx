@@ -84,6 +84,43 @@ const GameContent = ({ size, ...props }) => {
       );
    };
    const renderVerticalContent = () => {
+      function createReversedArrayWithPadding(newLength, originalArray) {
+         // Create a new array with the specified length filled with null
+         let newArray = Array(newLength).fill(null);
+
+         // Get the length of the original array
+         let originalLength = originalArray.length;
+
+         // Loop through the original array and place its elements in reverse order into the new array
+         for (let i = 0; i < originalLength; i++) {
+            if (i < newLength) {
+               newArray[newLength - 1 - i] = originalArray[i];
+            }
+         }
+
+         return newArray;
+      }
+
+      function reverseEverySetOfThree(arr) {
+         let length = arr.length;
+
+         // Loop through the array in steps of 3
+         for (let i = 0; i < length; i += 3) {
+            // Reverse the set of 3 elements
+            if (i + 2 < length) {
+               [arr[i], arr[i + 2]] = [arr[i + 2], arr[i]];
+            }
+         }
+
+         return arr;
+      }
+
+      //
+
+      const reverseCompletedWords = createReversedArrayWithPadding(12, correctWords);
+      const resultArray = reverseEverySetOfThree(reverseCompletedWords);
+      console.log("reverseCompletedWords", reverseCompletedWords);
+
       return (
          <div
             style={{ display: "flex", flexDirection: verticalLayout ? "column" : "row" }}
@@ -157,10 +194,10 @@ const GameContent = ({ size, ...props }) => {
             >
                <div className={classes.inner}>
                   <AspectRatioBox ratio={520 / 620} className={classes.slideRatioBox}>
-                     <BestFit {...{ width: 460, height: 550, maxScale: 3, style: { margin: "auto" } }}>
+                     <BestFit {...{ width: 460, height: 570, maxScale: 3, style: { margin: "auto" } }}>
                         <CompletedWords
                            columns={3}
-                           words={correctWords}
+                           words={resultArray}
                            letterOrder={centerLetter + shuffledLetters.join("")}
                            bonusLetter={bonusLetter}
                            rowClass={classes.verticalRow}
