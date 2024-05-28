@@ -194,7 +194,7 @@ const GameContent = ({ size, ...props }) => {
             >
                <div className={classes.inner}>
                   <AspectRatioBox ratio={520 / 620} className={classes.slideRatioBox}>
-                     <BestFit {...{ width: 460, height: 570, maxScale: 3, style: { margin: "auto" } }}>
+                     <BestFit {...{ width: 460, height: 500, maxScale: 3, style: { margin: "auto" } }}>
                         <CompletedWords
                            columns={3}
                            words={resultArray}

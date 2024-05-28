@@ -144,7 +144,7 @@
 }
 
 .verticalRow {
-   margin: 0;
+   margin: 0 !important;
 }
 
 .verticalRow:first-of-type {
