@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 
-export default function useResizeObserver(ref) {
+export default function useResizeObserver(ref, deps = [], key) {
    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
    useEffect(() => {
+      console.log("SETUP OBSERVER", key);
       if (ref.current) {
+         console.log("ADD LISTENER FOR KEY", key);
          const observeTarget = ref.current;
          const resizeObserver = new ResizeObserver((entries) => {
-            console.log("resizing from ratio");
+            if (key) console.log("resizing", key);
             if (!Array.isArray(entries) || !entries.length) {
                return;
             }
@@ -18,6 +20,6 @@ export default function useResizeObserver(ref) {
          // Cleanup on component unmount
          return () => resizeObserver.unobserve(observeTarget);
       }
-   }, [ref]);
+   }, [ref, ref.current, ...deps]);
    return [dimensions.width, dimensions.height];
 }

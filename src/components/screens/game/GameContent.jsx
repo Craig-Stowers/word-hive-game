@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import AnswerInput from "./AnswerInput";
 import LettersPanel from "./LettersPanel";
 import ScoreTicker from "./ScoreTicker";
@@ -10,6 +10,7 @@ import FitWidth from "../../FitWidth";
 import AspectRatioBox from "../../layouts/AspectRatioBox";
 import toggleIcon from "../../../assets/progress-toggle.png";
 import progressPanel from "../../../assets/progress-panel.png";
+import useResizeObserver from "../../../hooks/useResizeObserver";
 
 const GameContent = ({ size, ...props }) => {
    const {
@@ -26,6 +27,8 @@ const GameContent = ({ size, ...props }) => {
       classes,
    } = props;
 
+   const slideDownContainerRef = useRef(null);
+
    const [showDropDown, setShowDropDown] = React.useState(false);
 
    const containerRatio = size.width / size.height;
@@ -38,6 +41,11 @@ const GameContent = ({ size, ...props }) => {
 
    const bestFitWidth = verticalLayout ? 440 : 900;
    const bestFitHeight = verticalLayout ? 1000 : 560;
+
+   const [dropWidth, dropHeight] = useResizeObserver(slideDownContainerRef, [verticalLayout], "dropdown");
+
+   console.log("VERITCAL?", verticalLayout);
+   console.log("dropWidth", dropWidth, dropHeight, slideDownContainerRef);
 
    const renderHorizontalContent = () => {
       return (
@@ -126,7 +134,8 @@ const GameContent = ({ size, ...props }) => {
             style={{ display: "flex", flexDirection: verticalLayout ? "column" : "row" }}
             className={`${verticalLayout ? classes.vertical : ""}`}
          >
-            <AspectRatioBox ratio={540 / 150} style={{ backgroundColor: "black", minHeight: "25%" }}></AspectRatioBox>
+            {/* <AspectRatioBox ratio={540 / 150} style={{ backgroundColor: "black", minHeight: "25%" }}></AspectRatioBox> */}
+            <div style={{ width: "100%", height: dropHeight * 0.32 + 45 + "px", backgroundColor: "black" }}></div>
             <div className={classes.left}>
                <ScoreTicker className={classes.score} score={score} />
                <div className={classes.inputWrapper}>
@@ -182,6 +191,7 @@ const GameContent = ({ size, ...props }) => {
             ></div>
 
             <div
+               ref={slideDownContainerRef}
                className={`${classes.slideDownContainer} ${showDropDown ? classes.showDropDown : ""}`}
                onTouchEnd={(event) => {
                   event.preventDefault();
@@ -208,7 +218,16 @@ const GameContent = ({ size, ...props }) => {
 
                <div className={classes.sliderFooter}>
                   <div className={classes.sliderFooterInner}>
-                     <img className={classes.toggleIcon} src={toggleIcon} />
+                     <img
+                        className={classes.toggleIcon}
+                        src={toggleIcon}
+                        onClick={(event) => {
+                           event.preventDefault();
+                           event.stopPropagation();
+                           console.log("touched button", showDropDown);
+                           setShowDropDown(!showDropDown);
+                        }}
+                     />
 
                      <div className={classes.progressContainer}>
                         <img className={classes.progressPanel} src={progressPanel} />
