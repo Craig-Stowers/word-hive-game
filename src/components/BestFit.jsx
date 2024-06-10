@@ -51,7 +51,7 @@ const BestFit = ({ width, height, children, maxScale, style, ratioBreakPoints })
       const childRatio = adaptWidth / adaptHeight;
       const fitWidth = childRatio > containerRatio;
       const scaleFactor = Math.min(maxScale, fitWidth ? testWidth / adaptWidth : testHeight / adaptHeight);
-      console.log("new OBS scale", scaleFactor);
+      //console.log("new OBS scale", scaleFactor);
       innerRef.current.style.transform = `scale(${scaleFactor}) translate(-50%, -50%)`;
    }, [testWidth, testHeight]);
 

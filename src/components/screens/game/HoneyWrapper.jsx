@@ -24,6 +24,14 @@ const HoneyWrapper = ({ answer }) => {
       return revealClasses;
    }, [answer]);
 
+   const baseFontSize = 22;
+
+   let fontSize = baseFontSize;
+
+   if (answer && answer.word && answer.word.length > 10) {
+      fontSize = baseFontSize - (answer.word.length - 10) * 1;
+   }
+
    return (
       <div className={classes.root}>
          <div className={classes.testclass} style={{ opacity: answer ? 1 : 1 }}>
@@ -35,7 +43,10 @@ const HoneyWrapper = ({ answer }) => {
          </div>
 
          <div className={classes.wordContainer}>
-            <div className={classes.word} style={{ visibility: answer ? "visible" : "hidden" }}>
+            <div
+               className={classes.word}
+               style={{ visibility: answer ? "visible" : "hidden", fontSize: fontSize + "px" }}
+            >
                {answer ? answer.word.toLowerCase() : "empty"}
             </div>
          </div>

@@ -132,7 +132,13 @@ function App() {
    return (
       <>
          <div className={"background"} id="portal-background"></div>
-         <ScreenManager screenMaps={screenMaps} initialScreen={"home"} key="manager" globalData={globalData} />
+         <ScreenManager
+            screenMaps={screenMaps}
+            initialScreen={"home"}
+            key="manager"
+            globalData={globalData}
+            style={{ pointerEvents: "none" }}
+         />
          {showTools && (
             <Modal onClose={() => setShowTools(false)}>
                <AdminPanel adminData={adminData} onAdminEvent={handleAdminEvent} />

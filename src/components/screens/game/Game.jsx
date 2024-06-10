@@ -25,6 +25,10 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
    const storedData =
       screen.globalData.localData?.success[daysElapsed] || screen.globalData.localData?.incomplete[daysElapsed];
 
+   // const [shuffledLetters, setShuffledLetters] = useState(storedData?.answer || []);
+
+   console.log("stored shuffled letters", storedData.shuffledLetters);
+
    const [answer, setAnswer] = useState(storedData?.answer || "");
    const [correctWords, setCorrectWords] = useState(
       storedData?.correct || []
@@ -63,6 +67,7 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
       }
 
       screen.globalData.setLocalData((oldData) => {
+         console.log("storing shuffled", shuffledLetters);
          return {
             ...oldData,
             incomplete: {
@@ -71,11 +76,12 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
                   answer,
                   correct: correctWords,
                   score,
+                  shuffledLetters,
                },
             },
          };
       });
-   }, [answer, correctWords, screen.globalData.daysElapsed]);
+   }, [answer, correctWords, screen.globalData.daysElapsed, shuffledLetters]);
 
    // const centerLetter = data.center;
    // const letters = data.letters;
@@ -96,6 +102,18 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
    // }, [screen.globalData.currChallengeData]
 
    useEffect(() => {
+      console.log("change currChallengeData", screen.globalData.currChallengeData);
+   }, [screen.globalData.currChallengeData]);
+
+   useEffect(() => {
+      console.log("change randomBonusIndex", randomBonusIndex);
+   }, [randomBonusIndex]);
+
+   useEffect(() => {
+      console.log("change randomSequence", randomSequence);
+   }, [randomSequence]);
+
+   useEffect(() => {
       if (!screen.globalData.currChallengeData) return;
 
       const data = screen.globalData.currChallengeData;
@@ -111,13 +129,26 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
       setCenterLetter(key.toUpperCase());
       setLetters(filteredLetters);
       setAllLettersArr([key.toUpperCase(), ...filteredLetters.split("")]);
-      const bonusLetter = filteredLetters[randomSequence[randomBonusIndex]];
-      setBonusLetter(bonusLetter);
+
+      console.log("reshuffle everything");
 
       const availableAnswers = data.answers.map((word) => word.toLowerCase()); //possibly remove as capitals could be good indicator of plural (unless game data filtered first)
       setAvailableAnswers(availableAnswers);
-      const shuffled = shuffleArray(filteredLetters.split(""));
+      const shuffled = storedData.shuffledLetters || shuffleArray(filteredLetters.split(""));
       setShuffledLetters(shuffled);
+   }, [screen.globalData.currChallengeData]);
+
+   useEffect(() => {
+      if (!screen.globalData.currChallengeData) return;
+      const { key, answers, letters } = screen.globalData.currChallengeData;
+      const filteredLetters = letters
+         .split("")
+         .filter((char) => char !== key)
+         .map((char) => char.toUpperCase())
+         .join("");
+
+      const bonusLetter = filteredLetters[randomSequence[randomBonusIndex]];
+      setBonusLetter(bonusLetter);
    }, [screen.globalData.currChallengeData, randomBonusIndex, randomSequence]);
 
    useEffect(() => {
@@ -202,6 +233,7 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
    useOnKeyPress(handleAllowedLetter, [], [...allLettersArr, ...allLettersArr.join("").toLowerCase().split("")]);
 
    const handleShuffle = () => {
+      console.log("SHUFFLE!!!!");
       const shuffled = shuffleArray(letters.split(""));
       setShuffledLetters(shuffled);
    };
@@ -228,7 +260,7 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
          return;
       }
 
-      if (availableAnswers.includes(trimAnswer) && !correctWords.includes(trimAnswer)) {
+      if ((availableAnswers.includes(trimAnswer) && !correctWords.includes(trimAnswer)) || true) {
          setCorrectWords((oldValue) => {
             return [
                ...oldValue,

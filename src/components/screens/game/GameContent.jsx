@@ -32,7 +32,7 @@ const GameContent = ({ size, ...props }) => {
    const [showDropDown, setShowDropDown] = React.useState(false);
 
    const containerRatio = size.width / size.height;
-   console.log("ratio", containerRatio, size.width, size.height);
+
    const verticalLayout =
       (containerRatio < 0.95 && size.width < 1500) ||
       (containerRatio < 1 && size.width < 1300) ||
@@ -44,8 +44,8 @@ const GameContent = ({ size, ...props }) => {
 
    const [dropWidth, dropHeight] = useResizeObserver(slideDownContainerRef, [verticalLayout], "dropdown");
 
-   console.log("VERITCAL?", verticalLayout);
-   console.log("dropWidth", dropWidth, dropHeight, slideDownContainerRef);
+   // console.log("VERITCAL?", verticalLayout);
+   // console.log("dropWidth", dropWidth, dropHeight, slideDownContainerRef);
 
    const renderHorizontalContent = () => {
       return (
@@ -218,16 +218,23 @@ const GameContent = ({ size, ...props }) => {
 
                <div className={classes.sliderFooter}>
                   <div className={classes.sliderFooterInner}>
-                     <img
-                        className={classes.toggleIcon}
-                        src={toggleIcon}
-                        onClick={(event) => {
-                           event.preventDefault();
-                           event.stopPropagation();
-                           console.log("touched button", showDropDown);
-                           setShowDropDown(!showDropDown);
-                        }}
-                     />
+                     <div className={classes.toggleIconContainer}>
+                        <img
+                           className={classes.toggleIcon}
+                           src={toggleIcon}
+                           style={{
+                              transform: showDropDown ? "rotate(180deg)" : "rotate(0deg)",
+                              transformOrigin: "50% 50%",
+                              transition: "transform 0.3s",
+                           }}
+                           onClick={(event) => {
+                              event.preventDefault();
+                              event.stopPropagation();
+                              console.log("touched button", showDropDown);
+                              setShowDropDown(!showDropDown);
+                           }}
+                        />
+                     </div>
 
                      <div className={classes.progressContainer}>
                         <img className={classes.progressPanel} src={progressPanel} />

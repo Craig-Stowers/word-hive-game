@@ -3,6 +3,7 @@
    height: 100%;
    display: flex;
    flex-direction: column;
+   pointer-events: auto;
 }
 
 .header {
@@ -174,12 +175,24 @@
    height: 5px;
    position: relative;
 
-   .toggleIcon {
-      width: 10%;
-      max-width: 50px;
+   .toggleIconContainer {
       position: absolute;
       top: 100%;
       left: 50%;
+      z-index: 10;
+
+      width: 10%;
+
+      transform: translate(-50%, -50%);
+   }
+
+   .toggleIcon {
+      width: 100%;
+      max-width: 50px;
+
+      left: 0;
+      top: 0;
+      transform-origin: 50% 50%;
       transform: translate(-50%, -50%);
    }
 

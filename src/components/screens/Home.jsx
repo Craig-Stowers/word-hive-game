@@ -15,6 +15,8 @@ import BestFit from "../BestFit";
 
 const imageLoadPromises = globalImagePreloader.preloadImages([logo]);
 
+const adminMode = true;
+
 const Home = ({ screen, size, ...props }) => {
    const imagesLoaded = useImagePreloader(imageLoadPromises);
    if (!imagesLoaded) return null;
@@ -61,7 +63,11 @@ const Home = ({ screen, size, ...props }) => {
             </div>
 
             <div className={classes.title}>
-               <img src={logo} style={{ pointerEvents: "auto" }} onClick={() => onButtonHit("devmode")} />
+               <img
+                  src={logo}
+                  style={{ pointerEvents: adminMode ? "auto" : "none" }}
+                  onClick={() => onButtonHit("devmode")}
+               />
             </div>
             <div className={classes.footer}>
                <BestFit {...{ width: 460, height: 90, maxScale: 1.8 }}>

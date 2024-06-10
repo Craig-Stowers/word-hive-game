@@ -37,7 +37,7 @@ const copyValue = (value) => {
    return value;
 };
 
-const ScreenManager = ({ screenMaps, initialScreen = null, globalData }) => {
+const ScreenManager = ({ screenMaps, initialScreen = null, globalData, style = {} }) => {
    const [current, setCurrent] = useState(initialScreen || getDefaultScreenKey(screenMaps));
 
    const [history, setHistory] = useState([]);
@@ -140,7 +140,7 @@ const ScreenManager = ({ screenMaps, initialScreen = null, globalData }) => {
 
    return (
       <>
-         <div style={{ transform: "translateX(0%)", width: "100%", height: "100%" }}>{renderedScreen}</div>
+         <div style={{ transform: "translateX(0%)", width: "100%", height: "100%", ...style }}>{renderedScreen}</div>
       </>
    );
 };
