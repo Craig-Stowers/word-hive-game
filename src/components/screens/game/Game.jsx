@@ -27,7 +27,7 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
 
    // const [shuffledLetters, setShuffledLetters] = useState(storedData?.answer || []);
 
-   console.log("stored shuffled letters", storedData.shuffledLetters);
+   // console.log("stored shuffled letters", storedData.shuffledLetters);
 
    const [answer, setAnswer] = useState(storedData?.answer || "");
    const [correctWords, setCorrectWords] = useState(
@@ -134,7 +134,7 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
 
       const availableAnswers = data.answers.map((word) => word.toLowerCase()); //possibly remove as capitals could be good indicator of plural (unless game data filtered first)
       setAvailableAnswers(availableAnswers);
-      const shuffled = storedData.shuffledLetters || shuffleArray(filteredLetters.split(""));
+      const shuffled = (storedData && storedData.shuffledLetters) || shuffleArray(filteredLetters.split(""));
       setShuffledLetters(shuffled);
    }, [screen.globalData.currChallengeData]);
 
