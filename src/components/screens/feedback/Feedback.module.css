@@ -79,11 +79,11 @@
 }
 
 .vertical .panel2 .panelContent {
-   padding: 0px 16px;
+   padding: 0px 16px 10px 16px;
 }
 
 .vertical .source {
-   padding: 16px 16px;
+   padding: 12px 16px;
 }
 
 .vertical .wordList {
@@ -319,5 +319,20 @@
 
    .vertical .panel2 {
       font-size: 14px;
+   }
+
+   .vertical .panel2 .scoreContainer {
+      padding: 7px 16px;
+      display: flex;
+      align-items: center;
+   }
+
+   .vertical .content > div {
+      margin-top: 6px;
+   }
+
+   .message {
+      font-size: 18px;
+      padding: 3px 8px;
    }
 }

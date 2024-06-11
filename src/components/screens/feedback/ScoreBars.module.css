@@ -57,3 +57,17 @@
 .opacity1 {
    opacity: 1;
 }
+
+@media screen and (max-width: 480px) {
+   .barItem {
+      margin-bottom: 5px;
+   }
+
+   .barRectContainer {
+      height: 22px;
+   }
+   .digit {
+      font-size: 16px;
+      line-height: 22px;
+   }
+}

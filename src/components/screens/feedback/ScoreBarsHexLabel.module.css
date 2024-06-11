@@ -20,3 +20,13 @@
       transform: translate(-50%, -50%);
    }
 }
+
+@media screen and (max-width: 480px) {
+   .root {
+      --hex-width: 30px;
+   }
+
+   .root .label {
+      font-size: 16px;
+   }
+}

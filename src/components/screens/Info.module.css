@@ -153,4 +153,25 @@
       flex-grow: 0;
       margin-top: 5px;
    }
+
+   .buttonRow {
+      padding: 10px 10px 0px 10px;
+   }
+
+   .pageNumber {
+      padding-bottom: 6px;
+   }
+
+   .title {
+      font-size: 1.1em;
+      padding-bottom: 12px;
+   }
+
+   .description {
+      font-size: 0.65em;
+      padding: 0px 10px;
+   }
+   .imageContainer {
+      max-width: 90%;
+   }
 }
