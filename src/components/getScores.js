@@ -58,12 +58,13 @@ const getScores = (data) => {
       }, 0) / solved;
 
    const roundedAverage = Math.round(avgScore * 10) / 10;
+   const average = roundedAverage || "-";
 
    const highScore = Object.keys(data.success).reduce((acc, curr) => {
       return Math.max(acc, data.success[curr].score);
    }, 0);
 
-   return [played, solved, streak, pangrams, roundedAverage, highScore];
+   return [played, solved, streak, pangrams, average, highScore];
 };
 
 export default getScores;
