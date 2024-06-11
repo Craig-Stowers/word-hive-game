@@ -94,9 +94,27 @@ const Feedback = ({ size, screen }) => {
       // return () => clearTimeout(timer);
    }, [screen.globalData.daysElapsed, screen.globalData.localData]);
 
+   function getSmallestWord(words) {
+      if (words.length === 0) {
+         return null; // or any appropriate value for empty array case
+      }
+
+      let smallestWord = words[0];
+
+      for (let i = 1; i < words.length; i++) {
+         if (words[i].length < smallestWord.length) {
+            smallestWord = words[i];
+         }
+      }
+
+      return smallestWord;
+   }
+
    const score = screen.globalData.localData.success[daysElapsed]?.score;
 
-   const pangram = screen.globalData.currChallengeData?.panagrams;
+   const allPangrams = screen.globalData.currChallengeData?.pangrams;
+
+   const selectedPangram = getSmallestWord(allPangrams);
 
    if (!score) return;
 
@@ -130,7 +148,7 @@ const Feedback = ({ size, screen }) => {
                   <div className={classes.column2}>
                      <div className={`${classes.panel} ${classes.panel1}`}>
                         <div className={classes.source}>
-                           Source word: <span>{pangram}</span>
+                           Source word: <span>{selectedPangram}</span>
                         </div>
                      </div>
                      <div className={`${classes.panel} ${classes.panel2}`}>
@@ -233,7 +251,7 @@ const Feedback = ({ size, screen }) => {
                </div>
                <div className={`${classes.panel} ${classes.panel2}`}>
                   <div className={classes.source}>
-                     Source word: <span>{pangram}</span>
+                     Source word: <span>{selectedPangram}</span>
                   </div>
                </div>
                <div className={`${classes.panel} ${classes.panel2} ${classes.wordListContainer}`}>

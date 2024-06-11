@@ -41,8 +41,11 @@ const getScores = (data) => {
       //const word = data.success[curr].answer
       const words = data.success[curr].correct;
       for (let word of words) {
+         console.log("test word", word);
          const uniqueLetters = new Set(word.word);
-         if (uniqueLetters === 7) return acc + 1;
+         console.log("unique letters", uniqueLetters);
+         console.log("unique letters length", uniqueLetters.length);
+         if (uniqueLetters.size === 7) return acc + 1;
       }
       return acc;
    }, 0);

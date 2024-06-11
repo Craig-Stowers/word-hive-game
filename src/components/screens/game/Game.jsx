@@ -260,7 +260,7 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
          return;
       }
 
-      if ((availableAnswers.includes(trimAnswer) && !correctWords.includes(trimAnswer)) || true) {
+      if (availableAnswers.includes(trimAnswer) && !correctWords.includes(trimAnswer)) {
          setCorrectWords((oldValue) => {
             return [
                ...oldValue,
@@ -287,7 +287,10 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
          newPoints += bonusCharacterCount * 5;
          const isPangram = containsAllLetters(trimAnswer, (centerLetter + letters).toLowerCase());
 
-         if (isPangram) newPoints += 7;
+         if (isPangram) {
+            console.log("is pangram!");
+            newPoints += 7;
+         }
 
          //  console.log(`total points for ${trimAnswer} = ${newPoints}`);
          setScore((v) => v + newPoints);

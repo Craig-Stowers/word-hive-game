@@ -2,6 +2,7 @@
    display: flex;
    max-height: min(10%, 110px);
    background-color: var(--yellow-color);
+   pointer-events: auto;
 }
 
 .dynamicBar {

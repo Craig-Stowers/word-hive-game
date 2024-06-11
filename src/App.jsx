@@ -9,7 +9,7 @@ import { screenMaps } from "./configs/screenMaps";
 import { daysBetween, addDaysToDate, formatDate } from "./helpers/dateMethods";
 import Modal from "./components/Modal";
 import AdminPanel from "./components/AdminPanel";
-let startingDate = "2024-04-16";
+let startingDate = "2024-06-11";
 const defaultData = {
    version: 0.6,
    success: {},
@@ -75,14 +75,14 @@ function App() {
       : "not started";
 
    const adminData = {
-      version: 0.71,
+      version: 0.8,
       "start date": formatDate(startingDate),
       "simulated date": todaysDate,
       day: daysElapsed + " / " + challengeListData?.length,
       "challenge index": cycleDaysElapsed,
       "todays letters": currChallengeData?.letters,
       "center letter": currChallengeData?.key,
-      pangram: currChallengeData?.panagrams,
+      pangram: currChallengeData?.pangrams.join(" "),
       status: status + (score ? ` - ${score} points` : ""),
 
       // "todays status": getTodaysStatus().status,
