@@ -3,7 +3,7 @@ import defaultClasses from "./AllStats.module.css";
 import { splitArrayIntoChunks } from "../../../helpers/arrayHelpers";
 import withSizeObserver from "../../withSizeObserver";
 
-const AllStats = ({ stats = [], moduleOverride = {}, size, columns }) => {
+const AllStats = ({ stats = [], isSmall = false, moduleOverride = {}, size, columns }) => {
    const classes = {
       ...defaultClasses,
       ...moduleOverride,
@@ -22,7 +22,7 @@ const AllStats = ({ stats = [], moduleOverride = {}, size, columns }) => {
    const statChunks = splitArrayIntoChunks(stats, cols);
 
    return (
-      <div className={`${classes.root}`}>
+      <div className={`${classes.root} ${isSmall ? classes.small : ""}`}>
          {statChunks.map((chunk, i) => {
             return (
                <div className={classes.row} key={"stat-row" + i}>

@@ -82,7 +82,7 @@ const Info = forwardRef(({ screen, size }, ref) => {
             <CustomButton
                className={`${buttonClasses.next}`}
                style={{ marginLeft: "auto" }}
-               render={() => <span>NEXT</span>}
+               render={() => <span>{currPage + 1 === instructions.length ? "Close" : "Next"}</span>}
                onClick={handleNext}
             />
          </div>

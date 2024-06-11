@@ -127,7 +127,7 @@ const GameContent = ({ size, ...props }) => {
 
       const reverseCompletedWords = createReversedArrayWithPadding(12, correctWords);
       const resultArray = reverseEverySetOfThree(reverseCompletedWords);
-      console.log("reverseCompletedWords", reverseCompletedWords);
+      //  console.log("reverseCompletedWords", reverseCompletedWords);
 
       return (
          <div

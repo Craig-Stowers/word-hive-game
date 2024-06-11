@@ -9,9 +9,11 @@ import getScores from "../../getScores";
 import CustomButton from "../../../shared/CustomButton";
 import CloseIcon from "../../../assets/icons/icon-close.svg?react";
 import buttonClasses from "../../layouts/Buttons.module.css";
+import withSizeObserver from "../../withSizeObserver";
 
-export default function Feedback({ screen }) {
+const Feedback = ({ size, screen }) => {
    const daysElapsed = screen.globalData.daysElapsed;
+   const [tabSelection, setTabSelection] = useState("gamestats");
    const [answers, setAnswers] = useState([]);
    const [barData, setBarData] = useState([
       {
@@ -34,7 +36,18 @@ export default function Feedback({ screen }) {
 
    const [played, solved, streak, pangrams, avgScore, highScore] = getScores(screen.globalData.localData);
 
-   console.log("test scores", [played, solved, streak, pangrams, avgScore, highScore]);
+   // console.log("test scores", [played, solved, streak, pangrams, avgScore, highScore]);
+
+   const containerRatio = size.width / size.height;
+
+   const verticalLayout =
+      (containerRatio < 0.95 && size.width < 1500) ||
+      (containerRatio < 1 && size.width < 1300) ||
+      (containerRatio < 0.95 && size.width < 1000) ||
+      (containerRatio < 0 && size.width < 700);
+
+   const bestFitWidth = verticalLayout ? 440 : 900;
+   const bestFitHeight = verticalLayout ? 1000 : 560;
 
    //  const buttonStyle={{width:"60px", height:"60px"}}
    useEffect(() => {
@@ -87,80 +100,218 @@ export default function Feedback({ screen }) {
 
    if (!score) return;
 
-   return (
-      <div className={classes.root}>
-         <div className={classes.buttonRow}>
-            <div className={classes.closeContainer}>
-               <CustomButton
-                  className={`${buttonClasses.close}`}
-                  render={() => <CloseIcon />}
-                  onClick={() => screen.actions.close()}
-               />
+   const renderHorizontalContent = () => {
+      return (
+         <div className={classes.root}>
+            <div className={classes.buttonRow}>
+               <div className={classes.closeContainer}>
+                  <CustomButton
+                     className={`${buttonClasses.close}`}
+                     render={() => <CloseIcon />}
+                     onClick={() => screen.actions.close()}
+                  />
+               </div>
+            </div>
+            <div className={classes.inner}>
+               <div className={classes.content}>
+                  <div className={classes.column1}>
+                     <div className={`${classes.panel} ${classes.panel1}`}>
+                        <div className={classes.scoreText}>
+                           SCORE <span>{screen.globalData.localData.success[daysElapsed].score}</span>
+                        </div>
+                        <div className={classes.message}>Very good!</div>
+                     </div>
+                     <div className={`${classes.panel} ${classes.panel2}`}>
+                        <h2>YOUR WORDS</h2>
+                        <CompletedWords words={answers} />
+                     </div>
+                  </div>
+
+                  <div className={classes.column2}>
+                     <div className={`${classes.panel} ${classes.panel1}`}>
+                        <div className={classes.source}>
+                           Source word: <span>{pangram}</span>
+                        </div>
+                     </div>
+                     <div className={`${classes.panel} ${classes.panel2}`}>
+                        <h2>LETTERS</h2>
+                        <ScoreBars highlight={null} stats={barData} />
+                     </div>
+                     <div className={`${classes.panel} ${classes.panel3}`}>
+                        <h2>ALL GAMES</h2>
+                        <div className={`${classes.allStatsContainer}`}>
+                           <AllStats
+                              moduleOverride={allStatsClasses}
+                              columns={3}
+                              stats={[
+                                 {
+                                    label: "Played",
+                                    value: played,
+                                 },
+                                 {
+                                    label: "Solved",
+                                    value: solved,
+                                 },
+                                 {
+                                    label: "Streak",
+                                    value: streak,
+                                 },
+                                 {
+                                    label: "Pangrams",
+                                    value: pangrams,
+                                 },
+                                 {
+                                    label: "Avg. score",
+                                    value: avgScore,
+                                 },
+                                 {
+                                    label: "High score",
+                                    value: highScore,
+                                 },
+                              ]}
+                           />
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
          </div>
-         <div className={classes.inner}>
-            <div className={classes.content}>
-               <div className={classes.column1}>
-                  <div className={`${classes.panel} ${classes.panel1}`}>
+      );
+   };
+
+   const renderVerticalContent = () => {
+      const renderAllStats = () => {
+         return (
+            <div className={`${classes.panel} ${classes.panel3}`}>
+               <div className={`${classes.allStatsContainer}`}>
+                  <AllStats
+                     isSmall={true}
+                     moduleOverride={allStatsClasses}
+                     columns={2}
+                     stats={[
+                        {
+                           label: "Played",
+                           value: played,
+                        },
+                        {
+                           label: "Solved",
+                           value: solved,
+                        },
+                        {
+                           label: "Streak",
+                           value: streak,
+                        },
+                        {
+                           label: "Pangrams",
+                           value: pangrams,
+                        },
+                        {
+                           label: "Avg. score",
+                           value: avgScore,
+                        },
+                        {
+                           label: "High score",
+                           value: highScore,
+                        },
+                     ]}
+                  />
+               </div>
+            </div>
+         );
+      };
+
+      const renderGameStats = () => {
+         return (
+            <>
+               <div className={`${classes.panel} ${classes.panel2}`}>
+                  <div className={classes.scoreContainer}>
                      <div className={classes.scoreText}>
                         SCORE <span>{screen.globalData.localData.success[daysElapsed].score}</span>
                      </div>
                      <div className={classes.message}>Very good!</div>
                   </div>
-                  <div className={`${classes.panel} ${classes.panel2}`}>
-                     <h2>YOUR WORDS</h2>
-                     <CompletedWords words={answers} />
+               </div>
+               <div className={`${classes.panel} ${classes.panel2}`}>
+                  <div className={classes.source}>
+                     Source word: <span>{pangram}</span>
+                  </div>
+               </div>
+               <div className={`${classes.panel} ${classes.panel2} ${classes.wordListContainer}`}>
+                  <h2>YOUR WORDS</h2>
+
+                  <div className={classes.wordList}>
+                     {answers.map((word, i) => {
+                        return (
+                           <div
+                              key={"word" + i}
+                              className={classes.word}
+                              style={{ width: "33%", display: "inline-block", textAlign: "center" }}
+                           >
+                              {word.word}
+                           </div>
+                        );
+                     })}
                   </div>
                </div>
 
-               <div className={classes.column2}>
-                  <div className={`${classes.panel} ${classes.panel1}`}>
-                     <div className={classes.source}>
-                        Source word: <span>{pangram}</span>
-                     </div>
-                  </div>
-                  <div className={`${classes.panel} ${classes.panel2}`}>
-                     <h2>LETTERS</h2>
+               <div className={`${classes.panel} ${classes.panel2}`}>
+                  <h2>LETTERS</h2>
+                  <div className={classes.panelContent}>
                      <ScoreBars highlight={null} stats={barData} />
                   </div>
-                  <div className={`${classes.panel} ${classes.panel3}`}>
-                     <h2>ALL GAMES</h2>
-                     <div className={`${classes.allStatsContainer}`}>
-                        <AllStats
-                           moduleOverride={allStatsClasses}
-                           columns={3}
-                           stats={[
-                              {
-                                 label: "Played",
-                                 value: played,
-                              },
-                              {
-                                 label: "Solved",
-                                 value: solved,
-                              },
-                              {
-                                 label: "Streak",
-                                 value: streak,
-                              },
-                              {
-                                 label: "Pangrams",
-                                 value: pangrams,
-                              },
-                              {
-                                 label: "Avg. score",
-                                 value: avgScore,
-                              },
-                              {
-                                 label: "High score",
-                                 value: highScore,
-                              },
-                           ]}
-                        />
+               </div>
+            </>
+         );
+      };
+
+      return (
+         <div className={`${classes.root} ${classes.vertical}`}>
+            <div className={classes.buttonRow}>
+               <div className={classes.closeContainer}>
+                  <CustomButton
+                     className={`${buttonClasses.close}`}
+                     render={() => <CloseIcon />}
+                     onClick={() => screen.actions.close()}
+                  />
+               </div>
+            </div>
+
+            <div className={classes.inner}>
+               <div className={`${classes.content}`}>
+                  <div className={classes.tabs}>
+                     <div className={classes.tabContainer}>
+                        <div
+                           className={`${classes.topAngledCorners} ${classes.tab} ${
+                              tabSelection === "gamestats" ? classes.selected : ""
+                           }`}
+                           onClick={() => {
+                              setTabSelection("gamestats");
+                           }}
+                        >
+                           GAME STATS
+                        </div>
+                     </div>
+                     <div className={classes.tabContainer}>
+                        <div
+                           className={`${classes.topAngledCorners} ${classes.tab} ${
+                              tabSelection === "alltime" ? classes.selected : ""
+                           }`}
+                           onClick={() => {
+                              setTabSelection("alltime");
+                           }}
+                        >
+                           ALL TIME STATS
+                        </div>
                      </div>
                   </div>
+                  {tabSelection === "gamestats" ? renderGameStats() : renderAllStats()}
                </div>
             </div>
          </div>
-      </div>
-   );
-}
+      );
+   };
+
+   return <>{verticalLayout ? renderVerticalContent() : renderHorizontalContent()}</>;
+};
+
+export default withSizeObserver(Feedback);

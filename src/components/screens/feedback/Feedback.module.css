@@ -7,6 +7,9 @@
    flex-direction: column;
 }
 
+.vertical {
+}
+
 .buttonRow {
    margin-left: auto;
    margin-right: auto;
@@ -21,6 +24,10 @@
    margin-left: auto;
 }
 
+.vertical .closeContainer {
+   margin-right: 20px;
+}
+
 .inner {
    margin-top: -60px;
    width: 100%;
@@ -33,10 +40,63 @@
    margin-right: auto;
 }
 
+.vertical .inner {
+   margin-top: 0px;
+   padding: 0px 25px 25px 25px;
+}
+
 .content {
    display: flex;
    height: 100%;
 }
+
+.vertical .content {
+   flex-direction: column;
+}
+
+.vertical .content > div {
+   margin-top: 10px;
+}
+
+.vertical .panel1 {
+   display: flex;
+   align-items: center;
+}
+
+.vertical .panel2 {
+   padding: 0px;
+   font-size: 18px;
+}
+
+.vertical .panel2 h2 {
+   padding: 8px 16px;
+}
+
+.vertical .panel2 .scoreContainer {
+   padding: 12px 16px;
+   display: flex;
+   align-items: center;
+}
+
+.vertical .panel2 .panelContent {
+   padding: 0px 16px;
+}
+
+.vertical .source {
+   padding: 16px 16px;
+}
+
+.vertical .wordList {
+   padding: 0px 0px 6px 0px;
+}
+
+.vertical .panel3 {
+   padding: 15px 0 0 0;
+}
+
+/* .vertical .wordListContainer {
+   padding: 0px;
+} */
 
 .column1,
 .column2 {
@@ -90,6 +150,7 @@
    letter-spacing: 0.07em;
    display: inline;
    margin-right: 7px;
+   font-weight: bold;
 }
 
 .scoreText span {
@@ -106,6 +167,7 @@
    line-height: 24px;
    letter-spacing: 0.03em;
    color: black;
+   font-weight: bold;
 }
 
 .column1 .panel2,
@@ -121,6 +183,9 @@
       width: 100%;
       height: 100%;
    }
+}
+
+.vertical .allStatsContainer {
 }
 
 .column1 .panel1,
@@ -142,4 +207,117 @@
 
 .source span {
    color: var(--yellow-color);
+}
+
+.tabs {
+   display: flex;
+   pointer-events: auto;
+   font-family: "Roboto Slab", serif;
+}
+
+.tabContainer {
+   width: 50%;
+}
+
+.tab {
+   background-color: transparent;
+   padding: 10px;
+   color: white;
+   font-weight: bold;
+   font-size: 23px;
+   text-align: center;
+}
+
+.tab.selected {
+   background-color: var(--yellow-color);
+   color: black;
+}
+.angledCorners {
+   --offset: 10px;
+   clip-path: polygon(
+      var(--offset) 0,
+      calc(100% - var(--offset)) 0,
+      100% var(--offset),
+      100% calc(100% - var(--offset)),
+      calc(100% - var(--offset)) 100%,
+      var(--offset) 100%,
+      0 calc(100% - var(--offset)),
+      0 var(--offset)
+   );
+}
+
+.topAngledCorners {
+   --offset: 6px;
+   clip-path: polygon(
+      var(--offset) 0,
+      calc(100% - var(--offset)) 0,
+      100% var(--offset),
+      100% 100%,
+      0 100%,
+      0 var(--offset)
+   );
+}
+
+@media screen and (max-width: 600px) {
+   .buttonRow {
+      margin-top: 10px;
+   }
+   .vertical .closeContainer {
+      margin-right: 10px;
+   }
+   .inner {
+      padding: 20px;
+   }
+
+   .panel {
+      padding: 11px 14px;
+   }
+
+   .panel h2 {
+      font-size: 18px;
+   }
+
+   .message {
+      font-size: 18px;
+      padding: 8px;
+   }
+
+   .source {
+      font-size: 18px;
+   }
+
+   .scoreText {
+      font-size: 20px;
+   }
+
+   .column1 .panel2 h2 {
+      font-size: 18px;
+   }
+
+   .column2 .panel2 h2 {
+      font-size: 18px;
+   }
+
+   .vertical .panel2 {
+      font-size: 16px;
+   }
+
+   .tab {
+      font-size: 18px;
+      padding: 5px;
+   }
+}
+
+@media screen and (max-width: 480px) {
+   .tab {
+      font-size: 15px;
+      padding: 3px;
+   }
+   .vertical .inner {
+      padding: 0px;
+   }
+
+   .vertical .panel2 {
+      font-size: 14px;
+   }
 }

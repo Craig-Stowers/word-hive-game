@@ -182,13 +182,14 @@
       z-index: 10;
 
       width: 10%;
+      max-width: 50px;
+      min-width: 35px;
 
       transform: translate(-50%, -50%);
    }
 
    .toggleIcon {
       width: 100%;
-      max-width: 50px;
 
       left: 0;
       top: 0;
