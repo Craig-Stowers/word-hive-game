@@ -4,7 +4,7 @@ import classes from "./Stats.module.css";
 import AllStats from "./AllStats";
 
 import allStatsClasses from "./AllStatsLarge.module.css";
-import logo from "./../../../assets/title-with-bee.png";
+import logo from "./../../../assets/title-yellow.png";
 
 import CustomButton from "../../../shared/CustomButton";
 import CloseIcon from "../../../assets/icons/icon-close.svg?react";
