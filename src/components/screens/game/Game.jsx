@@ -147,12 +147,14 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
         setLetters(filteredLetters);
         setAllLettersArr([key.toUpperCase(), ...filteredLetters.split("")]);
 
-        console.log("reshuffle everything");
+        console.log("reshuffle everything", storedData.shuffledLetters);
 
         const availableAnswers = data.answers.map((word) => word.toLowerCase()); //possibly remove as capitals could be good indicator of plural (unless game data filtered first)
         setAvailableAnswers(availableAnswers);
         const shuffled =
-            storedData && storedData.shuffledLetters.length
+            storedData &&
+            storedData.shuffledLetters &&
+            storedData.shuffledLetters.length === 6
                 ? storedData.shuffledLetters
                 : shuffleArray(filteredLetters.split(""));
 
