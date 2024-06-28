@@ -19,7 +19,7 @@ const defaultData = {
 
 function App() {
     const [localData, setLocalData] = useLocalData("word-hive", defaultData);
-    const challengeListData = useTextFileLoader("/challenges/challenges.json");
+    const challengeListData = useTextFileLoader("./challenges/challenges.json");
 
     const [daysElapsed, setDaysElapsed] = useState(
         Math.floor(daysBetween(startingDate))

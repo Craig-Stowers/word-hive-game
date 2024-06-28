@@ -52,8 +52,10 @@ const instructions = [
         asset: image5,
     },
     {
-        text: "Each Word Hive challenge is based on a source word that uses all the letters in the hive. Finding the source word or another pangram word that use all 7 letters at least once scores 7 extra points.",
+        text: "Each Word Hive challenge is based on a source word that uses all the letters in the hive. Finding the source word or another pangram word that use all 7 letters at least once scores 7 extra points.<sup>*</sup>",
         asset: image6,
+        footerContent:
+            "<sup>*</sup>Word Hive utilises open-source word lists and the NASPA Word List 2023 Edition © NASPA 2024. NASPA copy in this app is licensed for personal use. You may not use it for any commercial purposes.",
     },
 ];
 
@@ -133,9 +135,10 @@ const Info = forwardRef(({ screen, size }, ref) => {
                                             ? "visible"
                                             : "hidden",
                                 }}
-                            >
-                                {instruction.text}
-                            </div>
+                                dangerouslySetInnerHTML={{
+                                    __html: instruction.text,
+                                }}
+                            ></div>
                         ))}
                     </MaxChildHeight>
                 </div>
@@ -150,6 +153,15 @@ const Info = forwardRef(({ screen, size }, ref) => {
                         </div>
                     </div>
                 </div>
+
+                {instructions[currPage].footerContent && (
+                    <div
+                        className={classes.footer}
+                        dangerouslySetInnerHTML={{
+                            __html: instructions[currPage].footerContent,
+                        }}
+                    ></div>
+                )}
             </div>
         </div>
     );
