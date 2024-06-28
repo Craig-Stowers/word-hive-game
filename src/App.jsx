@@ -33,8 +33,10 @@ function App() {
 
     const currChallengeData = useTextFileLoader(
         challengeListData &&
-            `/challenges/${challengeListData[cycleDaysElapsed]}`
+            `./challenges/${challengeListData[cycleDaysElapsed]}`
     );
+
+    console.log("currChallengeData", currChallengeData);
 
     useEffect(() => {
         function adjustHeight() {
@@ -129,6 +131,8 @@ function App() {
             });
         }
     };
+
+    console.log("global data", globalData);
 
     return (
         <>
