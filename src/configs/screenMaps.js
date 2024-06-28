@@ -14,68 +14,65 @@ import FullWidthHeight from "../components/layouts/FullWidthHeight";
 //useful because any wrapper event will have access to current screen/history.
 
 export const screenMaps = {
-   home: {
-      component: HomeScreen,
-      default: true,
-      actions: {
-         test: (value) => console.log("test", value),
-      },
-   },
-   info: {
-      component: Info,
-      actions: {
-         close: (screen) => screen.back(),
-      },
-      wrappers: [
-         { component: FullWidthHeight },
+    home: {
+        component: HomeScreen,
+        default: true,
+    },
+    info: {
+        component: Info,
+        actions: {
+            close: (screen) => screen.back(),
+        },
+        wrappers: [
+            { component: FullWidthHeight },
 
-         // { component: BestFit, props: { width: 900, height: 600, maxScale: 1.5 } },
-         // { component: OverlayButtons, props: { variation: "cross&next" } },
-      ],
-   },
+            // { component: BestFit, props: { width: 900, height: 600, maxScale: 1.5 } },
+            // { component: OverlayButtons, props: { variation: "cross&next" } },
+        ],
+    },
 
-   game: {
-      component: Game,
-      default: false,
-      actions: {
-         close: (screen) => screen.change("home"),
-      },
-      wrappers: [
-         // {
-         //    component: BestFit,
-         //    props: {
-         //       ratioBreakPoints: {
-         //          1: {
-         //             width: 900,
-         //             height: 600,
-         //          },
-         //       },
-         //       width: 600,
-         //       height: 900,
-         //       maxScale: 1.5,
-         //    },
-         // },
-         { component: WithHeader, props: { layoutType: "main" } },
-      ],
-   },
-   feedback: {
-      component: Feedback,
-      actions: {
-         close: (screen) => screen.change("home"),
-      },
-      wrappers: [
-         // { component: BestFit, props: { width: 900, height: 600, maxScale: 1.5 } },
-         // { component: OverlayButtons, props: { variation: "cross" } },
-      ],
-   },
-   stats: {
-      component: Stats,
-      actions: {
-         close: (screen) => screen.change("home"),
-      },
-      wrappers: [
-         // { component: BestFit, props: { width: 900, height: 600, maxScale: 1.5 } },
-         // { component: OverlayButtons, props: { variation: "cross" } },
-      ],
-   },
+    game: {
+        component: Game,
+        default: false,
+        actions: {
+            close: (screen) => screen.change("home"),
+        },
+        wrappers: [
+            // {
+            //    component: BestFit,
+            //    props: {
+            //       ratioBreakPoints: {
+            //          1: {
+            //             width: 900,
+            //             height: 600,
+            //          },
+            //       },
+            //       width: 600,
+            //       height: 900,
+            //       maxScale: 1.5,
+            //    },
+            // },
+            { component: WithHeader, props: { layoutType: "main" } },
+        ],
+    },
+    feedback: {
+        component: Feedback,
+        actions: {
+            close: (screen) => screen.change("home"),
+        },
+        wrappers: [
+            // { component: BestFit, props: { width: 900, height: 600, maxScale: 1.5 } },
+            // { component: OverlayButtons, props: { variation: "cross" } },
+        ],
+    },
+    stats: {
+        component: Stats,
+        actions: {
+            close: (screen) => screen.change("home"),
+        },
+        wrappers: [
+            // { component: BestFit, props: { width: 900, height: 600, maxScale: 1.5 } },
+            // { component: OverlayButtons, props: { variation: "cross" } },
+        ],
+    },
 };

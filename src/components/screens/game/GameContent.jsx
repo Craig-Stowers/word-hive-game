@@ -326,19 +326,13 @@ const GameContent = ({ size, ...props }) => {
                                     onClick={(event) => {
                                         event.preventDefault();
                                         event.stopPropagation();
-                                        console.log(
-                                            "touched button",
-                                            showDropDown
-                                        );
+
                                         setShowDropDown(!showDropDown);
                                     }}
                                     onTouchEnd={(event) => {
                                         event.preventDefault();
                                         event.stopPropagation();
-                                        console.log(
-                                            "touched button",
-                                            showDropDown
-                                        );
+
                                         setShowDropDown(!showDropDown);
                                     }}
                                 />

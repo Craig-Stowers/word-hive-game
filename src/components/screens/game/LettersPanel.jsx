@@ -96,8 +96,6 @@ const LettersPanel = ({
         [answer, center]
     );
 
-    console.log("letters", letters);
-
     return (
         <div style={{ width: "300px", height: "300px", position: "relative" }}>
             {extendedLetterObjects.map((el, index) => {

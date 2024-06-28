@@ -26,7 +26,6 @@ const Home = ({ screen, size, ...props }) => {
 
     useEffect(() => {
         window.wordHiveTrigger = (eventName) => {
-            console.log("EVENT", eventName);
             if (eventName === "admin") {
                 setAdminMode(true);
             }

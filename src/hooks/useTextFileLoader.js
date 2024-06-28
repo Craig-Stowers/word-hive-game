@@ -5,11 +5,10 @@ function useTextFileLoader(filePath) {
 
     useEffect(() => {
         if (!filePath) return;
-        console.log("fetch text path", filePath);
+
         fetch(filePath)
             .then((response) => response.text())
             .then((contents) => {
-                console.log("text file response", contents);
                 if (filePath.endsWith(".json")) {
                     setFileContent(JSON.parse(contents));
                 } else {

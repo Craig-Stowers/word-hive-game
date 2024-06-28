@@ -37,10 +37,6 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
         screen.globalData.localData?.success[daysElapsed] ||
         screen.globalData.localData?.incomplete[daysElapsed];
 
-    // const [shuffledLetters, setShuffledLetters] = useState(storedData?.answer || []);
-
-    // console.log("stored shuffled letters", storedData.shuffledLetters);
-
     const [answer, setAnswer] = useState(storedData?.answer || "");
     const [correctWords, setCorrectWords] = useState(
         storedData?.correct || []
@@ -81,7 +77,6 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
         }
 
         screen.globalData.setLocalData((oldData) => {
-            console.log("storing shuffled", shuffledLetters);
             return {
                 ...oldData,
                 incomplete: {
@@ -97,11 +92,6 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
         });
     }, [answer, correctWords, screen.globalData.daysElapsed, shuffledLetters]);
 
-    // const centerLetter = data.center;
-    // const letters = data.letters;
-
-    //  const allLettersArr = [centerLetter, ...letters.split("")];
-
     const [randomBonusIndex, setRandomBonusIndex] = useState(0);
 
     const overlayRef = useRef(null);
@@ -109,26 +99,6 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
     const [disabled, setDisabled] = useState(false);
 
     const letterOrder = (centerLetter + shuffledLetters.join("")).toLowerCase();
-
-    // const [bonusLetter] = useMemo(() => {
-    //    data.letters[randomSequence[randomBonusIndex]];
-    //    return [data.letters[randomSequence[0]]];
-    // }, [screen.globalData.currChallengeData]
-
-    useEffect(() => {
-        console.log(
-            "change currChallengeData",
-            screen.globalData.currChallengeData
-        );
-    }, [screen.globalData.currChallengeData]);
-
-    useEffect(() => {
-        console.log("change randomBonusIndex", randomBonusIndex);
-    }, [randomBonusIndex]);
-
-    useEffect(() => {
-        console.log("change randomSequence", randomSequence);
-    }, [randomSequence]);
 
     useEffect(() => {
         if (!screen.globalData.currChallengeData) return;
@@ -157,8 +127,6 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
                 ? storedData.shuffledLetters
                 : shuffleArray(filteredLetters.split(""));
 
-        console.log("SET SHUFFLED TO", shuffled);
-
         setShuffledLetters(shuffled);
     }, [screen.globalData.currChallengeData]);
 
@@ -181,8 +149,6 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
             setDisabled(true);
 
             const days = screen.globalData.daysElapsed;
-
-            console.log("UPDATE FOR DAY", days);
 
             if (!screen.globalData.localData.success[days]) {
                 screen.globalData.setLocalData((oldData) => {
@@ -276,7 +242,6 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
     );
 
     const handleShuffle = () => {
-        console.log("SHUFFLE!!!!");
         const shuffled = shuffleArray(letters.split(""));
         setShuffledLetters(shuffled);
     };
@@ -353,7 +318,6 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
             );
 
             if (isPangram) {
-                console.log("is pangram!");
                 newPoints += 7;
             }
 

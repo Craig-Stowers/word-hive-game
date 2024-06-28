@@ -12,7 +12,6 @@ function withSizeObserver(WrappedComponent) {
 
             // Setup ResizeObserver
             const resizeObserver = new ResizeObserver((entries) => {
-                console.log("resizing");
                 if (!Array.isArray(entries) || !entries.length) return;
                 const { width, height } = entries[0].contentRect;
                 setDimensions({ width, height });
@@ -20,7 +19,6 @@ function withSizeObserver(WrappedComponent) {
 
             // Setup MutationObserver
             const mutationObserver = new MutationObserver(() => {
-                console.log("observe!!! scale");
                 // Placeholder for your mutation handling
             });
 

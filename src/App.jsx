@@ -9,7 +9,7 @@ import { screenMaps } from "./configs/screenMaps";
 import { daysBetween, addDaysToDate, formatDate } from "./helpers/dateMethods";
 import Modal from "./components/Modal";
 import AdminPanel from "./components/AdminPanel";
-let startingDate = "2024-06-11";
+let startingDate = "2024-06-28";
 const defaultData = {
     version: 1,
     success: {},
@@ -24,6 +24,8 @@ function App() {
     const [daysElapsed, setDaysElapsed] = useState(
         Math.floor(daysBetween(startingDate))
     );
+
+    console.log("daysElapsed", daysElapsed);
     const todaysDate = addDaysToDate(startingDate, daysElapsed);
     const [showTools, setShowTools] = useState(false);
 
@@ -35,8 +37,6 @@ function App() {
         challengeListData &&
             `./challenges/${challengeListData[cycleDaysElapsed]}`
     );
-
-    console.log("currChallengeData", currChallengeData);
 
     useEffect(() => {
         function adjustHeight() {
@@ -94,7 +94,6 @@ function App() {
     };
 
     const handleAdminEvent = (event) => {
-        console.log("event", event);
         if (event.type === "gototoday") {
             setDaysElapsed(Math.floor(daysBetween(startingDate)));
         }
@@ -131,8 +130,6 @@ function App() {
             });
         }
     };
-
-    console.log("global data", globalData);
 
     return (
         <>
