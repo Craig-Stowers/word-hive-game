@@ -1,6 +1,9 @@
 {
     "letters": "abinrtv",
     "key": "a",
+    "pangrams": [
+        "vibrant"
+    ],
     "answers": [
         "anti",
         "attain",
@@ -81,7 +84,6 @@
         "rani",
         "airn",
         "naira",
-        "tart",
         "tartar",
         "attar",
         "ratatat",
@@ -115,8 +117,5 @@
         "varia",
         "vivaria",
         "vara"
-    ],
-    "pangrams": [
-        "vibrant"
     ]
 }

@@ -1,6 +1,11 @@
 {
     "letters": "hlmosty",
     "key": "o",
+    "pangrams": [
+        "thymols",
+        "smoothly",
+        "homostyly"
+    ],
     "answers": [
         "holly",
         "holy",
@@ -13,7 +18,6 @@
         "shool",
         "shools",
         "hoot",
-        "tho",
         "tooth",
         "hoots",
         "host",
@@ -40,7 +44,6 @@
         "loss",
         "solo",
         "solos",
-        "sols",
         "sols",
         "lolly",
         "loom",
@@ -103,7 +106,6 @@
         "mosh",
         "ohms",
         "hommos",
-        "homos",
         "homs",
         "mhos",
         "mohos",
@@ -115,10 +117,8 @@
         "moths",
         "smooth",
         "smooths",
-        "oohs",
         "shoo",
         "shoos",
-        "sohs",
         "hoss",
         "oohs",
         "shoosh",
@@ -132,9 +132,7 @@
         "thymols",
         "soot",
         "sots",
-        "toots",
         "toss",
-        "tost",
         "tots",
         "oots",
         "ottos",
@@ -163,7 +161,6 @@
         "holms",
         "sholom",
         "sholoms",
-        "homo",
         "moho",
         "homy",
         "hostly",
@@ -185,10 +182,5 @@
         "tolyl",
         "tolyls",
         "tommy"
-    ],
-    "pangrams": [
-        "smoothly",
-        "homostyly",
-        "thymols"
     ]
 }

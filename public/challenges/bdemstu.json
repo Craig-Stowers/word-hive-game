@@ -1,6 +1,10 @@
 {
     "letters": "bdemstu",
     "key": "t",
+    "pangrams": [
+        "dumbest",
+        "besmutted"
+    ],
     "answers": [
         "beet",
         "ebbet",
@@ -13,12 +17,8 @@
         "ebbets",
         "bested",
         "debts",
-        "betted",
-        "debt",
-        "betted",
         "bust",
         "busts",
-        "buts",
         "butts",
         "stub",
         "stubs",
@@ -31,7 +31,6 @@
         "bestud",
         "bestudded",
         "bestuds",
-        "butt",
         "butut",
         "butte",
         "tube",
@@ -50,12 +49,13 @@
         "butes",
         "subtest",
         "subtests",
+        "debt",
+        "betted",
         "detest",
         "detested",
         "detests",
         "steed",
         "steeds",
-        "teds",
         "tested",
         "deets",
         "stetted",
@@ -102,7 +102,6 @@
         "must",
         "musts",
         "mutts",
-        "smut",
         "smuts",
         "tums",
         "muts",
@@ -126,14 +125,12 @@
         "setts",
         "tees",
         "test",
-        "testes",
         "tests",
         "ests",
         "sestet",
         "sestets",
         "stet",
         "stets",
-        "testee",
         "testees",
         "tets",
         "tsetse",
@@ -147,7 +144,6 @@
         "suttees",
         "tusses",
         "tutees",
-        "ted",
         "teed",
         "deet",
         "tedded",
@@ -161,9 +157,5 @@
         "smutted",
         "stummed",
         "tutee"
-    ],
-    "pangrams": [
-        "dumbest",
-        "besmutted"
     ]
 }

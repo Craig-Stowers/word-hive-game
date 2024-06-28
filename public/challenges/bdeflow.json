@@ -1,6 +1,9 @@
 {
     "letters": "bdeflow",
     "key": "d",
+    "pangrams": [
+        "bedfellow"
+    ],
     "answers": [
         "bedded",
         "ebbed",
@@ -41,7 +44,6 @@
         "bowed",
         "bowwowed",
         "deed",
-        "deeded",
         "deeded",
         "dell",
         "dele",
@@ -112,7 +114,6 @@
         "wowed",
         "dowed",
         "wedded",
-        "weed",
         "weeded",
         "dewed",
         "weeweed",
@@ -125,8 +126,5 @@
         "eddo",
         "webfed",
         "wold"
-    ],
-    "pangrams": [
-        "bedfellow"
     ]
 }

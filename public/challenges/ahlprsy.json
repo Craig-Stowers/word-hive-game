@@ -1,6 +1,10 @@
 {
     "letters": "ahlprsy",
     "key": "y",
+    "pangrams": [
+        "sharply",
+        "phrasally"
+    ],
     "answers": [
         "allay",
         "ally",
@@ -62,12 +66,6 @@
         "parlays",
         "parry",
         "pray",
-        "phyla",
-        "alphyl",
-        "aphylly",
-        "haply",
-        "hyphal",
-        "phyla",
         "prays",
         "raspy",
         "spray",
@@ -99,6 +97,11 @@
         "sylph",
         "sylphs",
         "sylphy",
+        "alphyl",
+        "aphylly",
+        "haply",
+        "hyphal",
+        "phyla",
         "ayah",
         "ayaya",
         "hyla",
@@ -112,9 +115,5 @@
         "rayahs",
         "sharpy",
         "spryly"
-    ],
-    "pangrams": [
-        "sharply",
-        "phrasally"
     ]
 }

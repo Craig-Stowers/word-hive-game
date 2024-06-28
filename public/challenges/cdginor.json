@@ -1,9 +1,14 @@
 {
     "letters": "cdginor",
     "key": "o",
+    "pangrams": [
+        "cording",
+        "cordoning",
+        "corroding",
+        "noncorroding"
+    ],
     "answers": [
         "cocoon",
-        "coon",
         "conn",
         "cocooning",
         "coining",
@@ -56,11 +61,9 @@
         "corridor",
         "cricoid",
         "croc",
-        "orc",
         "rococo",
         "dingo",
         "dodging",
-        "dogging",
         "doing",
         "donning",
         "indigo",
@@ -103,7 +106,6 @@
         "doggo",
         "gorging",
         "goring",
-        "gringo",
         "groin",
         "ignoring",
         "ironing",
@@ -113,7 +115,6 @@
         "grog",
         "indoor",
         "iron",
-        "noir",
         "inro",
         "noir",
         "noniron",
@@ -147,18 +148,11 @@
         "dino",
         "iodin",
         "nodi",
-        "dong",
         "droid",
         "roid",
         "drongo",
         "godroon",
         "gogo",
         "gorgon"
-    ],
-    "pangrams": [
-        "cordoning",
-        "corroding",
-        "cording",
-        "noncorroding"
     ]
 }

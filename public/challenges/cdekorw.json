@@ -1,6 +1,10 @@
 {
     "letters": "cdekorw",
     "key": "d",
+    "pangrams": [
+        "rockweed",
+        "dockworker"
+    ],
     "answers": [
         "cede",
         "ceded",
@@ -18,11 +22,6 @@
         "codec",
         "cooeed",
         "deco",
-        "codeword",
-        "cowered",
-        "crowded",
-        "crowed",
-        "crowder",
         "coerced",
         "cored",
         "corrode",
@@ -55,6 +54,10 @@
         "redock",
         "redocked",
         "cowed",
+        "cowered",
+        "crowded",
+        "crowed",
+        "crowder",
         "cred",
         "creed",
         "decree",
@@ -73,7 +76,6 @@
         "kecked",
         "deed",
         "deeded",
-        "deeded",
         "deer",
         "erred",
         "redder",
@@ -87,9 +89,6 @@
         "reded",
         "reeded",
         "dock",
-        "dockworker",
-        "dockworker",
-        "rockweed",
         "dodo",
         "doodoo",
         "doer",
@@ -150,7 +149,6 @@
         "worked",
         "woodworker",
         "wedded",
-        "weed",
         "weeded",
         "dewed",
         "weeweed",
@@ -161,14 +159,11 @@
         "wrecked",
         "corkwood",
         "dekko",
+        "dockworker",
+        "rockweed",
         "droke",
         "rooked",
         "eddo",
         "koodoo"
-    ],
-    "pangrams": [
-        "dockworker",
-        "dockworker",
-        "rockweed"
     ]
 }

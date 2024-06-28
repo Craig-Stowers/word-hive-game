@@ -1,6 +1,10 @@
 {
     "letters": "belmrst",
     "key": "e",
+    "pangrams": [
+        "trembles",
+        "tremblers"
+    ],
     "answers": [
         "beer",
         "berber",
@@ -242,8 +246,6 @@
         "resets",
         "rest",
         "rests",
-        "retest",
-        "retests",
         "setter",
         "setters",
         "steer",
@@ -254,8 +256,6 @@
         "stresses",
         "teeters",
         "terse",
-        "terser",
-        "tersest",
         "tester",
         "testers",
         "trees",
@@ -301,14 +301,12 @@
         "setts",
         "tees",
         "test",
-        "testes",
         "tests",
         "ests",
         "sestet",
         "sestets",
         "stet",
         "stets",
-        "testee",
         "testees",
         "tets",
         "tsetse",
@@ -358,9 +356,5 @@
         "merls",
         "smeller",
         "smellers"
-    ],
-    "pangrams": [
-        "trembles",
-        "tremblers"
     ]
 }

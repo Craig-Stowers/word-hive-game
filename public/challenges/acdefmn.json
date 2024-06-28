@@ -1,6 +1,9 @@
 {
     "letters": "acdefmn",
     "key": "e",
+    "pangrams": [
+        "defenceman"
+    ],
     "answers": [
         "academe",
         "macadamed",
@@ -30,7 +33,6 @@
         "admen",
         "amend",
         "amended",
-        "damned",
         "demand",
         "demanded",
         "demean",
@@ -68,7 +70,6 @@
         "decane",
         "caeca",
         "ceca",
-        "ceca",
         "cafe",
         "efface",
         "face",
@@ -76,9 +77,7 @@
         "ceded",
         "dame",
         "dammed",
-        "edamame",
         "edema",
-        "madame",
         "made",
         "mead",
         "adeem",
@@ -102,7 +101,6 @@
         "facade",
         "faced",
         "deed",
-        "deeded",
         "deeded",
         "deem",
         "deemed",
@@ -151,8 +149,5 @@
         "mammee",
         "neem",
         "nene"
-    ],
-    "pangrams": [
-        "defenceman"
     ]
 }

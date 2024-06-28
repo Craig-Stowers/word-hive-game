@@ -11,20 +11,16 @@ import Modal from "./components/Modal";
 import AdminPanel from "./components/AdminPanel";
 let startingDate = "2024-06-11";
 const defaultData = {
-    version: 0.6,
+    version: 1,
     success: {},
     failure: {},
     incomplete: {},
 };
 
 function App() {
-    const [localData, setLocalData] = useLocalData(
-        "word-hive-data",
-        defaultData
-    );
+    const [localData, setLocalData] = useLocalData("word-hive", defaultData);
     const challengeListData = useTextFileLoader("/challenges/challenges.json");
 
-    console.log("CHALLENGE LIST DATA", challengeListData);
     const [daysElapsed, setDaysElapsed] = useState(
         Math.floor(daysBetween(startingDate))
     );
@@ -42,7 +38,6 @@ function App() {
 
     useEffect(() => {
         function adjustHeight() {
-            console.log("adjusting height");
             var vh = window.innerHeight * 0.01;
             document.documentElement.style.setProperty("--vh", `${vh}px`);
         }
@@ -58,8 +53,6 @@ function App() {
             window.removeEventListener("resize", adjustHeight);
         };
     }, [currChallengeData]);
-
-    console.log("localdata", localData);
 
     const globalData = useMemo(() => {
         if (!currChallengeData) return null;
@@ -83,7 +76,7 @@ function App() {
         : "not started";
 
     const adminData = {
-        version: 0.9,
+        version: 1,
         "start date": formatDate(startingDate),
         "simulated date": todaysDate,
         day: daysElapsed + " / " + challengeListData?.length,

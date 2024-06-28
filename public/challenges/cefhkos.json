@@ -1,6 +1,9 @@
 {
     "letters": "cefhkos",
     "key": "e",
+    "pangrams": [
+        "checkoffs"
+    ],
     "answers": [
         "check",
         "cheek",
@@ -82,7 +85,6 @@
         "seccos",
         "soces",
         "eche",
-        "feck",
         "fecks",
         "fehs",
         "feoff",
@@ -107,8 +109,5 @@
         "soke",
         "sokes",
         "oses"
-    ],
-    "pangrams": [
-        "checkoffs"
     ]
 }

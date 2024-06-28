@@ -1,6 +1,9 @@
 {
     "letters": "adilnsv",
     "key": "a",
+    "pangrams": [
+        "invalids"
+    ],
     "answers": [
         "adds",
         "dads",
@@ -38,7 +41,6 @@
         "salals",
         "sall",
         "sals",
-        "anal",
         "alan",
         "annal",
         "lallan",
@@ -90,11 +92,6 @@
         "vina",
         "avid",
         "diva",
-        "dals",
-        "lads",
-        "salad",
-        "salads",
-        "dals",
         "dial",
         "laid",
         "alidad",
@@ -131,6 +128,10 @@
         "landslid",
         "sialidan",
         "sialidans",
+        "lads",
+        "salad",
+        "salads",
+        "dals",
         "lain",
         "nail",
         "alanin",
@@ -227,8 +228,5 @@
         "vasa",
         "vavs",
         "vidalias"
-    ],
-    "pangrams": [
-        "invalids"
     ]
 }

@@ -1,6 +1,9 @@
 {
     "letters": "hinostu",
     "key": "t",
+    "pangrams": [
+        "snoutish"
+    ],
     "answers": [
         "hint",
         "ninth",
@@ -10,8 +13,6 @@
         "thins",
         "thinnish",
         "hits",
-        "shit",
-        "shits",
         "this",
         "hist",
         "hists",
@@ -25,7 +26,6 @@
         "shootists",
         "sottish",
         "hoot",
-        "tho",
         "tooth",
         "hoots",
         "host",
@@ -54,7 +54,6 @@
         "shut",
         "shuts",
         "thus",
-        "tush",
         "innit",
         "tint",
         "inti",
@@ -113,11 +112,7 @@
         "stout",
         "stouts",
         "touts",
-        "shootout",
-        "shootouts",
         "shout",
-        "shoutout",
-        "shoutouts",
         "shouts",
         "shutout",
         "shutouts",
@@ -134,7 +129,6 @@
         "souths",
         "thous",
         "sits",
-        "tits",
         "titis",
         "snoot",
         "snoots",
@@ -152,9 +146,7 @@
         "toutons",
         "soot",
         "sots",
-        "toots",
         "toss",
-        "tost",
         "tots",
         "oots",
         "ottos",
@@ -202,11 +194,7 @@
         "tonnish",
         "thio",
         "thionin",
-        "titi",
         "toit",
         "tutti"
-    ],
-    "pangrams": [
-        "snoutish"
     ]
 }

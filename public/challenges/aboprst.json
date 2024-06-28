@@ -1,6 +1,11 @@
 {
     "letters": "aboprst",
     "key": "r",
+    "pangrams": [
+        "bootstrap",
+        "boatports",
+        "bootstraps"
+    ],
     "answers": [
         "abort",
         "abator",
@@ -124,8 +129,6 @@
         "brassart",
         "brassarts",
         "rabats",
-        "brr",
-        "brrr",
         "oars",
         "roars",
         "soar",
@@ -231,7 +234,6 @@
         "toro",
         "torot",
         "torr",
-        "tart",
         "tartar",
         "attar",
         "ratatat",
@@ -240,14 +242,10 @@
         "sarsar",
         "sarsars",
         "boatport",
+        "brrr",
         "prao",
         "proa",
         "prob",
         "probs"
-    ],
-    "pangrams": [
-        "bootstrap",
-        "bootstraps",
-        "boatports"
     ]
 }

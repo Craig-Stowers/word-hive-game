@@ -1,6 +1,11 @@
 {
     "letters": "deoprsw",
     "key": "w",
+    "pangrams": [
+        "powders",
+        "dewdrops",
+        "powderers"
+    ],
     "answers": [
         "dewdrop",
         "powder",
@@ -47,9 +52,6 @@
         "sews",
         "wees",
         "weewees",
-        "eww",
-        "eeew",
-        "weewee",
         "owed",
         "wooded",
         "wooed",
@@ -85,7 +87,6 @@
         "swoops",
         "swop",
         "swops",
-        "wops",
         "pows",
         "woops",
         "prow",
@@ -142,7 +143,6 @@
         "swords",
         "words",
         "wedded",
-        "weed",
         "weeded",
         "dewed",
         "weeweed",
@@ -161,14 +161,10 @@
         "weeders",
         "doowop",
         "doowops",
+        "eeew",
         "powwowed",
         "weeper",
         "woopses",
         "wowee"
-    ],
-    "pangrams": [
-        "dewdrops",
-        "powders",
-        "powderers"
     ]
 }

@@ -1,6 +1,9 @@
 {
     "letters": "behiost",
     "key": "b",
+    "pangrams": [
+        "bothies"
+    ],
     "answers": [
         "bees",
         "ebbs",
@@ -27,7 +30,6 @@
         "sibs",
         "bite",
         "bites",
-        "bittiest",
         "bestie",
         "besties",
         "betise",
@@ -38,18 +40,15 @@
         "titbits",
         "bitts",
         "bobbies",
-        "boobies",
         "booboisie",
         "booboisies",
         "bossies",
         "bobs",
-        "boobs",
         "boos",
         "boss",
         "sobs",
         "bobos",
         "booboos",
-        "boob",
         "bobo",
         "booboo",
         "boohoo",
@@ -64,7 +63,6 @@
         "stobs",
         "boot",
         "bott",
-        "bootee",
         "bootees",
         "besot",
         "besots",
@@ -76,7 +74,6 @@
         "bhoot",
         "booths",
         "bhoots",
-        "bootie",
         "biotite",
         "boite",
         "booties",
@@ -132,8 +129,5 @@
         "bothies",
         "hobbit",
         "hobbits"
-    ],
-    "pangrams": [
-        "bothies"
     ]
 }

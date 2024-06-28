@@ -1,6 +1,9 @@
 {
     "letters": "celmopr",
     "key": "o",
+    "pangrams": [
+        "compeller"
+    ],
     "answers": [
         "cello",
         "cole",
@@ -38,7 +41,6 @@
         "corm",
         "morocco",
         "croc",
-        "orc",
         "rococo",
         "crop",
         "elope",
@@ -47,9 +49,6 @@
         "pole",
         "pollee",
         "popple",
-        "emo",
-        "memo",
-        "mome",
         "emperor",
         "moper",
         "mopper",
@@ -73,6 +72,8 @@
         "orle",
         "reroll",
         "reroller",
+        "memo",
+        "mome",
         "mole",
         "moor",
         "room",
@@ -93,7 +94,6 @@
         "pomo",
         "poolroom",
         "rollmop",
-        "poop",
         "oppo",
         "poor",
         "prop",
@@ -149,8 +149,5 @@
         "opercele",
         "precool",
         "orlop"
-    ],
-    "pangrams": [
-        "compeller"
     ]
 }

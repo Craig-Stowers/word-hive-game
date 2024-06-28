@@ -1,6 +1,9 @@
 {
     "letters": "abgilrs",
     "key": "s",
+    "pangrams": [
+        "ballgirls"
+    ],
     "answers": [
         "ails",
         "alias",
@@ -62,9 +65,6 @@
         "gasbags",
         "bagass",
         "gabbas",
-        "ballgirls",
-        "ballgirls",
-        "balls",
         "balsa",
         "basal",
         "blabs",
@@ -99,9 +99,6 @@
         "sibb",
         "sibbs",
         "sibs",
-        "bigs",
-        "bigs",
-        "gibs",
         "bills",
         "bliss",
         "libs",
@@ -130,7 +127,6 @@
         "gals",
         "glass",
         "lags",
-        "slag",
         "slags",
         "algas",
         "gigs",
@@ -141,11 +137,6 @@
         "sigils",
         "girls",
         "grills",
-        "grails",
-        "argalis",
-        "argils",
-        "glairs",
-        "grails",
         "grass",
         "ragas",
         "rags",
@@ -192,6 +183,10 @@
         "argalas",
         "argals",
         "graals",
+        "argalis",
+        "argils",
+        "glairs",
+        "grails",
         "arras",
         "sarsar",
         "sarsars",
@@ -202,6 +197,9 @@
         "saigas",
         "assai",
         "assais",
+        "ballgirls",
+        "bigs",
+        "gibs",
         "birls",
         "brills",
         "galliass",
@@ -210,9 +208,5 @@
         "grrrls",
         "lars",
         "rills"
-    ],
-    "pangrams": [
-        "ballgirls",
-        "ballgirls"
     ]
 }

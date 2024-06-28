@@ -1,6 +1,10 @@
 {
     "letters": "abegino",
     "key": "e",
+    "pangrams": [
+        "begonia",
+        "ibogaine"
+    ],
     "answers": [
         "aeon",
         "nonane",
@@ -52,7 +56,6 @@
         "egging",
         "engine",
         "genie",
-        "genii",
         "genning",
         "engining",
         "geeing",
@@ -103,9 +106,5 @@
         "ionone",
         "nene",
         "ogee"
-    ],
-    "pangrams": [
-        "begonia",
-        "ibogaine"
     ]
 }

@@ -1,6 +1,9 @@
 {
     "letters": "abcelnt",
     "key": "e",
+    "pangrams": [
+        "enactable"
+    ],
     "answers": [
         "abate",
         "abet",
@@ -109,7 +112,6 @@
         "callable",
         "caeca",
         "ceca",
-        "ceca",
         "cancel",
         "clean",
         "lance",
@@ -183,7 +185,6 @@
         "nettable",
         "tannable",
         "tenantable",
-        "teat",
         "tate",
         "tell",
         "leet",
@@ -207,8 +208,5 @@
         "enactable",
         "leben",
         "nene"
-    ],
-    "pangrams": [
-        "enactable"
     ]
 }

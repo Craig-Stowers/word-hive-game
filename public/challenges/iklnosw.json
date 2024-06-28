@@ -1,6 +1,10 @@
 {
     "letters": "iklnosw",
     "key": "i",
+    "pangrams": [
+        "woolskin",
+        "woolskins"
+    ],
     "answers": [
         "ikon",
         "oink",
@@ -12,14 +16,6 @@
         "nonkins",
         "onionskin",
         "onionskins",
-        "ilks",
-        "kills",
-        "silk",
-        "silks",
-        "skill",
-        "skills",
-        "ilks",
-        "kliks",
         "ills",
         "sill",
         "sills",
@@ -43,8 +39,14 @@
         "inions",
         "ninons",
         "nonis",
-        "kill",
         "klik",
+        "kills",
+        "silk",
+        "silks",
+        "skill",
+        "skills",
+        "ilks",
+        "kliks",
         "kiln",
         "link",
         "kilns",
@@ -69,11 +71,9 @@
         "wikis",
         "lino",
         "lion",
-        "loin",
         "noil",
         "nonillion",
         "lions",
-        "loins",
         "linos",
         "noils",
         "nonillions",
@@ -122,10 +122,6 @@
         "lins",
         "nills",
         "nils",
-        "woolskin",
-        "woolskins"
-    ],
-    "pangrams": [
         "woolskin",
         "woolskins"
     ]

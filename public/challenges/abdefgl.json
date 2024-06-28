@@ -1,6 +1,9 @@
 {
     "letters": "abdefgl",
     "key": "b",
+    "pangrams": [
+        "beflagged"
+    ],
     "answers": [
         "abed",
         "baaed",
@@ -121,8 +124,5 @@
         "beflagged",
         "gabba",
         "glebe"
-    ],
-    "pangrams": [
-        "beflagged"
     ]
 }

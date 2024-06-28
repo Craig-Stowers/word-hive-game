@@ -1,6 +1,10 @@
 {
     "letters": "aeglrsw",
     "key": "e",
+    "pangrams": [
+        "glassware",
+        "glasswares"
+    ],
     "answers": [
         "ageless",
         "alleges",
@@ -49,7 +53,6 @@
         "grease",
         "greases",
         "rages",
-        "sager",
         "sarge",
         "agers",
         "aggers",
@@ -114,7 +117,6 @@
         "areas",
         "ares",
         "arrears",
-        "arse",
         "arses",
         "ears",
         "eras",
@@ -140,7 +142,6 @@
         "saree",
         "sarees",
         "searer",
-        "asses",
         "assess",
         "assesses",
         "ease",
@@ -218,7 +219,6 @@
         "egress",
         "regress",
         "regresses",
-        "regs",
         "serge",
         "egers",
         "eggers",
@@ -258,9 +258,6 @@
         "sews",
         "wees",
         "weewees",
-        "eww",
-        "eeew",
-        "weewee",
         "gage",
         "agee",
         "gargle",
@@ -332,8 +329,6 @@
         "grew",
         "regrew",
         "lawless",
-        "seawall",
-        "seawalls",
         "weals",
         "weasel",
         "weasels",
@@ -413,6 +408,7 @@
         "allele",
         "leal",
         "awee",
+        "eeew",
         "eger",
         "egger",
         "gree",
@@ -430,9 +426,5 @@
         "warsles",
         "wrassle",
         "wrassles"
-    ],
-    "pangrams": [
-        "glassware",
-        "glasswares"
     ]
 }

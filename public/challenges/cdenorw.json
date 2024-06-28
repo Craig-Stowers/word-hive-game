@@ -1,12 +1,14 @@
 {
     "letters": "cdenorw",
     "key": "r",
+    "pangrams": [
+        "crowned",
+        "decrown",
+        "cornrowed",
+        "decrowned",
+        "recrowned"
+    ],
     "answers": [
-        "codeword",
-        "cowered",
-        "crowded",
-        "crowed",
-        "crowder",
         "coerce",
         "core",
         "crore",
@@ -69,6 +71,10 @@
         "recrowned",
         "cower",
         "crower",
+        "cowered",
+        "crowded",
+        "crowed",
+        "crowder",
         "cred",
         "creed",
         "decree",
@@ -85,7 +91,6 @@
         "crew",
         "crewed",
         "croc",
-        "orc",
         "rococo",
         "crow",
         "crowd",
@@ -170,7 +175,6 @@
         "redden",
         "reddened",
         "rend",
-        "rended",
         "render",
         "rendered",
         "ender",
@@ -210,12 +214,5 @@
         "erne",
         "nooner",
         "reno"
-    ],
-    "pangrams": [
-        "cornrowed",
-        "crowned",
-        "decrown",
-        "decrowned",
-        "recrowned"
     ]
 }
