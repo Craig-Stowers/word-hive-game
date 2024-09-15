@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import AnswerInput from "./AnswerInput";
 import LettersPanel from "./LettersPanel";
 import ScoreTicker from "./ScoreTicker";
@@ -11,6 +11,7 @@ import AspectRatioBox from "../../layouts/AspectRatioBox";
 import toggleIcon from "../../../assets/progress-toggle.png";
 import progressPanel from "../../../assets/progress-panel.png";
 import useResizeObserver from "../../../hooks/useResizeObserver";
+import { GlobalContext } from "../../../context/GlobalContext";
 
 const GameContent = ({ size, ...props }) => {
     const {
@@ -26,6 +27,8 @@ const GameContent = ({ size, ...props }) => {
         correctWords,
         classes,
     } = props;
+
+    const { setGameWidth } = useContext(GlobalContext);
 
     const slideDownContainerRef = useRef(null);
 
@@ -59,10 +62,15 @@ const GameContent = ({ size, ...props }) => {
                     height: bestFitHeight,
                     maxScale: 1.6,
                 }}
+                onScaleChange={({ scaleFactor, adaptWidth }) => {
+                    const width = scaleFactor * adaptWidth;
+                    setGameWidth(width);
+                }}
             >
                 <div
                     style={{
                         display: "flex",
+                        height: "100%",
                         flexDirection: verticalLayout ? "column" : "row",
                     }}
                     className={`${verticalLayout ? classes.vertical : ""}`}

@@ -8,6 +8,7 @@ const BestFit = ({
     maxScale,
     style,
     ratioBreakPoints,
+    onScaleChange,
 }) => {
     const outerRef = useRef(null);
     const innerRef = useRef(null);
@@ -64,6 +65,11 @@ const BestFit = ({
             maxScale,
             fitWidth ? testWidth / adaptWidth : testHeight / adaptHeight
         );
+
+        if (onScaleChange) {
+            onScaleChange({ scaleFactor, adaptWidth, adaptHeight });
+        }
+
         //console.log("new OBS scale", scaleFactor);
         innerRef.current.style.transform = `scale(${scaleFactor}) translate(-50%, -50%)`;
 

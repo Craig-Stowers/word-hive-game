@@ -385,5 +385,6 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
         </div>
     );
 });
+Game.displayName = "Game";
 
 export default Game;

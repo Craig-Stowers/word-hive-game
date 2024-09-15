@@ -1,88 +1,88 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap");
 
 :root {
-   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-   line-height: 1.5;
-   font-weight: 400;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
 
-   color-scheme: light dark;
-   color: white;
-   background-color: #242424;
+    color-scheme: light dark;
+    color: white;
+    background-color: #4a4a4a;
 
-   font-synthesis: none;
-   text-rendering: optimizeLegibility;
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
-   --grey-button-color: #e2e2e2;
-   --yellow-color: #f2aa2e;
-   --dark-yellow-color: #da9929;
-   --bonus-border: #36bca9;
-   --bonus-color: #36bca9;
+    --grey-button-color: #e2e2e2;
+    --yellow-color: #f2aa2e;
+    --dark-yellow-color: #da9929;
+    --bonus-border: #36bca9;
+    --bonus-color: #36bca9;
 }
 
 body {
-   margin: 0;
-   display: flex;
-   min-width: 300px;
-   min-height: 300px;
-   width: 100vw;
-   height: calc(100 * var(--vh));
-   /* max-height: 100vh; /* Fallback for browsers that don't support env() */
-   /* max-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom)); */
+    margin: 0;
+    display: flex;
+    min-width: 300px;
+    min-height: 300px;
+    width: 100vw;
+    height: calc(100 * var(--vh));
+    /* max-height: 100vh; /* Fallback for browsers that don't support env() */
+    /* max-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom)); */
 }
 
 button {
-   font-size: inherit;
+    font-size: inherit;
 }
 
 #root {
-   display: block;
-   width: 100%;
-   height: 100%;
+    display: block;
+    width: 100%;
+    height: 100%;
 
-   user-select: none;
-   -webkit-user-select: none; /* Safari */
-   -moz-user-select: none; /* Firefox */
-   -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
 .roboto-condensed {
-   font-family: "Roboto Condensed", sans-serif;
-   font-optical-sizing: auto;
-   font-weight: 400;
-   font-style: normal;
+    font-family: "Roboto Condensed", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .roboto-slab {
-   font-family: "Roboto Slab", serif;
-   font-optical-sizing: auto;
-   font-weight: 400;
-   font-style: normal;
+    font-family: "Roboto Slab", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .viewport-test {
-   position: fixed;
-   top: 0;
-   left: 0;
-   width: 100vw;
-   height: calc(100 * var(--vh));
-   z-index: 1;
-   background-color: #ff000044;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: calc(100 * var(--vh));
+    z-index: 1;
+    background-color: #ff000044;
 
-   padding-top: env(safe-area-inset-top, 50px);
-   padding-right: env(safe-area-inset-right, 50px);
-   padding-bottom: env(safe-area-inset-bottom, 50px);
-   padding-left: env(safe-area-inset-left, 50px);
-   box-sizing: border-box;
-   border: 2px solid green;
+    padding-top: env(safe-area-inset-top, 50px);
+    padding-right: env(safe-area-inset-right, 50px);
+    padding-bottom: env(safe-area-inset-bottom, 50px);
+    padding-left: env(safe-area-inset-left, 50px);
+    box-sizing: border-box;
+    border: 2px solid green;
 }
 
 .viewport-test div {
-   width: 100%;
-   height: 100%;
-   background-color: blue;
-   opacity: 0.5;
-   color: white;
-   font-size: 20px;
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+    opacity: 0.5;
+    color: white;
+    font-size: 20px;
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import classes from "./Header.module.css";
 import CloseIcon from "../../assets/icons/icon-close.svg?react";
 import InfoIcon from "../../assets/icons/icon-info.svg?react";
@@ -6,10 +6,12 @@ import HomeIcon from "../../assets/icons/icon-home.svg?react";
 import logo from "../../assets/title-small.png";
 import CustomButton from "../../shared/CustomButton";
 import AspectRatioBox from "../layouts/AspectRatioBox";
+import { GlobalContext } from "../../context/GlobalContext";
 
 const Header = ({ screen, ...props }) => {
     const [showCheat, setShowCheat] = useState(false);
 
+    const { gameWidth } = useContext(GlobalContext);
     const inputNext = () => {
         if (screen.current === "game") {
             screen.ref.current.inputNext();
@@ -36,7 +38,15 @@ const Header = ({ screen, ...props }) => {
     };
 
     return (
-        <div className={classes.root}>
+        <div
+            className={classes.root}
+            style={{
+                height: "100%",
+                width: gameWidth + "px",
+                marginLeft: "auto",
+                marginRight: "auto",
+            }}
+        >
             <AspectRatioBox ratio={6.5} className={classes.dynamicBar}>
                 <div className={classes.left}>
                     <img src={logo} onClick={() => setShowCheat(!showCheat)} />
