@@ -8,6 +8,7 @@ export const GlobalContext = createContext();
 export const GlobalProvider = ({ children }) => {
     // Define shared state variables
     const [gameWidth, setGameWidth] = useState(0);
+    const [gameOrientation, setGameOrientation] = useState(false);
 
     console.log("gameWidth", gameWidth);
 
@@ -16,6 +17,8 @@ export const GlobalProvider = ({ children }) => {
             value={{
                 gameWidth,
                 setGameWidth,
+                gameOrientation,
+                setGameOrientation,
             }}
         >
             {children}

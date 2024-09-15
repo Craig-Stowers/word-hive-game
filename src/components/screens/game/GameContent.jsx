@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef, useContext, useEffect } from "react";
 import AnswerInput from "./AnswerInput";
 import LettersPanel from "./LettersPanel";
 import ScoreTicker from "./ScoreTicker";
@@ -28,7 +28,7 @@ const GameContent = ({ size, ...props }) => {
         classes,
     } = props;
 
-    const { setGameWidth } = useContext(GlobalContext);
+    const { setGameWidth, setGameOrientation } = useContext(GlobalContext);
 
     const slideDownContainerRef = useRef(null);
 
@@ -50,6 +50,10 @@ const GameContent = ({ size, ...props }) => {
         [verticalLayout],
         "dropdown"
     );
+
+    useEffect(() => {
+        setGameOrientation(verticalLayout ? "vertical" : "horizontal");
+    }, [verticalLayout]);
 
     // console.log("VERITCAL?", verticalLayout);
     // console.log("dropWidth", dropWidth, dropHeight, slideDownContainerRef);

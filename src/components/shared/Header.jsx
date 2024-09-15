@@ -11,7 +11,7 @@ import { GlobalContext } from "../../context/GlobalContext";
 const Header = ({ screen, ...props }) => {
     const [showCheat, setShowCheat] = useState(false);
 
-    const { gameWidth } = useContext(GlobalContext);
+    const { gameWidth, gameOrientation } = useContext(GlobalContext);
     const inputNext = () => {
         if (screen.current === "game") {
             screen.ref.current.inputNext();
@@ -37,16 +37,17 @@ const Header = ({ screen, ...props }) => {
         marginRight: "auto",
     };
 
+    const rootStyle =
+        gameOrientation === "landscape"
+            ? {
+                  width: gameWidth + "px",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+              }
+            : { width: "100%" };
+
     return (
-        <div
-            className={classes.root}
-            style={{
-                height: "100%",
-                width: gameWidth + "px",
-                marginLeft: "auto",
-                marginRight: "auto",
-            }}
-        >
+        <div className={classes.root} style={rootStyle}>
             <AspectRatioBox ratio={6.5} className={classes.dynamicBar}>
                 <div className={classes.left}>
                     <img src={logo} onClick={() => setShowCheat(!showCheat)} />
