@@ -1,9 +1,10 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useContext } from "react";
 import "./App.css";
 import useLocalData from "./hooks/useLocalData";
 
 import useTextFileLoader from "./hooks/useTextFileLoader";
 import ScreenManager from "./components/ScreenManager";
+import { GlobalContext } from "./context/GlobalContext";
 
 import { screenMaps } from "./configs/screenMaps";
 import { daysBetween, addDaysToDate, formatDate } from "./helpers/dateMethods";
@@ -21,11 +22,13 @@ function App() {
     const [localData, setLocalData] = useLocalData("word-hive", defaultData);
     const challengeListData = useTextFileLoader("./challenges/challenges.json");
 
+    const { gameWidth, gameOrientation, gameScreen } =
+        useContext(GlobalContext);
+
     const [daysElapsed, setDaysElapsed] = useState(
         Math.floor(daysBetween(startingDate))
     );
 
-    console.log("daysElapsed", daysElapsed);
     const todaysDate = addDaysToDate(startingDate, daysElapsed);
     const [showTools, setShowTools] = useState(false);
 
@@ -133,7 +136,16 @@ function App() {
 
     return (
         <>
-            <div className={"background"} id="portal-background"></div>
+            <div
+                className={"background"}
+                id="portal-background"
+                style={{
+                    backgroundColor:
+                        gameScreen === "info" || gameScreen === "stats"
+                            ? "black"
+                            : "transparent",
+                }}
+            ></div>
             <ScreenManager
                 screenMaps={screenMaps}
                 initialScreen={"home"}

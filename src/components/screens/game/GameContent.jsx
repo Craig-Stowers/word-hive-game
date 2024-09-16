@@ -52,6 +52,7 @@ const GameContent = ({ size, ...props }) => {
     );
 
     useEffect(() => {
+        console.log("change layout", verticalLayout);
         setGameOrientation(verticalLayout ? "vertical" : "horizontal");
     }, [verticalLayout]);
 

@@ -75,6 +75,7 @@
     flex-grow: 3;
     transition: opacity 220ms ease-in-out;
     opacity: 0;
+    margin-bottom: 20px;
 }
 
 .description {
@@ -83,6 +84,11 @@
     font-size: 1em;
     line-height: 1.14em;
     padding: 0px 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    text-align: center;
+    width: 80%;
+    max-width: 750px;
 }
 
 .description > sup,
@@ -205,5 +211,14 @@
     .footer {
         font-size: 12px;
         bottom: 8px;
+    }
+}
+
+@media screen and (max-height: 480px) {
+    .description {
+        font-size: 16px;
+    }
+    .imageContainer {
+        max-width: 300px;
     }
 }

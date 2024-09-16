@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 
 const getDefaultScreenKey = (screenMaps) => {
     return Object.keys(screenMaps).find((key) => screenMaps[key].default);
@@ -47,6 +48,8 @@ const ScreenManager = ({
         initialScreen || getDefaultScreenKey(screenMaps)
     );
 
+    const { setGameScreen } = useContext(GlobalContext);
+
     const [history, setHistory] = useState([]);
     const screenRef = useRef(null);
     const [refIsSet, setRefIsSet] = useState(false);
@@ -64,6 +67,7 @@ const ScreenManager = ({
     }, [screenStates]);
 
     const handleScreenChange = (key) => {
+        setGameScreen(key);
         setHistory((history) => [...history, current]);
         setCurrent(key);
     };
