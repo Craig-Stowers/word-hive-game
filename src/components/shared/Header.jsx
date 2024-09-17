@@ -37,8 +37,11 @@ const Header = ({ screen, ...props }) => {
         marginRight: "auto",
     };
 
+    console.log("gameWidth", gameWidth);
+    console.log("gameOrientation", gameOrientation);
+
     const rootStyle =
-        gameOrientation === "landscape"
+        gameOrientation === "horizontal"
             ? {
                   width: gameWidth + "px",
                   marginLeft: "auto",
