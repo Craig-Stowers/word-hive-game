@@ -1,97 +1,102 @@
 .root {
-   width: 100%;
-   height: 100%;
-   background-color: black;
-   font-family: "Roboto Condensed", sans-serif;
-   display: flex;
-   flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    font-family: "Roboto Condensed", sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+:global(.orientation-portrait) {
+    .root {
+        padding-top: 60px;
+    }
 }
 
 .vertical {
 }
 
 .buttonRow {
-   margin-left: auto;
-   margin-right: auto;
-   display: flex;
-   justify-content: space-between;
-   margin-top: 20px;
-   width: 100%;
-   max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 1200px;
 }
 .closeContainer {
-   margin-right: 60px;
-   margin-left: auto;
+    margin-right: 60px;
+    margin-left: auto;
 }
 
 .vertical .closeContainer {
-   margin-right: 20px;
+    margin-right: 20px;
 }
 
 .inner {
-   margin-top: -60px;
-   width: 100%;
-   max-width: 1200px;
-   padding: 44px;
-   height: 100%;
-   max-height: 900px;
-   box-sizing: border-box;
-   margin-left: auto;
-   margin-right: auto;
+    width: 100%;
+    max-width: 1200px;
+    padding: 44px;
+    height: 100%;
+    max-height: 900px;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .vertical .inner {
-   margin-top: 0px;
-   padding: 0px 25px 25px 25px;
+    margin-top: 0px;
+    padding: 0px 25px 25px 25px;
 }
 
 .content {
-   display: flex;
-   height: 100%;
+    display: flex;
+    height: 100%;
 }
 
 .vertical .content {
-   flex-direction: column;
+    flex-direction: column;
 }
 
 .vertical .content > div {
-   margin-top: 10px;
+    margin-top: 10px;
 }
 
 .vertical .panel1 {
-   display: flex;
-   align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .vertical .panel2 {
-   padding: 0px;
-   font-size: 18px;
+    padding: 0px;
+    font-size: 18px;
 }
 
 .vertical .panel2 h2 {
-   padding: 8px 16px;
+    padding: 8px 16px;
 }
 
 .vertical .panel2 .scoreContainer {
-   padding: 12px 16px;
-   display: flex;
-   align-items: center;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
 }
 
 .vertical .panel2 .panelContent {
-   padding: 0px 16px 10px 16px;
+    padding: 0px 16px 10px 16px;
 }
 
 .vertical .source {
-   padding: 12px 16px;
+    padding: 12px 16px;
 }
 
 .vertical .wordList {
-   padding: 0px 0px 6px 0px;
+    padding: 0px 0px 6px 0px;
 }
 
 .vertical .panel3 {
-   padding: 15px 0 0 0;
+    padding: 15px 0 0 0;
 }
 
 /* .vertical .wordListContainer {
@@ -100,89 +105,90 @@
 
 .column1,
 .column2 {
-   width: 50%;
-   display: flex;
-   flex-direction: column;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
 
-   height: 100%;
-   box-sizing: border-box;
+    height: 100%;
+    box-sizing: border-box;
 }
 
 .column1 {
-   margin-right: 12px;
+    margin-right: 12px;
 }
 
 .panel {
-   background-color: #1a1a1a;
-   padding: 11px 26px;
+    background-color: #1a1a1a;
+    padding: 11px 26px;
 }
 .panel h2 {
-   color: var(--yellow-color);
-   font-size: 21px;
-   line-height: 21px;
-   font-weight: 400;
-   margin: 0;
-   font-family: "Roboto Slab", serif;
-   margin-top: 5px;
-   margin-bottom: 8px;
+    color: var(--yellow-color);
+    font-size: 21px;
+    line-height: 21px;
+    font-weight: 400;
+    margin: 0;
+    font-family: "Roboto Slab", serif;
+    margin-top: 5px;
+    margin-bottom: 8px;
 }
 
 .column1 .panel2 h2 {
-   margin-bottom: 12px;
-   /* realign due to custom padding on parent. */
-   margin-left: 14px;
+    margin-bottom: 12px;
+    /* realign due to custom padding on parent. */
+    margin-left: 14px;
 }
 
 .column1 .panel2 {
-   padding-left: 12px;
-   padding-right: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-bottom: 0px;
 }
 
 .column1 .panel1 {
-   margin-bottom: 12px;
-   display: flex;
-   align-items: center;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
 }
 .scoreText {
-   font-family: "Roboto Slab", serif;
-   font-size: 27px;
-   line-height: 26px;
-   letter-spacing: 0.07em;
-   display: inline;
-   margin-right: 7px;
-   font-weight: bold;
+    font-family: "Roboto Slab", serif;
+    font-size: 27px;
+    line-height: 26px;
+    letter-spacing: 0.07em;
+    display: inline;
+    margin-right: 7px;
+    font-weight: bold;
 }
 
 .scoreText span {
-   color: var(--yellow-color);
+    color: var(--yellow-color);
 }
 .message {
-   display: inline-flex;
-   align-items: center;
-   margin-left: 10px;
-   background-color: var(--yellow-color);
-   padding: 10px 18px;
-   vertical-align: middle;
-   font-size: 28px;
-   line-height: 24px;
-   letter-spacing: 0.03em;
-   color: black;
-   font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    margin-left: 10px;
+    background-color: var(--yellow-color);
+    padding: 10px 18px;
+    vertical-align: middle;
+    font-size: 28px;
+    line-height: 24px;
+    letter-spacing: 0.03em;
+    color: black;
+    font-weight: bold;
 }
 
 .column1 .panel2,
 .column2 .panel3 {
-   flex-grow: 1;
+    flex-grow: 1;
 }
 
 .panel3 {
-   display: flex;
-   flex-direction: column;
-   .allStatsContainer {
-      flex-grow: 1;
-      width: 100%;
-      height: 100%;
-   }
+    display: flex;
+    flex-direction: column;
+    .allStatsContainer {
+        flex-grow: 1;
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .vertical .allStatsContainer {
@@ -191,148 +197,148 @@
 .column1 .panel1,
 .column2 .panel1,
 .column2 .panel2 {
-   margin-bottom: 12px;
+    margin-bottom: 12px;
 }
 
 .column2 .panel2 h2 {
-   margin-bottom: 14px;
+    margin-bottom: 14px;
 }
 
 .source {
-   font-size: 22px;
-   line-height: 26px;
-   display: inline-block;
-   padding: 2px 0px;
+    font-size: 22px;
+    line-height: 26px;
+    display: inline-block;
+    padding: 2px 0px;
 }
 
 .source span {
-   color: var(--yellow-color);
+    color: var(--yellow-color);
 }
 
 .tabs {
-   display: flex;
-   pointer-events: auto;
-   font-family: "Roboto Slab", serif;
+    display: flex;
+    pointer-events: auto;
+    font-family: "Roboto Slab", serif;
 }
 
 .tabContainer {
-   width: 50%;
+    width: 50%;
 }
 
 .tab {
-   background-color: transparent;
-   padding: 10px;
-   color: white;
-   font-weight: bold;
-   font-size: 23px;
-   text-align: center;
+    background-color: transparent;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 23px;
+    text-align: center;
 }
 
 .tab.selected {
-   background-color: var(--yellow-color);
-   color: black;
+    background-color: var(--yellow-color);
+    color: black;
 }
 .angledCorners {
-   --offset: 10px;
-   clip-path: polygon(
-      var(--offset) 0,
-      calc(100% - var(--offset)) 0,
-      100% var(--offset),
-      100% calc(100% - var(--offset)),
-      calc(100% - var(--offset)) 100%,
-      var(--offset) 100%,
-      0 calc(100% - var(--offset)),
-      0 var(--offset)
-   );
+    --offset: 10px;
+    clip-path: polygon(
+        var(--offset) 0,
+        calc(100% - var(--offset)) 0,
+        100% var(--offset),
+        100% calc(100% - var(--offset)),
+        calc(100% - var(--offset)) 100%,
+        var(--offset) 100%,
+        0 calc(100% - var(--offset)),
+        0 var(--offset)
+    );
 }
 
 .topAngledCorners {
-   --offset: 6px;
-   clip-path: polygon(
-      var(--offset) 0,
-      calc(100% - var(--offset)) 0,
-      100% var(--offset),
-      100% 100%,
-      0 100%,
-      0 var(--offset)
-   );
+    --offset: 6px;
+    clip-path: polygon(
+        var(--offset) 0,
+        calc(100% - var(--offset)) 0,
+        100% var(--offset),
+        100% 100%,
+        0 100%,
+        0 var(--offset)
+    );
 }
 
 @media screen and (max-width: 600px) {
-   .buttonRow {
-      margin-top: 10px;
-   }
-   .vertical .closeContainer {
-      margin-right: 10px;
-   }
-   .inner {
-      padding: 20px;
-   }
+    .buttonRow {
+        margin-top: 10px;
+    }
+    .vertical .closeContainer {
+        margin-right: 10px;
+    }
+    .inner {
+        padding: 20px;
+    }
 
-   .panel {
-      padding: 11px 14px;
-   }
+    .panel {
+        padding: 11px 14px;
+    }
 
-   .panel h2 {
-      font-size: 18px;
-   }
+    .panel h2 {
+        font-size: 18px;
+    }
 
-   .message {
-      font-size: 18px;
-      padding: 8px;
-   }
+    .message {
+        font-size: 18px;
+        padding: 8px;
+    }
 
-   .source {
-      font-size: 18px;
-   }
+    .source {
+        font-size: 18px;
+    }
 
-   .scoreText {
-      font-size: 20px;
-   }
+    .scoreText {
+        font-size: 20px;
+    }
 
-   .column1 .panel2 h2 {
-      font-size: 18px;
-   }
+    .column1 .panel2 h2 {
+        font-size: 18px;
+    }
 
-   .column2 .panel2 h2 {
-      font-size: 18px;
-   }
+    .column2 .panel2 h2 {
+        font-size: 18px;
+    }
 
-   .vertical .panel2 {
-      font-size: 16px;
-   }
+    .vertical .panel2 {
+        font-size: 16px;
+    }
 
-   .tab {
-      font-size: 18px;
-      padding: 5px;
-   }
+    .tab {
+        font-size: 18px;
+        padding: 5px;
+    }
 }
 
 @media screen and (max-width: 480px) {
-   .tab {
-      font-size: 15px;
-      padding: 3px;
-   }
-   .vertical .inner {
-      padding: 0px;
-   }
+    .tab {
+        font-size: 15px;
+        padding: 3px;
+    }
+    .vertical .inner {
+        padding: 0px;
+    }
 
-   .vertical .panel2 {
-      font-size: 14px;
-   }
+    .vertical .panel2 {
+        font-size: 14px;
+    }
 
-   .vertical .panel2 .scoreContainer {
-      padding: 7px 16px;
-      display: flex;
-      align-items: center;
-   }
+    .vertical .panel2 .scoreContainer {
+        padding: 7px 16px;
+        display: flex;
+        align-items: center;
+    }
 
-   .vertical .content > div {
-      margin-top: 6px;
-   }
+    .vertical .content > div {
+        margin-top: 6px;
+    }
 
-   .message {
-      font-size: 18px;
-      padding: 3px 8px;
-   }
+    .message {
+        font-size: 18px;
+        padding: 3px 8px;
+    }
 }

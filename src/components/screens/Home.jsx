@@ -22,7 +22,7 @@ import _scorm from "../../helpers/scorm";
 const Home = ({ screen, size, ...props }) => {
     const imagesLoaded = useImagePreloader(imageLoadPromises);
 
-    const [adminMode, setAdminMode] = useState(false);
+    const [adminMode, setAdminMode] = useState(true);
 
     useEffect(() => {
         window.wordHiveTrigger = (eventName) => {

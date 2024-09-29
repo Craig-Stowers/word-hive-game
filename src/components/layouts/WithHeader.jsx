@@ -13,7 +13,9 @@ const WithHeader = ({ children, ...props }) => {
         if (width < height) setGameOrientation("portrait");
     };
 
-    console.log("gameOrientation", gameOrientation);
+    const alignScreenTop = props.layoutType === "stats";
+
+    //  console.log("gameOrientation", gameOrientation);
 
     return (
         <>
@@ -31,11 +33,25 @@ const WithHeader = ({ children, ...props }) => {
                         height: "100%",
                         flexDirection: "column",
                     }}
+                    className={"orientation-" + gameOrientation}
                 >
                     <Header {...props} />
-                    <div style={{ flexGrow: 1, overflow: "hidden" }}>
-                        {children}
-                    </div>
+
+                    {alignScreenTop ? (
+                        <div
+                            style={{
+                                flexGrow: 1,
+                                width: "100%",
+                                height: "100%",
+                                top: "0px",
+                                position: "absolute",
+                            }}
+                        >
+                            {children}
+                        </div>
+                    ) : (
+                        <div style={{ flexGrow: 1 }}>{children}</div>
+                    )}
                 </div>
             </BestFit>
         </>

@@ -117,8 +117,16 @@
 }
 
 .imageContainer {
-    /* width: 100%;
-   height: 90%; */
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    transition: opacity 220ms ease-in-out;
+    opacity: 0;
+}
+
+/* .imageContainer {
+ 
     max-height: min(450px, 100%);
     max-width: min(700px, 100%);
     margin-left: auto;
@@ -127,8 +135,8 @@
     transition: opacity 220ms ease-in-out;
     opacity: 0;
 
-    /* background-color: lightcoral; */
-}
+  
+} */
 
 .imageContainer img {
     height: 100%;
@@ -140,55 +148,61 @@
 }
 
 @media (max-height: 800px) {
-    .bottom {
-        flex-grow: 1;
-        max-height: 50%;
-    }
-    .imageContainer {
-        max-width: min(500px, 100%);
+    :global(.orientation-portrait) {
+        .bottom {
+            flex-grow: 1;
+            max-height: 50%;
+        }
+        .imageContainer {
+            max-width: min(500px, 100%);
+        }
     }
 }
 
 @media (max-height: 580px) {
-    .root {
-        font-size: 25px;
-    }
+    :global(.orientation-portrait) {
+        .root {
+            font-size: 25px;
+        }
 
-    .bottom {
-        flex-grow: 5;
-        max-height: 60%;
+        .bottom {
+            flex-grow: 5;
+            max-height: 60%;
+        }
     }
 }
 
 @media (max-width: 480px) {
-    .root {
-        font-size: 25px;
-    }
-    .top {
-        flex-grow: 0;
-        margin-top: 5px;
-    }
+    :global(.orientation-portrait) {
+        .root {
+            font-size: 25px;
+        }
+        .top {
+            flex-grow: 0;
+            margin-top: 5px;
+        }
 
-    .buttonRow {
-        padding: 10px 10px 0px 10px;
-    }
+        .buttonRow {
+            padding: 10px 10px 0px 10px;
+        }
 
-    .pageNumber {
-        padding-bottom: 6px;
-    }
+        .pageNumber {
+            padding-bottom: 6px;
+        }
 
-    .title {
-        font-size: 1.1em;
-        padding-bottom: 12px;
-    }
+        .title {
+            font-size: 1.1em;
+            padding-bottom: 12px;
+        }
 
-    .description {
-        font-size: 0.65em;
-        padding: 0px 10px;
-    }
+        .description {
+            font-size: 0.65em;
+            padding: 0px 10px;
+        }
 
-    .imageContainer {
-        max-width: 90%;
+        .imageContainer {
+            max-width: 90%;
+        }
     }
 }
 
@@ -207,7 +221,7 @@
     transform: translateX(-50%);
 }
 
-@media screen and (max-width: 480px) {
+/* @media screen and (max-width: 480px) {
     .footer {
         font-size: 12px;
         bottom: 8px;
@@ -221,4 +235,4 @@
     .imageContainer {
         max-width: 300px;
     }
-}
+} */

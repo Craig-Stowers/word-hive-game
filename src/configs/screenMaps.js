@@ -24,7 +24,7 @@ export const screenMaps = {
             close: (screen) => screen.back(),
         },
         wrappers: [
-            { component: FullWidthHeight },
+            { component: WithHeader },
 
             // { component: BestFit, props: { width: 900, height: 600, maxScale: 1.5 } },
             // { component: OverlayButtons, props: { variation: "cross&next" } },
@@ -60,7 +60,7 @@ export const screenMaps = {
         actions: {
             close: (screen) => screen.change("home"),
         },
-        wrappers: [{ component: WithHeader, props: { layoutType: "main" } }],
+        wrappers: [{ component: WithHeader, props: { layoutType: "stats" } }],
     },
     stats: {
         component: Stats,

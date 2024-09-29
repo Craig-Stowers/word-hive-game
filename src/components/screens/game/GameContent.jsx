@@ -51,7 +51,7 @@ const GameContent = ({ size, ...props }) => {
         "dropdown"
     );
 
-    console.log("game orientation", gameOrientation);
+    // console.log("game orientation", gameOrientation);
 
     // console.log("VERITCAL?", verticalLayout);
     // console.log("dropWidth", dropWidth, dropHeight, slideDownContainerRef);
@@ -161,8 +161,6 @@ const GameContent = ({ size, ...props }) => {
 
             return arr;
         }
-
-        //
 
         const reverseCompletedWords = createReversedArrayWithPadding(
             12,

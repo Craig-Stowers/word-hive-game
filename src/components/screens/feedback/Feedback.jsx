@@ -140,7 +140,7 @@ const Feedback = ({ size, screen }) => {
     const renderHorizontalContent = () => {
         return (
             <div className={classes.root}>
-                <div className={classes.buttonRow}>
+                {/* <div className={classes.buttonRow}>
                     <div className={classes.closeContainer}>
                         <CustomButton
                             className={`${buttonClasses.close}`}
@@ -148,7 +148,7 @@ const Feedback = ({ size, screen }) => {
                             onClick={() => screen.actions.close()}
                         />
                     </div>
-                </div>
+                </div> */}
                 <div className={classes.inner}>
                     <div className={classes.content}>
                         <div className={classes.column1}>
@@ -337,7 +337,7 @@ const Feedback = ({ size, screen }) => {
 
         return (
             <div className={`${classes.root} ${classes.vertical}`}>
-                <div className={classes.buttonRow}>
+                {/* <div className={classes.buttonRow}>
                     <div className={classes.closeContainer}>
                         <CustomButton
                             className={`${buttonClasses.close}`}
@@ -345,7 +345,7 @@ const Feedback = ({ size, screen }) => {
                             onClick={() => screen.actions.close()}
                         />
                     </div>
-                </div>
+                </div> */}
 
                 <div className={classes.inner}>
                     <div className={`${classes.content}`}>

@@ -32,7 +32,7 @@ export default function Stats({ screen }) {
             <div className={classes.inner}>
                 <div className={classes.content}>
                     <div className={classes.panel}>
-                        <h2>WORDHIVE STATISTICS - ALL GAMES</h2>
+                        <h2>WORD HIVE STATISTICS - ALL GAMES</h2>
 
                         <div className={classes.allStatsContainer}>
                             <AllStats

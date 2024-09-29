@@ -40,7 +40,7 @@ const Header = ({ screen, ...props }) => {
     };
 
     const yellowBackground = props.layoutType == "main";
-    console.log("props", props.layoutType);
+    //  console.log("props", props.layoutType);
 
     const showInfo = props.layoutType == "main";
     const showHome = props.layoutType == "main";
@@ -51,7 +51,7 @@ const Header = ({ screen, ...props }) => {
             return (
                 <div
                     className={`${classes.root} ${classes.yellowBackground}`}
-                    style={{}}
+                    style={{ zIndex: 100 }}
                 >
                     <div className={classes.left}>
                         {showLogo && (
@@ -61,6 +61,8 @@ const Header = ({ screen, ...props }) => {
                             />
                         )}
                     </div>
+
+                    {showCheat && <button onClick={inputNext}>Next</button>}
 
                     <div className={classes.right}>
                         <CustomButton
@@ -96,7 +98,7 @@ const Header = ({ screen, ...props }) => {
         },
         stats: () => {
             return (
-                <div className={`${classes.root}`} style={{}}>
+                <div className={`${classes.root}`} style={{ zIndex: 100 }}>
                     <div className={classes.left}></div>
                     <div className={classes.right}>
                         <CustomButton
