@@ -5,6 +5,7 @@
     font-family: "Roboto Condensed", sans-serif;
     display: flex;
     flex-direction: column;
+    padding-top: 20px;
 }
 
 .buttonRow {
@@ -60,7 +61,7 @@
     margin: 0;
     font-family: "Roboto Slab", serif;
     margin-top: 5px;
-    margin-bottom: 34px;
+    margin-bottom: 16px;
 }
 
 .allStats {
@@ -76,6 +77,7 @@
 .logoContainer {
     width: 100%;
     display: flex;
+    padding-bottom: 20px;
 }
 
 .logo {
