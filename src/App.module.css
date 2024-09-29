@@ -1,0 +1,28 @@
+.AdminViewer {
+    color: black;
+    width: 90vw;
+    height: 90vh;
+    padding: 10px;
+    font-size: 12px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    user-select: text;
+}
+
+.AdminViewer h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 17px;
+}
+
+.AdminViewer button {
+    margin-bottom: 10px;
+}
+
+.AdminViewer pre {
+    color: black;
+
+    padding: 10px;
+    font-size: 12px;
+    box-sizing: border-box;
+}

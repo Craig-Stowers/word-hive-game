@@ -7,6 +7,8 @@ import logo from "../../assets/title-small.png";
 import CustomButton from "../../shared/CustomButton";
 import AspectRatioBox from "../layouts/AspectRatioBox";
 import { GlobalContext } from "../../context/GlobalContext";
+import buttonClasses from "../layouts/Buttons.module.css";
+import { render } from "react-dom";
 
 const Header = ({ screen, ...props }) => {
     const [showCheat, setShowCheat] = useState(false);
@@ -31,48 +33,36 @@ const Header = ({ screen, ...props }) => {
     };
 
     const buttonStyle = {
-        width: "29%",
-        height: "100%",
+        height: "46px",
+        width: "46px",
         marginLeft: "auto",
         marginRight: "auto",
     };
 
-    console.log("gameWidth", gameWidth);
-    console.log("gameOrientation", gameOrientation);
+    const yellowBackground = props.layoutType == "main";
+    console.log("props", props.layoutType);
 
-    const rootStyle =
-        gameOrientation === "horizontal"
-            ? {
-                  width: gameWidth + "px",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-              }
-            : { width: "100%" };
+    const showInfo = props.layoutType == "main";
+    const showHome = props.layoutType == "main";
+    const showLogo = props.layoutType == "main";
 
-    return (
-        <div className={classes.root} style={rootStyle}>
-            <AspectRatioBox ratio={6.5} className={classes.dynamicBar}>
-                <div className={classes.left}>
-                    <img src={logo} onClick={() => setShowCheat(!showCheat)} />
-                    {/* {showCheat && (
-                  <div>
-                     <button onClick={inputNext}>[input next]</button>
-                   
-                  </div>
-               )} */}
-                </div>
+    const renderMap = {
+        main: () => {
+            return (
+                <div
+                    className={`${classes.root} ${classes.yellowBackground}`}
+                    style={{}}
+                >
+                    <div className={classes.left}>
+                        {showLogo && (
+                            <img
+                                src={logo}
+                                onClick={() => setShowCheat(!showCheat)}
+                            />
+                        )}
+                    </div>
 
-                <div className={classes.right}>
-                    <AspectRatioBox
-                        ratio={3.5}
-                        height={"100%"}
-                        className={classes.buttonRatioBox}
-                        style={{
-                            marginLeft: "auto",
-                            paddingRight: "2%",
-                            paddingLeft: "10px",
-                        }}
-                    >
+                    <div className={classes.right}>
                         <CustomButton
                             style={{
                                 ...buttonStyle,
@@ -84,28 +74,46 @@ const Header = ({ screen, ...props }) => {
                             }}
                             onClick={() => screen.change("home")}
                         />
-                        {screen.current !== "info" && (
-                            <CustomButton
-                                style={buttonStyle}
-                                render={() => {
-                                    return <InfoIcon />;
-                                }}
-                                onClick={() => screen.change("info")}
-                            />
-                        )}
 
                         <CustomButton
-                            style={{ ...buttonStyle, marginRight: "1.5%" }}
+                            style={buttonStyle}
+                            render={() => {
+                                return <InfoIcon />;
+                            }}
+                            onClick={() => screen.change("info")}
+                        />
+
+                        <CustomButton
+                            style={{ ...buttonStyle, marginRight: "10px" }}
                             render={() => {
                                 return <CloseIcon />;
                             }}
                             onClick={() => screen.actions.close()}
                         />
-                    </AspectRatioBox>
+                    </div>
                 </div>
-            </AspectRatioBox>
-        </div>
-    );
+            );
+        },
+        stats: () => {
+            return (
+                <div className={`${classes.root}`} style={{}}>
+                    <div className={classes.left}></div>
+                    <div className={classes.right}>
+                        <CustomButton
+                            className={`${buttonClasses.close}`}
+                            style={{ ...buttonStyle, marginRight: "10px" }}
+                            render={() => {
+                                return <CloseIcon />;
+                            }}
+                            onClick={() => screen.actions.close()}
+                        />
+                    </div>
+                </div>
+            );
+        },
+    };
+
+    return renderMap[props.layoutType] && renderMap[props.layoutType]();
 };
 
 export default Header;

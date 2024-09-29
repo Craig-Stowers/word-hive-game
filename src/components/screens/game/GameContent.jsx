@@ -28,7 +28,7 @@ const GameContent = ({ size, ...props }) => {
         classes,
     } = props;
 
-    const { setGameWidth, setGameOrientation } = useContext(GlobalContext);
+    const { setGameWidth, gameOrientation } = useContext(GlobalContext);
 
     const slideDownContainerRef = useRef(null);
 
@@ -51,101 +51,83 @@ const GameContent = ({ size, ...props }) => {
         "dropdown"
     );
 
-    useEffect(() => {
-        console.log("change layout", verticalLayout);
-        setGameOrientation(verticalLayout ? "vertical" : "horizontal");
-    }, [verticalLayout]);
+    console.log("game orientation", gameOrientation);
 
     // console.log("VERITCAL?", verticalLayout);
     // console.log("dropWidth", dropWidth, dropHeight, slideDownContainerRef);
 
     const renderHorizontalContent = () => {
         return (
-            <BestFit
-                {...{
-                    width: bestFitWidth,
-                    height: bestFitHeight,
-                    maxScale: 1.6,
+            <div
+                style={{
+                    display: "flex",
+                    height: "100%",
+                    flexDirection: "row",
                 }}
-                onScaleChange={({ scaleFactor, adaptWidth }) => {
-                    const width = scaleFactor * adaptWidth;
-                    setGameWidth(width);
-                }}
+                className={`${verticalLayout ? classes.vertical : ""}`}
             >
-                <div
-                    style={{
-                        display: "flex",
-                        height: "100%",
-                        flexDirection: verticalLayout ? "column" : "row",
-                    }}
-                    className={`${verticalLayout ? classes.vertical : ""}`}
-                >
-                    <div className={classes.left}>
-                        <div className={classes.inputWrapper}>
-                            <AnswerInput value={answer} />
-                        </div>
+                <div className={classes.left}>
+                    <div className={classes.inputWrapper}>
+                        <AnswerInput value={answer} />
+                    </div>
 
+                    <div
+                        style={{
+                            height: "80%",
+                            width: "100%",
+                            padding: "40px 40px",
+                            boxSizing: "border-box",
+                        }}
+                    >
                         <div
-                            style={{
-                                height: "80%",
-                                width: "100%",
-                                padding: "40px 40px",
-                                boxSizing: "border-box",
-                            }}
+                            className={classes.lettersWrapper}
+                            style={{ height: "100%", width: "100%" }}
                         >
-                            <div
-                                className={classes.lettersWrapper}
-                                style={{ height: "100%", width: "100%" }}
+                            <BestFit
+                                {...{
+                                    width: 300,
+                                    height: 300,
+                                    maxScale: 1.6,
+                                }}
                             >
-                                <BestFit
-                                    {...{
-                                        width: 300,
-                                        height: 300,
-                                        maxScale: 1.6,
-                                    }}
-                                >
-                                    <LettersPanel
-                                        center={centerLetter}
-                                        letters={shuffledLetters}
-                                        onLetterClick={handleAllowedLetter}
-                                        bonusLetter={bonusLetter.toUpperCase()}
-                                        answer={answer}
-                                    />
-                                </BestFit>
-                            </div>
-                        </div>
-                        <div
-                            style={{
-                                height: "20%",
-                                width: "70%",
-                                margin: "auto",
-                            }}
-                        >
-                            <FootButtons
-                                onShuffle={handleShuffle}
-                                onEnter={handleEnter}
-                                onDelete={handleDelete}
-                            />
+                                <LettersPanel
+                                    center={centerLetter}
+                                    letters={shuffledLetters}
+                                    onLetterClick={handleAllowedLetter}
+                                    bonusLetter={bonusLetter.toUpperCase()}
+                                    answer={answer}
+                                />
+                            </BestFit>
                         </div>
                     </div>
-                    <div className={classes.right}>
-                        <div className={classes.rightInner}>
-                            <ScoreTicker
-                                className={classes.score}
-                                score={score}
-                            />
-                            <CompletedWords
-                                columns={4}
-                                words={correctWords}
-                                letterOrder={
-                                    centerLetter + shuffledLetters.join("")
-                                }
-                                bonusLetter={bonusLetter}
-                            />
-                        </div>
+                    <div
+                        style={{
+                            height: "20%",
+                            width: "70%",
+                            margin: "auto",
+                        }}
+                    >
+                        <FootButtons
+                            onShuffle={handleShuffle}
+                            onEnter={handleEnter}
+                            onDelete={handleDelete}
+                        />
                     </div>
                 </div>
-            </BestFit>
+                <div className={classes.right}>
+                    <div className={classes.rightInner}>
+                        <ScoreTicker className={classes.score} score={score} />
+                        <CompletedWords
+                            columns={4}
+                            words={correctWords}
+                            letterOrder={
+                                centerLetter + shuffledLetters.join("")
+                            }
+                            bonusLetter={bonusLetter}
+                        />
+                    </div>
+                </div>
+            </div>
         );
     };
     const renderVerticalContent = () => {
@@ -193,9 +175,9 @@ const GameContent = ({ size, ...props }) => {
             <div
                 style={{
                     display: "flex",
-                    flexDirection: verticalLayout ? "column" : "row",
+                    flexDirection: "column",
                 }}
-                className={`${verticalLayout ? classes.vertical : ""}`}
+                className={`${classes.vertical}`}
             >
                 {/* <AspectRatioBox ratio={540 / 150} style={{ backgroundColor: "black", minHeight: "25%" }}></AspectRatioBox> */}
                 <div
@@ -369,8 +351,8 @@ const GameContent = ({ size, ...props }) => {
 
     return (
         <div style={{ width: "100%", height: "100%" }}>
-            {verticalLayout && renderVerticalContent()}
-            {!verticalLayout && renderHorizontalContent()}
+            {gameOrientation === "portrait" && renderVerticalContent()}
+            {gameOrientation === "landscape" && renderHorizontalContent()}
         </div>
     );
 };

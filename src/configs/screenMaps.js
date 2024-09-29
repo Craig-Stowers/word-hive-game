@@ -60,10 +60,7 @@ export const screenMaps = {
         actions: {
             close: (screen) => screen.change("home"),
         },
-        wrappers: [
-            // { component: BestFit, props: { width: 900, height: 600, maxScale: 1.5 } },
-            // { component: OverlayButtons, props: { variation: "cross" } },
-        ],
+        wrappers: [{ component: WithHeader, props: { layoutType: "main" } }],
     },
     stats: {
         component: Stats,
@@ -71,6 +68,7 @@ export const screenMaps = {
             close: (screen) => screen.change("home"),
         },
         wrappers: [
+            { component: WithHeader, props: { layoutType: "stats" } },
             // { component: BestFit, props: { width: 900, height: 600, maxScale: 1.5 } },
             // { component: OverlayButtons, props: { variation: "cross" } },
         ],

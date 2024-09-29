@@ -9,6 +9,8 @@ const BestFit = ({
     style,
     ratioBreakPoints,
     onScaleChange,
+    onContainerResize = null,
+    active = true,
 }) => {
     const outerRef = useRef(null);
     const innerRef = useRef(null);
@@ -53,6 +55,17 @@ const BestFit = ({
     // };
 
     useEffect(() => {
+        if (onContainerResize) {
+            onContainerResize({ width: testWidth, height: testHeight });
+        }
+    }, [testWidth, testHeight]);
+
+    useEffect(() => {
+        if (!active) {
+            innerRef.current.style.transform = `scale(1) translate(-50%, -50%)`;
+            setDimensions({ width: testWidth, height: testHeight });
+            return;
+        }
         if (!outerRef.current) return;
 
         let adaptWidth = width;
@@ -80,7 +93,7 @@ const BestFit = ({
         // innerRef.current.style.transform = `scale(${scaleFactor}) translate(-50%, -50%)`;
         // }, 10);
         //  return () => clearTimeout(repaintTimer);
-    }, [testWidth, testHeight]);
+    }, [testWidth, testHeight, active]);
 
     // useEffect(() => {
     //    const ratioKeys =

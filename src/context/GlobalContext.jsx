@@ -8,10 +8,8 @@ export const GlobalContext = createContext();
 export const GlobalProvider = ({ children }) => {
     // Define shared state variables
     const [gameWidth, setGameWidth] = useState(0);
-    const [gameOrientation, setGameOrientation] = useState("horizontal");
+    const [gameOrientation, setGameOrientation] = useState("landscape");
     const [gameScreen, setGameScreen] = useState("home");
-
-    console.log("gameScreen", gameScreen);
 
     return (
         <GlobalContext.Provider

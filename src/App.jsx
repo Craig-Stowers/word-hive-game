@@ -139,12 +139,12 @@ function App() {
             <div
                 className={"background"}
                 id="portal-background"
-                style={{
-                    backgroundColor:
-                        gameScreen === "info" || gameScreen === "stats"
-                            ? "black"
-                            : "transparent",
-                }}
+                // style={{
+                //     backgroundColor:
+                //         gameScreen === "info" || gameScreen === "stats"
+                //             ? "black"
+                //             : "transparent",
+                // }}
             ></div>
             <ScreenManager
                 screenMaps={screenMaps}
