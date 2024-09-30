@@ -1,226 +1,225 @@
 .root {
-   width: 100%;
-   height: 100%;
-   display: flex;
-   flex-direction: column;
-   pointer-events: auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto;
 }
 
 .header {
-   height: 50px;
-   background-color: var(--yellow-color);
+    height: 50px;
+    background-color: var(--yellow-color);
 }
 
 .content {
-   margin-left: auto;
-   margin-right: auto;
-   display: flex;
-   flex-direction: row;
-   flex-grow: 1;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
 
-   height: 100%;
-   width: 100%;
-   max-width: 1400px;
+    height: 100%;
+    width: 100%;
+    max-width: 1400px;
 }
 
 .left {
-   width: 45%;
-   background-color: black;
-   display: flex;
-   flex-direction: column;
+    width: 45%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
 }
 
 .inputWrapper {
-   margin-top: 20px;
-   margin-left: auto;
-   margin-right: auto;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .right {
-   width: 55%;
-   background-color: #1a1a1a;
+    width: 55%;
+    background-color: #1a1a1a;
 }
 
 .rightInner {
-   padding: 20px 8px;
-   display: flex;
-   flex-direction: column;
+    padding: 20px 8px;
+    display: flex;
+    flex-direction: column;
 }
 
 .lettersWrapper {
-   margin-left: auto;
-   margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .score {
-   width: 163px;
-   margin-left: auto;
-   margin-right: auto;
-   margin-bottom: 10px;
-   margin-top: 6px;
-   font-family: "Roboto Slab", serif;
-   font-size: 25px;
-   line-height: 25px;
-   letter-spacing: 0.07em;
-   background-color: black;
-   padding: 8px 0 8px 16px;
-   text-align: left;
+    width: 163px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    margin-top: 6px;
+    font-family: "Roboto Slab", serif;
+    font-size: 25px;
+    line-height: 25px;
+    letter-spacing: 0.07em;
+    background-color: black;
+    padding: 8px 0 8px 16px;
+    text-align: left;
 }
 
 .vertical .score {
-   background-color: #1a1a1a;
+    background-color: #1a1a1a;
 }
 
 .score span {
-   color: var(--yellow-color);
+    color: var(--yellow-color);
 }
 
 .vertical {
-   height: 100%;
+    height: 100%;
 
-   .inputWrapper {
-      margin: 0 auto;
-   }
+    .inputWrapper {
+        margin: 0 auto;
+    }
 }
 
 .vertical .left {
-   width: 100%;
-   height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .vertical .right {
-   /* bottom: calc(100vh - 220px); */
-   top: 0px;
-   position: absolute;
-   width: 100%;
-   height: 80%;
+    /* bottom: calc(100vh - 220px); */
+    top: 0px;
+    position: absolute;
+    width: 100%;
+    height: 80%;
 
-   background-color: #ff000000;
+    background-color: #ff000000;
 }
 
 .vertical .right .rightInner {
-   width: 100%;
-   height: 50%;
+    width: 100%;
+    height: 50%;
 }
 
 .slideDownContainer {
-   position: absolute;
-   transform: translateY(-73%);
-   width: 100%;
-   display: flex;
-   flex-direction: column;
-   background-color: #1a1a1a;
+    position: absolute;
+    transform: translateY(-73%);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #1a1a1a;
 
-   transition: all 0.5s;
+    transition: all 0.5s;
 }
 
 @media screen and (max-width: 300px) {
-   .slideDownContainer {
-      /* transform: translateY(-70%); */
-   }
+    .slideDownContainer {
+        /* transform: translateY(-70%); */
+    }
 
-   .score {
-      /* margin-top: -15px; */
-      font-size: 18px;
-      padding: 4px 0 4px 6px;
-   }
+    .score {
+        /* margin-top: -15px; */
+        font-size: 18px;
+        padding: 4px 0 4px 6px;
+    }
 }
 
 .showDropDown {
-   transform: translateY(0%);
+    transform: translateY(0%);
 }
 
 .slideDownContainer .inner {
-   width: 100%;
-   max-width: min(calc(70vh - 50px), 400px);
-   margin-left: auto;
-   margin-right: auto;
+    width: 100%;
+    max-width: min(calc(70vh - 50px), 400px);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .slideRatioBox {
-   /* max-height: 70vh;
+    /* max-height: 70vh;
    min-height: 200px; */
-   display: flex;
+    display: flex;
 }
 
 .verticalRow {
-   margin: 0 !important;
+    margin: 0 !important;
 }
 
 .verticalRow:first-of-type {
-   margin-top: 0.8%;
+    margin-top: 0.8%;
 }
 
 .barrier {
-   position: absolute;
-   width: 100%;
-   height: 100%;
-   top: 0;
-   left: 0;
-   background-color: black;
-   opacity: 0;
-   pointer-events: none;
-   transition: all 0.3s;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
 }
 
 .showBarrier {
-   opacity: 0.8;
-   pointer-events: auto;
+    opacity: 0.8;
+    pointer-events: auto;
 }
 
 .sliderFooter {
 }
 
 .sliderFooterInner {
-   height: 5px;
-   position: relative;
+    height: 5px;
+    position: relative;
 
-   .toggleIconContainer {
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      z-index: 10;
+    .toggleIconContainer {
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 50%;
+        z-index: 10;
 
-      width: 10%;
-      max-width: 50px;
-      min-width: 35px;
+        width: 10%;
+        max-width: 38px;
+        min-width: 25px;
 
-      transform: translate(-50%, -50%);
-   }
+        transform: translate(-50%, -50%);
+    }
 
-   .toggleIcon {
-      width: 100%;
+    .toggleIcon {
+        width: 100%;
+        left: 0;
+        top: 0;
+        transform-origin: 50% 50%;
+        transform: translate(-50%, -50%);
+    }
 
-      left: 0;
-      top: 0;
-      transform-origin: 50% 50%;
-      transform: translate(-50%, -50%);
-   }
+    .progressContainer {
+        position: absolute;
+        right: 24px;
+        top: 100%;
+        display: flex;
+        width: 60px;
+        transform: translateY(-50%);
 
-   .progressContainer {
-      position: absolute;
-      right: 24px;
-      top: 100%;
-      display: flex;
-      width: 60px;
-      transform: translateY(-50%);
+        color: white;
 
-      color: white;
+        .progressPanel {
+            width: 100%;
+        }
 
-      .progressPanel {
-         width: 100%;
-      }
-
-      .progressText {
-         position: absolute;
-         top: 50%;
-         left: 50%;
-         transform: translate(-50%, -50%);
-         font-size: 17px;
-         line-height: 0;
-         font-family: "Roboto Slab", serif;
-         color: #000000;
-         font-weight: 700;
-      }
-   }
+        .progressText {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 17px;
+            line-height: 0;
+            font-family: "Roboto Slab", serif;
+            color: #000000;
+            font-weight: 700;
+        }
+    }
 }
