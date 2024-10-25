@@ -173,7 +173,10 @@ const Feedback = ({ size, screen }) => {
                                 className={`${classes.panel} ${classes.panel2}`}
                             >
                                 <h2>YOUR WORDS</h2>
-                                <CompletedWords words={answers} />
+                                <CompletedWords
+                                    words={answers}
+                                    gameContext={"post-game"}
+                                />
                             </div>
                         </div>
 
