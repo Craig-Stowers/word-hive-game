@@ -29,7 +29,10 @@ const CompletedWords = ({
                 const currWord = words[i].word;
                 const nextWord = words[i + 1]?.word;
 
-                if (nextWord && currWord.length + nextWord.length >= 18) {
+                if (
+                    currWord.length >= 13 ||
+                    (nextWord && currWord.length + nextWord.length >= 18)
+                ) {
                     isCramped = true;
                     //   console.log(
                     //       "found a cramping",
@@ -49,7 +52,7 @@ const CompletedWords = ({
         setFontSize(getFontSize());
     }, [words, gameContext, gameOrientation]);
 
-    const maxWidth = gameContext === "ingame" ? 110 : 88;
+    const maxWidth = gameContext === "ingame" ? 110 : 78;
 
     return (
         <div className={classes.root}>
