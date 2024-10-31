@@ -23,9 +23,10 @@ const CompletedWords = ({
 
     const getFontSize = () => {
         let isCramped = false;
+
         for (var i = 0; i < words.length; i++) {
             const column = i % 4;
-            if (column < 3) {
+            if (column < 3 && words[i] !== null) {
                 const currWord = words[i].word;
                 const nextWord = words[i + 1]?.word;
 
