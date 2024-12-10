@@ -28,10 +28,18 @@ import BestFit from "../../BestFit";
 const randomSequence = shuffleArray([0, 1, 2, 3, 4, 5]);
 
 const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
+    // if (!screen.globalData) {
+    //     window.removeEventListener("keydown", handleEnter);
+    //         window.removeEventListener("keydown", handleDelete);
+    //         window.removeEventListener("keydown", handleAllowedLetter);
+    //     return null;
+    // }
     const daysElapsed = screen.globalData.daysElapsed;
     const [refsAvailable, setRefsAvailable] = useState(false);
 
     const [shuffledLetters, setShuffledLetters] = useState([]);
+
+    const [daysElapsedSession, setDaysElapsedSession] = useState(daysElapsed);
 
     const storedData =
         screen.globalData.localData?.success[daysElapsed] ||
@@ -59,7 +67,7 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
         // const currIncomplete = screen.globalData.localData?.incomplete[day];
         const days = screen.globalData.daysElapsed;
 
-        //cleanse data
+        //cleanse incomplete data if success data exists
         if (screen.globalData.localData.success[days]) {
             if (screen.globalData.localData.incomplete[days]) {
                 const allIncomplete = {
@@ -248,10 +256,12 @@ const Game = forwardRef(({ screen, dataIndex = 3, size }, ref) => {
 
     const handleEnter = () => {
         if (disabled) return;
-        const trimAnswer = answer.trim().toLowerCase();
+        const ans = answer || "";
+        const trimAnswer = ans.trim().toLowerCase();
 
         let newPoints = 0;
 
+        console.log("overlay", overlayRef.current);
         if (trimAnswer.length < 4) {
             overlayRef.current.generateAlert({
                 type: "tip",

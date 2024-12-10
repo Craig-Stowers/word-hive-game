@@ -22,6 +22,8 @@ import _scorm from "../../helpers/scorm";
 const Home = ({ screen, size, ...props }) => {
     const imagesLoaded = useImagePreloader(imageLoadPromises);
 
+    //  const [loadingGame, setLoadingGame] = useState(false);
+
     const [adminMode, setAdminMode] = useState(false);
 
     useEffect(() => {
@@ -31,6 +33,7 @@ const Home = ({ screen, size, ...props }) => {
             }
         };
     }, []);
+
     if (!imagesLoaded) return null;
 
     const smallButtonStyle = {
@@ -126,12 +129,14 @@ const Home = ({ screen, size, ...props }) => {
                                         );
                                     }}
                                     onClick={() => {
+                                        screen.mainAPI.syncDate();
                                         _scorm.initScorm();
                                         _scorm.scormProcessSetValue(
                                             "cmi.core.score.raw",
                                             "100"
                                         );
                                         _scorm.setLessonStatusComplete();
+
                                         screen.change("game");
                                     }}
                                 />

@@ -10,7 +10,7 @@ import { screenMaps } from "./configs/screenMaps";
 import { daysBetween, addDaysToDate, formatDate } from "./helpers/dateMethods";
 import Modal from "./components/Modal";
 import AdminPanel from "./components/AdminPanel";
-let startingDate = "2024-06-28";
+let startingDate = "2024-12-01";
 const defaultData = {
     version: 1,
     success: {},
@@ -38,7 +38,8 @@ function App() {
 
     const currChallengeData = useTextFileLoader(
         challengeListData &&
-            `./challenges/${challengeListData[cycleDaysElapsed]}`
+            `./challenges/${challengeListData[cycleDaysElapsed]}`,
+        true
     );
 
     useEffect(() => {
@@ -72,11 +73,11 @@ function App() {
         };
     }, [currChallengeData, daysElapsed, localData]);
 
-    const score = localData.success[daysElapsed]?.score;
+    const score = localData?.success[daysElapsed]?.score;
 
-    const status = localData.success[daysElapsed]
+    const status = localData?.success[daysElapsed]
         ? "complete"
-        : localData.incomplete[daysElapsed]
+        : localData?.incomplete[daysElapsed]
         ? "incomplete"
         : "not started";
 
@@ -94,6 +95,12 @@ function App() {
         // "todays status": getTodaysStatus().status,
         // "todays save data": JSON.stringify(getTodaysStatus().value),
         // ...stats.totals,
+    };
+
+    const mainAPI = {
+        syncDate: () => {
+            setDaysElapsed(Math.floor(daysBetween(startingDate)));
+        },
     };
 
     const handleAdminEvent = (event) => {
@@ -146,13 +153,16 @@ function App() {
                 //             : "transparent",
                 // }}
             ></div>
+
             <ScreenManager
                 screenMaps={screenMaps}
                 initialScreen={"home"}
                 key="manager"
                 globalData={globalData}
                 style={{ pointerEvents: "none" }}
+                mainAPI={mainAPI}
             />
+
             {showTools && (
                 <Modal onClose={() => setShowTools(false)}>
                     <AdminPanel

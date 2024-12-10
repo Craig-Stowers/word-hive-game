@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 
-function useTextFileLoader(filePath) {
+function useTextFileLoader(filePath, nullify = false) {
     const [fileContent, setFileContent] = useState(null);
 
     useEffect(() => {
+        if (nullify) setFileContent(null);
         if (!filePath) return;
 
         fetch(filePath)

@@ -52,6 +52,7 @@ function useLocalData(key, initialState) {
         const newValue = JSON.stringify(value);
 
         if (db) {
+            console.log("store save", db);
             await setString(db, newValue);
             // setStoredValue(newValue); // Update local state to reflect the saved value
         }
@@ -59,6 +60,7 @@ function useLocalData(key, initialState) {
 
     const handleLoad = async (db) => {
         if (db) {
+            console.log("start load");
             const value = await getString(db);
 
             const newValue =
@@ -70,12 +72,12 @@ function useLocalData(key, initialState) {
             //  console.log("stored value", value);
             // setStoredValue(value); // Load from IndexedDB and update state
         } else {
-            console.log("failed loading db");
+            console.log("failed");
         }
     };
 
     useEffect(() => {
-        const openRequest = indexedDB.open("word-hive", 1);
+        const openRequest = indexedDB.open("letter-sleuth", 1);
 
         openRequest.onupgradeneeded = (event) => {
             const db = event.target.result;
@@ -98,7 +100,6 @@ function useLocalData(key, initialState) {
     useThrottleEffect(
         () => {
             handleSave();
-
             // localStorage.setItem(key, JSON.stringify(value));
         },
         1500,

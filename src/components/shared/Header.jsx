@@ -57,7 +57,7 @@ const Header = ({ screen, ...props }) => {
                         {showLogo && (
                             <img
                                 src={logo}
-                                onClick={() => setShowCheat(!showCheat)}
+                                // onClick={() => setShowCheat(!showCheat)}
                             />
                         )}
                     </div>

@@ -43,6 +43,7 @@ const ScreenManager = ({
     initialScreen = null,
     globalData,
     style = {},
+    mainAPI,
 }) => {
     const [current, setCurrent] = useState(
         initialScreen || getDefaultScreenKey(screenMaps)
@@ -109,6 +110,7 @@ const ScreenManager = ({
         ref: screenRef,
         globalState: screenStates,
         globalData,
+        mainAPI,
 
         //having trouble with direct provision of screenRef.current, as sometimes the ref is attached after these props have been handed on.
         //TODO possibly trigger an assign of new methods inside the ref attach below
@@ -145,6 +147,7 @@ const ScreenManager = ({
     };
 
     if (!ScreenComponent) return null;
+    if (current === "game" && !globalData) return null;
 
     const canAcceptRef = isForwardRefComponent(ScreenComponent);
 
